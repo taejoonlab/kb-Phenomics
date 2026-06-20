@@ -1,0 +1,1511 @@
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Deep learning-based high-resolution time
+inference for deciphering dynamic gene
+regulation from ﬁxed embryos
+Huihan Bao1,2, Shihe Zhang
+1,2, Zhiyang Yu1,2 & Heng Xu
+1,2
+Embryo development is driven by the spatiotemporal dynamics of complex
+gene regulatory networks. Uncovering these dynamics requires simultaneous
+tracking of multiple ﬂuctuating molecular species over time, which exceeds
+the capabilities of traditional live-imaging approaches. Fixed-embryo imaging
+offers the necessary sensitivity and capacity but lacks temporal resolution.
+Here, we present a multi-scale ensemble deep learning approach to precisely
+infer absolute developmental time with 1-minute resolution from nuclear
+morphology in ﬁxed Drosophila embryo images. Applying this approach to
+quantitative imaging of ﬁxed wild-type embryos, we resolve the spatio-
+temporal regulation of the endogenous segmentation gene Krüppel (Kr) by
+multiple transcription factors (TFs) during early development without genetic
+modiﬁcation. Integrating a time-resolved theoretical model of single-molecule
+mRNA statistics, we further uncover the unsteady-state bursty kinetics of the
+endogenous segmentation gene, hunchback (hb), driven by dynamic TF
+binding. Our method provides a versatile framework for deciphering complex
+gene network dynamics in genetically unmodiﬁed organisms.
+Embryo development is orchestrated by complex gene regulatory
+networks in individual cells, whose dynamic spatiotemporal expres-
+sions dictate cell fate determination and body plan formation1–3. For
+example, in early Drosophila embryos (nuclear cycles (nc) 11 to early
+14), cell nuclei undergo rapid and synchronous divisions, with no
+visible body structures yet formed. Yet, during this stage, future body
+segments along the anterior-posterior (AP) axis are pre-deﬁned by the
+dynamic expression patterns of the segmentation gene network4–6. To
+unravel these gene regulation dynamics, a key challenge is to simul-
+taneously track both the spatial and temporal information with high
+resolution. A common approach involves real-time imaging of live
+embryos genetically engineered to express ﬂuorescently labeled
+mRNAs or proteins of interest7–10. However, due to genetic and
+optical challenges, this approach inherently struggles to monitor
+multiple dynamic molecular species simultaneously (typically <4)11,
+limiting its effectiveness in analyzing complex regulatory interactions.
+Additionally, genetic modiﬁcations can disrupt endogenous gene
+expression, potentially distorting the natural biological system11.
+Fixed-embryo imaging offers a compelling alternative that does
+not require genetic modiﬁcations and is scalable to high-throughput
+applications12–14. Without the trade-offs associated with live tracking,
+it provides higher sensitivity and spatial resolution15. The challenge,
+however, is that each ﬁxed-embryo image represents only a snapshot
+in time, necessitating temporal alignment of multiple ﬁxed embryos
+to reconstruct the developmental process. Traditionally, this align-
+ment relied on manually timing embryos before ﬁxation16,17 or com-
+paring their morphology to a pre-established developmental atlas
+after ﬁxation18,19. Yet, due to uncertainty in developmental start
+times and the limited sample density of the atlas, these methods
+provide only coarse-grained developmental stages, inadequate for
+resolving detailed gene regulation dynamics at minute or sub-minute
+timescales.
+Received: 15 December 2024
+Accepted: 4 July 2025
+Check for updates
+1School of Physics and Astronomy, Shanghai Jiao Tong University, Shanghai, China. 2Institute of Natural Sciences, Shanghai Jiao Tong University,
+Shanghai, China.
+e-mail: Heng_Xu@sjtu.edu.cn
+Nature Communications|   (2025) 16:6565 
+1
+1234567890():,;
+1234567890():,;
+One way to improve temporal resolution is by leveraging fast-
+changing morphological features at the cellular level5,20–23. For exam-
+ple, during the cellularization stage of the Drosophila embryo (early-
+mid nc14), the progressively elongating furrows of invaginating cell
+membranes have been used to estimate the developmental time
+with ~2–4-minute resolution5,20. However, in most other cases, the
+relationship between time and cell morphology is complex and stage-
+dependent21–23. Explicitly identifying these subtle features and reliably
+mapping them to absolute developmental time remains technically
+challenging. Deep learning methods, which can objectively extract
+comprehensive image features and model complex relationships, have
+recently
+been
+applied
+as
+a
+powerful
+tool
+to
+study
+embryo
+development24,25. However, while most existing applications focus on
+classifying embryo phenotypes and coarse-grained developmental
+stages26–28, a versatile and high-resolution inference of absolute
+developmental time is still lacking.
+Here, we present a deep learning-based regression approach to
+infer the absolute developmental time of early Drosophila embryos
+during nc11–early 14 with 1-minute resolution. Using time-lapse nuclear
+histone images of transgenic embryos as the initial dataset, we
+employed ensemble learning with three independent convolutional
+neural network (CNN) models to capture morphological features
+across multiple spatial scales29–31. By calibrating ﬁxation-induced and
+strain-speciﬁc variations in embryo size, and implementing a relayed
+learning strategy, our method precisely inferred developmental time
+from standard DNA images of ﬁxed embryos, regardless of strain.
+Using this approach, we quantiﬁed the spatiotemporal regulation of
+the segmentation gene Krüppel (Kr) by two transcription factors (TFs),
+Bicoid (Bcd) and Hunchback (Hb), from single-molecule imaging of
+multiple ﬁxed wild-type (WT) embryos during nc11–13. We found that
+Kr transcription is dynamically governed by a multiplicative combi-
+nation of cooperative Bcd activation and Hb repression. Moreover, by
+incorporating single-molecule mRNA statistics, we developed a time-
+resolved theoretical pipeline to uncover the microscopic transcription
+kinetics of the segmentation gene hunchback (hb) during nc11–13. We
+found that hb transcription follows unsteady-state bursty kinetics
+driven by dynamic Bcd binding within a speciﬁc time window of each
+nuclear cycle. Our method offers a versatile framework for investi-
+gating dynamic gene regulation in genetically unmodiﬁed organisms
+and facilitates spatiotemporal multi-omics for deciphering complex
+gene regulatory networks.
+Results
+Predicting developmental time from nuclear histone images
+with 1-minute accuracy
+To relate developmental time with dynamic nuclear signal, we
+obtained time-lapse images of histone H2A-RFP from >30 transgenic
+Drosophila embryos (his2av-mrfp1) during nc10–early 14 with 1-minute
+time-resolution using confocal microscopy (Fig. 1a and Supplementary
+Fig. 1a–c, see Methods). The timing of different embryos was aligned
+and scaled based on cell division times to compensate for variation in
+developmental tempo among embryos. Besides a signiﬁcant differ-
+ence in the number of nuclei between nuclear cycles, we observed a
+continuous evolution of nuclear morphology (including size, shape,
+etc.) across multiple spatial scales within each nuclear cycle (Fig. 1a and
+Supplementary Fig. 1d).
+To comprehensively extract all time-dependent features from
+embryo images, we constructed a multi-scale ensemble deep learning
+framework consisting of three independent VGG-like CNN models,
+each with a regression output layer for continuous-time prediction30,31
+(Fig. 1b, Supplementary Table 1, see Methods). By dividing every
+embryo image into multiple small windows of three different sizes
+covering single, few (~6), and multiple (~20) nuclei, respectively, we
+trained each CNN model independently to capture time-dependent
+features at different spatial scales (Fig. 1c and Supplementary Fig. 1e).
+At any time point during nc11–early 14, predictions from these models
+were always similar and closely matched the ground truth, mutually
+validating each other (Supplementary Fig. 1f). Further combining the
+three models through a median ﬁlter outperformed any individual
+predictions (Fig. 1d and Supplementary Fig. 1f).
+Compared with ground truth, our time prediction is both accurate
+and precise across all nuclear cycles, with little bias and variability
+(mean residual ± s.d., nc11: 0.01 ± 0.35 min, nc12: 0.02 ± 0.34 min, nc13:
+0.05 ± 0.34 min, nc14: −0.2 ± 0.68 min, Fig. 1e). Notably, almost all
+predictions for nc11–early 14 are within 1-minute accuracy (nc11: 100%,
+nc12: 98%, nc13: 100%, nc14: 87%), catching the imaging time resolu-
+tion. In comparison, a baseline predictor relying solely on nuclear size
+— a key time-dependent feature — performed signiﬁcantly worse (1-
+minute accuracy: nc11: 68%, nc12: 50%, nc13: 50%, nc14: 12%, Supple-
+mentary Fig. 1g, see Methods). This underscores the value of our CNN-
+based method in extracting comprehensive image features for precise
+time inference. Moreover, our predictions for early nc14 signiﬁcantly
+outperformed the traditional time inference method based on mem-
+brane invagination5,20 (~2–4 min accuracy), further demonstrating the
+power of our deep learning method. Given this enhanced accuracy, we
+focus on inference for nc11–13 in the following study, as no other
+methods exist for this period.
+Size rescaling enables time inference from ﬁxed-embryo
+imaging
+To apply the trained time inference models to ﬁxed embryos, we
+compared images from ﬁxed and live embryos of the same strain
+(his2av-mrfp1) during nc11–13. Consistent with previous reports of
+ﬁxation-induced embryo shrinkage20,32, we observed a decrease in
+nuclear size of a similar proportion (~80%–90%, Fig. 2a). Since nuclear
+size is one of the major time-dependent features captured by our
+models, such shrinkage severely disrupted time inference accuracy
+(Supplementary Fig. 2a, b).
+To correct this effect, we preceded our time inference framework
+with an image-rescaling step for ﬁxed embryos (see Methods). To
+determine the magnitude of rescaling, we used the trend of nuclear
+size over time as a reference (Fig. 2b). For each nuclear cycle, by
+directly measuring this trend from live imaging, wetried to reconstruct
+it from a set of ﬁxed embryos through time inference with various
+rescaling magnitude (Fig. 2b, Supplementary Fig. 2c, d, see Methods).
+The best reconstructions matched well with live measurement results
+(Supplementary Fig. 2d), indicating an optimal rescaling magnitude of
+~1.20, consistent with previous reports32.
+By applying this time inference to individual nuclei in different
+regions of ﬁxed embryos at mitotic interphase, we observed temporal
+asynchrony along the AP axis (Fig. 2c). This is likely a residue of the
+mitotic wave, where nuclear divisions occur in a wave-like pattern that
+moves from the poles to the equator of the Drosophila embryo within
+~0.5–1 min33,34. Speciﬁcally for embryos in late mitotic interphase of
+nc11–12, the inferred time for the medial region (~0.5 embryo length
+(EL)) exhibited a signiﬁcant delay of ~0.3–0.6 min compared to the
+anterior and posterior regions (~0.2 EL and ~0.8 EL). In nc13, this time
+delay increased to ~0.6–1.0 min, consistent with previous reports of
+wave slow-down during this cycle33,34 (Fig. 2d, Supplementary Fig. 2e).
+These results demonstrate the 1-minute resolution of our time infer-
+ence method for ﬁxed embryos. In subsequent applications, to miti-
+gate the inﬂuence of the mitotic wave, we averaged the inference
+results from these three regions to generate an overall time prediction
+for each ﬁxed embryo (Fig. 2c).
+Relayed learning enables time inference from the nuclear DNA
+signal of WT embryos
+Beyond histone, which requires genetic modiﬁcation of ﬂy strains or
+speciﬁc antibodies for labeling, nuclear DNA, which can be easily
+marked by organic dyes35,36, is a rather common target for ﬁxed-embryo
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+2
+T = 1 min
+ = 1 min
+T = 3 min
+ = 3 min
+T = 5 min
+ = 5 min
+T = 7 min
+ = 7 min
+T = 9 min
+ = 9 min
+Developmental time
+Developmental time
+-1 0 1
+CNN model 1
+0
+10
+20
+0
+10
+20
+0
+10
+20
+0
+10
+20
+-1 0 1
+-1 0 1
+-1 0 1
+e 
+e 
+0
+5
+10
+0
+5
+10
+Time (min)
+0
+7
+14
+0
+7
+14
+Time (min)
+0
+4
+8
+0
+4
+8
+Time (min)
+0
+10
+20
+Time (min)
+0
+10
+20
+CNN model 2
+CNN model 3
+0
+20
+-1 0
+1
+10
+0
+-1 0
+1
+10
+0
+20
+-1 0
+1
+10
+0
+-1 0
+1
+a
+nc10
+nc11
+nc12
+nc13
+nc14
+Output
+Linear
+Raw image
+Counts
+Counts
+Residual (min)
+Median 
+filter
+Predicted 
+time
+Data preprocessing
+Training
+Testing
+Counts
+Counts
+Convolution
+Flatten
+Fully connected
+nc12
+Predicted time (min)
+Data
+y = x
+nc11
+nc13
+nc14
+Attention map
+Data
+y = x
+Data
+y = x
+Data
+y = x
+b
+c
+d
+Model 1
+Model 2
+Model 3
+Residual (min)
+Model 2
+Overall
+Model 3
+Model 1
+Counts
+Residual (min)
+Counts
+Residual (min)
+Counts
+Residual (min)
+Counts
+Residual (min)
+10
+Fig. 1 | CNN models predict developmental time from nuclear histone images of
+live embryos. a Still frames from time-lapse images of a his2av-mrfp1 embryo
+during nc10–14 (top) and within nc12 (bottom). Scale bar, 50 μm. b Schematics of
+the time prediction workﬂow (top) and model architecture (bottom). Scale bars,
+50 μm (left) and 5 μm (right). c Grad-CAM visualization of the attention from three
+independent models. Left: representative histone images from an nc13 embryo at
+different spatial scales as inputs for each model. Right: Grad-CAM maps (green)
+from the ﬁnal convolutional layer in each model, overlaid on the original images.
+Scale bar, 5 μm. Model 1 focuses on the intra-nuclear region, implying that features
+such as nuclear texture and size are key to its predictions. Models 2 and 3 attend to
+inter-nuclear regions surrounding multiple nuclei, implying that broader-scale
+features, such as nuclear density, play an important role. d Histograms of residuals
+from individual models (left) and the overall time predictor (right) in nc13.
+e Evaluation of developmental time prediction across multiple nuclear cycles. The
+predicted time for each time point of each embryo was compared to ground truth.
+Insets: histograms of residuals from the overall time predictor. n = 4, 6, 4, and 3
+embryos for nc11–14, respectively. Source data are provided as a Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+3
+imaging. However, directly training our framework for the DNA signal is
+challenging due to the difﬁculty of labeling and imaging nuclear DNA in
+live embryos. We thus used the histone signal in ﬁxed embryos as a
+relay to link the nuclear DNA signal with developmental time for
+training (see Methods). Speciﬁcally, by simultaneously imaging histone
+and DNA signals from 160 ﬁxed his2av-mrfp1 embryos during nc11–13
+(Fig. 3a), we inferred embryonic times from histone signals and used
+them as input to train and test three DNA-based models at different
+spatial scales (Fig. 3b). With proper calibration of image contrast and
+saturation (Supplementary Fig. 3a–c), the combined predictions from
+these DNA-based models closely matched histone-based time infer-
+ence, achieving 1-minute accuracy and high precision in all cycles
+(mean residual ± s.d., nc11: 0.20 ± 0.46 min, nc12: 0.14 ± 0.47 min, nc13:
+0.19 ± 0.42 min, Fig. 3c and Supplementary Fig. 3d).
+To generalize this DNA-based time inference for other ﬂy strains,
+particularly the WT, we noticed systematic differences in embryo size
+between different strains (Fig. 3d)23,32. Thus, DNA images of WT embryos
+need to be rescaled accordingly before applying the his2av-mrfp1-
+trained framework (see Methods). To validate this approach, we simul-
+taneously imaged nuclear DNA and Cyclin B protein, a key cell-cycle
+marker of interphase progression37, in 23 ﬁxed WT embryos across
+nc11–13 (see Methods). By inferring the developmental time and deter-
+mining the average Cyclin B level for each embryo, we reconstructed the
+Cyclin B dynamics from ﬁxed WT embryos (Supplementary Fig. 3e). The
+resulting proﬁle closely reproduced previously reported live imaging
+measurements37, with minimal temporal variability (s.d.: nc11: 0.32 min,
+nc12: 0.19 min, nc13: 0.47 min), conﬁrming the 1-minute accuracy of our
+DNA-based framework across different ﬂy strains.
+To assess the applicability of this approach for studying dynamic
+gene expression, we simultaneously imaged nuclear DNA and nascent
+mRNA of the anteriorly expressed hb gene in 124 ﬁxed WT embryos
+during nc11–13 (Fig. 3e, see Methods). By inferring the developmental
+time and quantifying the anterior hb mRNA level (0.2–0.4 EL) for each
+embryo, we reconstructed the endogenous hb transcription dynamics
+from ﬁxed WT embryos without requiring genetic modiﬁcation (Fig. 3f,
+Supplementary Fig. 3f, g). This reconstruction quantitatively matched
+live imaging results of hb-MS2 in transgenic embryos with minor
+deviations
+(mean
+residual
+±
+s.d.,
+nc11:
+0.27 ± 0.19 min,
+nc12:
+0.06 ± 0.28 min, nc13: −0.19 ± 0.55 min, see Methods), demonstrating
+the high resolution and broad versatility of our DNA-based framework
+for gene expression studies.
+Further analyzing hb transcription along the entire AP axis
+obtained a complete spatiotemporal proﬁle of endogenous hb tran-
+scription in WT embryos (Fig. 3g, Supplementary Fig. 3h, see Meth-
+ods). This is a critical complement to previous live imaging studies,
+which had limited ﬁeld-of-view and often omitted the posterior hb
+expression band7,38. Here, we observed that the posterior expression
+band emerged later than the anterior one, with signiﬁcantly delayed
+initiation and peak times (Fig. 3h). This ﬁnding aligns with previous
+reports that anterior hb transcription is activated by early-produced
+a
+b
+c 
+Live  his2av-mrfp1 
+Fixed  his2av-mrfp1 
+300
+450
+600
+Embryo length (μm)
+****
+Live
+Fixed
+0
+5
+10
+Time (min)
+25
+40
+55
+Nuclear diameter (pixel)
+Live
+Fixed
+nc12 
+Embryo length
+Embryo length
+1 min
+2 min
+3 min
+4 min
+5 min
+6 min
+7 min
+8 min
+9 min
+Anterior
+ ROI
+Medial
+ ROI
+Posterior
+ ROI
+TA = 10.8 min
+TM = 9.1 min
+TP = 9.8 min
+Testing
+Anterior ROI
+Medial ROI
+Posterior ROI
+Testing
+Testing
+his2av-mrfp1   nc13
+d 
+nc11
+nc12
+nc13
+0
+6
+12
+Nuclear diameter (μm)
+***
+****
+Live 
+Fixed
+Mean of top 10%
+****
+Fixed images
+Fixed trend
+Live trend
+r
+Match
+Live images
+Update
+Mean 
+filter
+Predicted 
+time
+nc11
+nc12
+nc13
+-0.5
+0
+0.5
+1
+1.5
+2
+ΔT (min)
+TA-TM
+TP-TM
+Fig. 2 | Time inference from histone images of ﬁxed embryos with image size
+rescaling. a Fixation induces embryo shrinkage. Left: confocal images of live (top)
+and ﬁxed (bottom) his2av-mrfp1 embryos at the mid-sagittal plane. Scale bars, 50
+μm. Insets, magniﬁed views of individual nuclei. Scale bars, 5 μm. Top right: size
+comparison between live (n = 14) and ﬁxed (n = 155) embryos, with two-sided t-test
+(p = 1.2 × 10−9. ****p < 0.0001). Lines, boxes, whiskers, and points indicate the med-
+ian, interquartile range (IQR), 1.5 × IQR, and outliers of the distribution, respec-
+tively. Bottom right: comparison of nuclear diameter between live (n = 11, 18, and 22
+embryos for nc11–13) and ﬁxed embryos (n = 28, 33, and 38 embryos for nc11–13),
+with two-sided t-test (p = 1.1 × 10−4, 2.8 × 10−5, and 1.2 × 10−12 for nc11–13, respectively.
+***p < 0.001; ****p < 0.0001). b Schematic of determining the optimal rescaling
+magnitude. Live histone images over nc12 (top) were used to extract the trend of
+nuclear diameter over time (bottom left, mean (line) ± s.d. (shading), data from
+n = 18 live embryos). This trend was compared iteratively with reconstructed data
+from rescaled ﬁxed-embryo images (bottom left, red dots, data from n = 33 ﬁxed
+embryos) to optimize the rescaling magnitude. Scale bar, 5 μm. c Schematic of
+independent time inferences for anterior, medial, and posterior regions of a ﬁxed
+his2av-mrfp1 embryo at nc13. Magniﬁed views of representative nuclei from each
+region are shown below. Right: results from different regions were averaged for an
+overall time prediction. Scale bars, 50 μm (embryo) and 5 μm (magniﬁed views).
+d Differences in inferred times between anterior and medial regions, and between
+posterior and medial regions, during late mitotic interphase for each nuclear cycle
+(mean ± s.e.m.). Anterior-medial difference: n = 10, 5, and 10 embryos for nc11–13,
+respectively; posterior-medial difference: n = 7, 10, and 6 embryos for nc11–13,
+respectively. Source data are provided as a Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+4
+maternal Bcd, while posterior hb transcription is regulated by zygotic
+transcription factors, e.g., Tll39, which are produced much later4,40
+(Supplementary Fig. 3i). In contrast, both bands vanished simulta-
+neously, suggesting a shared mechanism of transcription termination.
+Time inference of ﬁxed embryos resolves the dynamic
+regulation of Kr by multiple TFs
+Transcriptional regulation involves complex and dynamic interactions
+between multiple factors over time. Our time inference method,
+Histone
+DNA
+Merge
+Tn = 3.5 min
+DNA
+Histone  
+Dataset 1
+Dataset n
+T1 = 9.9 min
+DNA
+Histone 
+hb mRNA
+his2av-mrfp1  nc13
+WT
+300
+450
+600
+0
+7
+14
+0
+7
+14
+0
+5
+10
+0
+5
+10
+0
+4
+8
+0
+4
+8
+0
+7
+14
+Time (min)
+0
+50
+100
+Nascent mRNA
+WT
+his2av-mrfp1
+Testing
+WT nc13
+Histone
+DNA
+DNA
+Embryo length
+Embryo length
+0
+0.5
+1
+AP position (EL)
+0
+50
+100
+Nascent mRNA
+DNA
+DNA
+0
+0.5
+1
+AP position (EL)
+0
+30
+60
+Nascent mRNA
+CNN models
+CNN models
+CNN models
+0
+8
+-1 0
+1
+4
+0
+12
+-1 0
+1
+4
+8
+0
+8
+-1 0
+1
+4
+0
+7
+0
+9
+0
+13
+Time (min)
+0
+0.5
+1
+hb mRNA normalized
+a
+b
+c
+Dataset 2
+Dataset n-1
+e
+f
+h
+his2av-mrfp1
+****
+Embryo length (μm)
+DNA-predicted time (min)
+nc11
+Data
+y = x
+nc12
+nc13
+Histone-predicted time (min)
+Histone-predicted time (min)
+Histone-predicted time (min)
+nc11
+nc12
+nc13
+Anterior:
+Posterior:
+Data
+Binned
+Data
+Binned
+Predicted time: 9.6 min
+Binned
+Data
+g
+Training
+0
+4
+8
+12
+Time (min)
+Data
+y = x
+Data
+y = x
+d
+Counts
+Residual (min)
+Counts
+Residual (min)
+Counts
+Residual (min)
+Live
+Fixed
+R2 = 0.83
+R2 = 0.88
+R2 = 0.74
+Fig. 3 | Time inference from DNA images of ﬁxed embryos using relayed
+learning. a Confocal image of a ﬁxed his2av-mrfp1 embryo labeled for DNA, with
+magniﬁed views of a nucleus. Scale bars, 50 μm (embryo), 5 μm (nucleus). The
+experiment was repeated 21 times, independently, with similar results. b Workﬂow
+of relayed learning. Scale bar, 5 μm. c DNA-predicted times vs. histone-predicted
+times for ﬁxed embryos across nc11–13. Insets: residual histograms. n = 33, 40, and
+25 embryos for nc11–13, respectively. d Embryo size comparison. Left: mid-sagittal
+confocal images of ﬁxed his2av-mrfp1 and WT embryos. Scale bar, 50 μm. Right:
+size distribution for ﬁxed his2av-mrfp1 (n = 155) and WT (n = 100) embryos. Lines,
+boxes, whiskers, and points indicate the median, IQR, 1.5 × IQR, and outliers,
+respectively. Two-sided t-test: p = 2.5 × 10−31 (****p < 0.0001). e Confocal image of a
+ﬁxed WT embryo labeled for hb mRNA and DNA, with magniﬁed views of a nucleus.
+Scale bars, 50 μm (embryo), 5 μm (nucleus). Right: nascent hb mRNAs per nucleus
+vs. AP position. Data from 1220 nuclei were binned along the AP axis (bin size: 0.1
+EL, step size: 0.05 EL) to show mean ± s.d. The experiment was repeated nine times,
+independently, with similar results. f Comparison of hb transcription dynamics
+(0.2–0.4 EL) from live (hb-ms2) and ﬁxed (WT) embryos across nc11–13. Live data
+(n = 4, 4, and 9 embryos for nc11–13, respectively) were averaged over time (bin
+size: 1 min, step size: 0.5 min) for each nuclear cycle to show mean (line) ± s.d.
+(shading). Fixed data (n = 25, 36, and 63 embryos for nc11–13, respectively) were
+rescaled to match live trends. g Spatial proﬁle of endogenous hb transcription
+during nc13 (AP bin size: 0.06 EL, step size: 0.01 EL; time bin size: 2 min, step size:
+1 min). h Maximum transcription in anterior (0–0.5 EL) and posterior (0.8–1 EL) hb
+bands during nc13 (mean ± s.e.m., time bin size: 2 min, step size: 1 min). g, h Data
+from 63 ﬁxed WT embryos. Source data are provided as a Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+5
+combined with multiplex ﬂuorescence imaging of mRNA and reg-
+ulatory factors in ﬁxed embryos, enables direct measurement of such
+regulatory dynamics. Here, we used a multi-factor-regulated gene, Kr,
+as an example to demonstrate this approach. According to genetic
+studies, the transcriptional regulation of Kr in early development
+(nc11–13) primarily involves two maternal TFs, i.e., an activator, Bcd,
+and a repressor, Hb41. However, the coarse temporal resolution of
+previous ﬁxed-embryo imaging studies failed to verify this two-factor
+model, prompting speculation that additional, unidentiﬁed regulators
+might be required4,42. To resolve this issue, we applied smFISH35,36,43,44,
+immunoﬂuorescence5,20,43, and a DNA dye to simultaneously label Kr
+mRNA, Bcd and Hb proteins, and nuclear DNA in >130 ﬁxed WT
+embryos during nc11–13 (Fig. 4a, see Methods).
+By inferring developmental time from DNA signals, we quantiﬁed
+the spatiotemporal proﬁles of nuclear Kr transcription and Bcd and Hb
+concentrations in individual embryos over nc11–13 (Fig. 4b and Sup-
+plementary Fig. 4a–c, see Methods). Within each mitotic interphase, Kr
+formed a medial expression stripe (~0.45–0.60 EL), while Bcd and Hb
+displayed exponential and reverse sigmoidal gradients along the AP
+axis, respectively (Fig. 4a, b and Supplementary Fig. 4d), consistent
+with previous reports4. Temporally, all three species varied sig-
+niﬁcantly within each nuclear cycle, with Bcd and Hb levels rising
+ahead of Kr (Fig. 4c). Notably, during nc13, Kr exhibited two distinct
+expression peaks that were previously indistinguishable42, highlighting
+the sensitivity of our method. The duration of the earlier peak was
+signiﬁcantly shorter the later one, explaining the previously reported
+increase in Kr expression during late nc1342.
+To understand the dynamic regulation of Kr by Bcd and Hb, we
+further analyzed the quantitative relationship between the three pro-
+ﬁles. Given the presence of multiple Bcd and Hb binding sites on Kr
+enhancers (Supplementary Fig. 4e)41,45,46, we constructed a time-
+dependent thermodynamic model to describe the nuclear mRNA
+level of Kr (R) in response to Bcd and Hb concentrations (CBcd and CHb)
+(Fig. 4d, see Methods). Applying the model to ﬁt the spatiotemporal
+relationship between Kr, Bcd, and Hb over nc11–13 yielded (Fig. 4e)
+dR
+dt = k
+CnB
+Bcd
+CnB
+Bcd + CnB
+B0
+CnH
+H0
+CnH
+Hb + CnH
+H0
+ γR,
+ð1Þ
+where nB and nH are Hill coefﬁcients describing the cooperativities of
+Bcd and Hb bindings, respectively; CB0 and CH0 are concentration
+thresholds for Bcd and Hb regulations, respectively; k and γ represent
+mRNA production and degradation rates, respectively (see Methods).
+This result suggests a synergistic regulatory mechanism, where
+cooperative Bcd and Hb bindings combine their regulatory effects
+multiplicatively.
+From the ﬁtting, we found that Kr was only active (k > 0) in a
+fraction of each nuclear cycle (Fig. 4f). Notably, in nc13, k exhibited two
+pulses, suggesting gene activation in G1 and G2 phases, respectively.
+This phenomenon was not observed in nc11–12, possibly due to the
+transiency of G1 in early cycles. Throughout all cycles, nB and nH
+remained stable at ~4 and ~6, respectively (Fig. 4g), revealing higher-
+order cooperativity of Hb than Bcd, consistent with bioinformatic
+studies (Supplementary Fig. 4e)41,45,46. CB0 and CH0 were estimated to
+be ~2.4 nM and ~7.2 nM, respectively (Fig. 4h), suggesting that Hb
+repression and Bcd activation determine the anterior and posterior
+boundaries of Kr expression, respectively (Fig. 4i). Further measuring
+Kr regulation in transgenic embryos with reduced Bcd and Hb dosage
+(1×bcd strain) conﬁrmed these ﬁndings (Supplementary Fig. 4f–i),
+revealing that maternal Bcd and Hb are sufﬁcient for early Kr
+patterning.
+Time-resolved single-molecule mRNA statistics reveal unsteady-
+state kinetics of hb transcription
+Beyond population-level studies, ﬁxed-embryo imaging can achieve
+single-molecule sensitivity, enabling statistical analysis to uncover the
+microscopic mechanisms of gene regulation. Following this strategy,
+previous smFISH studies of nascent mRNA copy-number distribution at
+individual gene loci have identiﬁed the bursty nature of stochastic gene
+transcription in various biological systems35,47,48. However, most of these
+studies assumed gene activity at steady state35,47,48, which is inadequate
+for capturing the highly dynamic nature of developmental gene reg-
+ulation. Here, with accurate time inference, we used the hb gene as an
+example to establish a time-resolved theoretical pipeline for decipher-
+ing unsteady-state transcription kinetics from multiple smFISH-labeled
+embryos covering nc11–13 (Fig. 5a, see Supplementary Note 1).
+Based on previous steady-state analyses, hb transcription satisﬁes
+two-state stochastic kinetics36,43,49, with random transitions between
+active and inactive gene states occuring at Poissonian rates kON and
+kOFF. Nascent mRNA molecules are only initiated in the active state at a
+rate kINI, followed by elongation at a speed VEL and a rapid release.
+Cooperative Bcd binding activates anterior hb transcription by mod-
+ulating kON. However, the validity and temporal evolution of this pic-
+ture within each nuclear cycle remain unclear. To address this issue, we
+treated the kinetic parameters of the two-state model as time-
+dependent variables (Fig. 5a, see Methods). Particularly, to describe
+the shutdown and re-expression of hb during each mitosis (Fig. 3f), we
+assumed that the percentage of activatable gene loci, Pactive, varies with
+nuclear cycle phases50. Notably, since each nascent mRNA signal
+reﬂects transcription events within several minutes, signal statistics at
+successive time points are correlated through inherited kinetic para-
+meters. Retaining this correlationrequires simultaneous analysis of the
+entire time sequence.
+Following this extension, we solved the unsteady-state distribu-
+tion of nascent mRNA number per gene loci over time in different parts
+of the embryo and compared it with experimental data to extract
+kinetic parameters (Fig. 5b, see Supplementary Note 1). Unlike steady-
+state
+analyses
+that
+treated
+VEL
+as
+a
+predetermined
+scaling
+factor35,36,43,49, our approach allowed a direct estimation of VEL at
+~40 bp/s
+(Supplementary
+Fig.
+5a),
+aligning
+with
+live-imaging
+measurements51,52. In each nuclear cycle, we found a consistent tra-
+pezoidal Pactive proﬁle across the anterior hb expression domain
+(Fig. 5c), agreeing with live-imaging results for synthetic genes50. The
+onset of this trapezoidal proﬁle advanced with the nuclear cycle, while
+its duration increased markedly, indicating a rise in gene activity
+throughout development (Fig. 5d).
+During each nuclear cycle, we found that kON varied sig-
+niﬁcantly with AP position and time (Fig. 5e), while kOFF and kINI
+remained stable (Supplementary Fig. 5b, c). These results corrobo-
+rate previous steady-state analyses, conﬁrming that kON is the pri-
+mary target of Bcd modulation35,43. Speciﬁcally, at each AP position,
+the temporal proﬁles of kON and Bcd concentration both showed
+rising, plateau, and falling phases (Fig. 5f). During the plateau phase,
+the steady-state Bcd dependence of kON followed a Hill function with
+a Hill coefﬁcient of ~5, consistent with the canonical picture of
+cooperative Bcd binding-induced gene activation43 (Fig. 5g, h). In
+contrast, the rapid rising phase exhibited unsteady-state behaviors.
+Notably, we observed a continued increase in kON for ~1.5 min after
+the Bcd concentration peaked (Fig. 5f). This relaxation behavior
+supports a causal relationship between Bcd binding and hb activa-
+tion, which was not captured in previous steady-state studies. Fur-
+ther analyzing this relaxation behavior using an unsteady-state Bcd
+binding model enabled a direct estimation of Bcd binding and
+unbinding rates (Fig. 5i, see Supplementary Note 1), which were
+previously unknown. During the falling phase, kON decreased ahead
+of Bcd (Fig. 5f), suggesting a TF-independent mechanism of tran-
+scription termination. Collectively, these results demonstrate the
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+6
+0
+0.5
+1
+AP position (EL)
+0
+50
+100
+0
+15
+30
+Predicted time = 9.6 min
+Data
+Binned
+Data
+Binned
+Data
+Binned
+Bcd:
+Hb:
+Kr:
+a
+WT   nc13
+0
+20
+40
+0
+100
+200
+0
+7
+9
+13
+0
+0
+Time (min)
+0
+10
+20
+Concentration (nM)
+ mRNA
+Hb
+Bcd
+Kr
+Data
+Binned
+Data
+Binned
+Data
+Binned
+e
+d
+Concentration (nM) 
+Bcd 
+Hb
+Kr
+DNA
+mRNA 
+c
+0
+7
+9
+13
+0
+0
+Time (min)
+0
+17
+34
+k (min-1)
+nc11
+nc12
+nc13
+Bcd
+Hb
+0
+4
+8
+12
+C0 (nM)
+Bcd
+Hb
+0
+4
+8
+12
+Hill coefficient
+Cbound
+Bcd
+Cbound
+Hb
+Bcd Hb Kr
+DNA
+mRNA 
+b
+20
+10
+10
+0
+0
+T = 7.1 min
+20
+10
+20
+0
+10
+0
+T = 5.4 min
+10
+10
+0
+0
+T = 12.0 min
+Kr mRNA
+Hb concentration (nM)
+Bcd concentration (nM)
+f
+g
+h
+i
+20
+10
+0
+10
+0
+0
+10
+20
+T = 3.9 min
+20
+10
+20
+0
+10
+0
+T = 10.2 min
+nc13
+nc11
+nc12
+nc13
+Hb
+Kr
+Bcd
+0
+0.5
+1
+AP position (EL)
+[TF]
+Hb
+Bcd
+CBcd
+CHb
+0
+7 0
+9 0
+13
+0.2
+0.8
+0
+40
+80
+120
+0
+7 0
+9 0
+13
+0.2
+0.8
+0
+10
+20
+0
+7 0
+9 0
+13
+0.2
+0.8
+0
+10
+20
+AP position (EL)
+Regulatory sequence
+k
+
+Bcd
+Hb
+Kr
+Ø
+mRNA
+Concentration (nM) 
+Bcd
+Hb
+Kr
+Fit
+Data
+Fig. 4 | Resolving the dynamic regulation of Kr by multiple TFs from ﬁxed
+embryos. a Confocal image of a ﬁxed WT embryo labeled for Bcd protein, Hb
+protein, Kr mRNA, and DNA at nc13, with magniﬁed views of a nucleus. Scale bars,
+50 μm (embryo), 5 μm (nucleus). Bottom: Bcd and Hb concentrations and number
+of nascent Kr mRNAs per nucleus as a function of the AP position. Data from 1312
+nuclei were binned along the AP axis (bin size: 0.1 EL, step size: 0.05 EL) to show
+mean ± s.d. The experiment was repeated six times, independently, with similar
+results. b Spatiotemporal proﬁles of nuclear Bcd concentration, Hb concentration,
+and Kr transcription in nc11–13. Data were binned along the AP axis (bin size: 0.1 EL,
+step size: 0.05 EL) and time (bin size: 1 min, step size: 0.25, 0.25, and 0.5 min for
+nc11–13, respectively). c Maximum Bcd and Hb concentrations along the AP axis
+and average Kr transcription in the expression band (0.4–0.6 EL) as functions of
+time. Data from individual embryos were binned over time (bin size: 2 min, step
+size: 0.5 min) to show mean (line) ± s.e.m. (shading). d Schematic of endogenous Kr
+regulation through cooperative Bcd and Hb binding at enhancers. e, Regulatory
+relationship between Kr, Bcd, and Hb over time in nc13. AP-binned data from (b)
+(red dots) were ﬁtted to a time-dependent thermodynamic model (surfaces).
+b–c, e Data from n = 25, 36, and 76 ﬁxed WT embryos for nc11–13, respectively. f Kr
+mRNA production rate over time. Colors mark distinct expression periods.
+g, h Comparison of Hill coefﬁcients (g) and concentration thresholds (h) for Bcd
+and Hb. Values from different expression periods (dots) were summarized as mean
+± s.d. Bcd and Hb concentrations at average Kr boundaries for WT embryos (n = 68)
+during the expression periods in nc11–13 (mean ± s.d.) are shown as reference.
+i Schematic showing the determination of anterior and posterior Kr expression
+boundaries by the spatial proﬁles of Hb and Bcd, respectively. Source data are
+provided as a Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+7
+power of our method in elucidating the dynamic nature of single-cell
+gene regulation mechanisms.
+Discussion
+Direct spatiotemporal tracking of complex developmental gene reg-
+ulation through live imaging has long been limited to monitoring only
+a few factors simultaneously11. Although recent advances in ﬂuores-
+cence lifetime imaging offer potential solutions53, the genetic pertur-
+bations from multiple ﬂuorescent reporters complicate this approach.
+Conversely, ﬁxed-embryo imaging could overcome these limitations
+but lacks precise temporal resolution. In this paper, we present a CNN-
+based deep learning approach to objectively infer the absolute
+development time from the nuclear signals in ﬁxed-embryo images
+with 1-minute resolution. Using early Drosophila embryos as a case
+study, we demonstrate its power in unraveling transcriptional regula-
+tion of key developmental genes at the single-cell and single-
+molecule level.
+Compared to existing CNN-based embryo staging, our method
+offers several key improvements: (1) Instead of analyzing macroscopic
+embryo morphology that varies slowly, we focus on fast-changing
+nuclear signals, enabling ﬁner temporal resolution. (2) Unlike tradi-
+tional CNN-based staging that produces classiﬁcation outputs26,27, our
+0
+60
+30
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+0
+0.1
+Time
+nc11
+nc12
+nc13
+0
+6
+12
+Time (min)
+Tup
+Tplateau
+Tdown
+Tpost
+Tpre
+1
+0
+7 0
+9 0
+13
+0
+0.5
+0
+7 0
+9 0
+13
+Time (min)
+0.1
+0.3
+0.5
+AP position (EL)
+kON (s-1)
+0
+6
+12
+0
+0.1
+0.2
+kON (s-1)
+0
+6
+12
+Time (min)
+0
+12
+24
+Bcd concentration (nM)
+0
+0.06
+0.12
+kON (s-1)
+0
+20
+40
+Bcd concentration (nM)
+3
+4
+Time (min)
+0
+0.04
+0.08
+1.7 min
+2.8 min
+3.7 min
+4.7 min
+5.7 min
+6.7 min
+7.8 min
+8.9 min
+9.8 min
+10.5 min
+11.5 min
+12.2 min
+13.0 min
+a
+Developmental time
+Model evolution
+Probability
+Nascent mRNA
+nc11
+nc12
+nc13
+Data
+Fit
+kINI
+VEL
+kON
+kOFF
+Pactive
+Reconstructing time sequence
+Kn-2
+~
+Kn-1
+~
+Kn
+~
+Kn+1
+~
+K1
+~
+K0
+~
+K = {kON(tn), kOFF(tn), kINI(tn), Pactive(tn), α(tn), VEL}
+~
+tn
+tn-1
+tn+1
+tn-2
+tn
+Data
+Mean
+Fit
+Pactive
+0
+0.05
+0.10
+0.15
+0.35 EL
+0.40 EL
+0.45 EL
+b
+c
+e
+g
+h
+d
+f
+,
+Enhancer
+Bcd k+cn
+k-
+hb
+i
+Data
+Hill fit
+Data
+Exp fit
+Unsteady state
+Steady state
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+8
+method uses regression outputs, allowing for continuous time pre-
+diction. (3) Rather than using a single neural network, whose learning
+may be limited to a speciﬁc spatial scale26,27, we employ three inde-
+pendent networks to cover multiple spatial scale. Compared to other
+multi-scale approaches, such as feature fusion54,55, our combination of
+three independent predictions serves as an ensemble validation,
+enhancing robustness and providing greater scalability for future
+adaptation to other systems. (4) To apply our method to ﬁxed embryos
+of arbitrary strains, we rescale images to compensate for ﬁxation-
+induced and strain-speciﬁc variations in nuclear size — a key time-
+dependent feature captured by our models. (5) To extend the applic-
+ability of our method to DNA images, we use ﬁxed embryos colabeled
+with histone and DNA as intermediates to train DNA-based models.
+Overall, these improvements ensure precise and reliable time infer-
+ence for ﬁxed embryos of any strain.
+Besides morphology-based embryo staging, gene expression and
+epigenetic features have also been used for staging6,17. However, these
+approaches typically require transcriptomic and/or epigenomic data
+collected at multiple time points, incompatible with regular imaging
+studies. Moreover, because gene expression is highly inﬂuenced by
+genetic modiﬁcations, the versatility and reliability of these approa-
+ches
+across
+different
+strains
+are
+uncertain.
+Conversely,
+our
+morphology-based
+method
+is
+more
+robust
+against
+genetic
+manipulation.
+Previous ﬁxed-imaging studies of gene regulation are typically
+limited to resolving static or quasi-static regulatory relationships6,35,42,43.
+Our method enables, for the ﬁrst time, high-resolution reconstruction of
+dynamic gene regulation from ﬁxed WT embryos, capturing dynamic
+details comparable to live imaging. Without genetic modiﬁcations and
+maturation delays of ﬂuorescent proteins, it offers more accurate
+quantiﬁcation11,56,57. This allowed us to resolve the dynamic regulatory
+relationship between Kr, Bcd, and Hb, extending the static thermo-
+dynamic model of transcriptional regulation58. By showing that maternal
+Bcd and Hb are sufﬁcient to drive early Kr patterning, our results dispel
+the prior speculation about additional, unidentiﬁed regulators4,42. This
+not only advances our understanding of early Kr regulation but also
+provides a framework for determining key regulators for other gap
+genes. Moreover, our results quantitatively verify a previously uncertain
+hypothesis of combinatorial Kr regulation: Bcd and Hb each perform
+cooperative binding independently, while their regulatory effects com-
+bine synergistically through multiplication59. This ﬁnding enhances the
+mechanistic understanding of early Kr regulation and underscores the
+potential of our approach to unravel complex gene regulatory
+mechanisms in other systems.
+Single-molecule statistical analysis of ﬁxed-imaging data can
+uncover microscopic mechanisms of gene regulation35,47,48. However,
+the lack of temporal resolution hinders its application to unsteady-
+state
+process60,61.
+With
+precise
+time
+inference,
+we
+extended
+this approach to reconstruct the time-dependent transcription kinet-
+ics of individual hb gene loci in WT embryos. Our analysis reveals
+the variation in the percentage of activatable gene loci within the
+nuclear cycle, a feature previously reported only in live imaging
+of synthetic genes50. Comparing the extracted hb kinetics with the
+Bcd proﬁle further extended our understanding of TF binding-
+induced gene activation to realistic unsteady-state scenario. These
+results were essential for establishing a dynamic view of how Bcd
+regulates the endogenous hb gene, highlighting the power of our
+approach to unravel the microscopic kinetics of dynamic gene
+regulation.
+Although our method requires imaging a large number of
+embryos, it offers an effective and universal solution for accurately
+quantifying developmental dynamics without genetic modiﬁcations.
+By imaging other features and retraining the models, it can be easily
+adapted to other developmental stages, other organisms, or even non-
+developmental processes. Future integration of this method with high-
+throughput imaging of RNAs, proteins, and gene loci will further
+enhance our understanding of complex gene regulatory networks12–14.
+Methods
+Fly strains
+Oregon-R (OreR) strain was used as the wild type. Histone H2A-RFP
+strain (his2av-mrfp1) was obtained from the Bloomington Drosophila
+Stock Center (stock number 23650, 23651). Two strains for live ima-
+ging of hb activity (yw; histone-rfp; mcp-nonls-gfp and yw; hb BAC>ms2)
+were developed previously8 and were obtained as gifts from Dr. Her-
+nan H. Garcia (University of California atBerkeley). 1×bcd strain (+/CyO-
+bcd + ; E1s) was developed previously62 and was obtained as a gift from
+Dr. Jun Ma (Zhejiang University). The sex of embryos from these strains
+was not considered in this study, as it is not expected to affect early
+developmental processes. No ethical approval was required for
+research involving Drosophila melanogaster, in accordance with insti-
+tutional (Shanghai Jiao Tong University) and national policies.
+smFISH probe design
+Sets of DNA oligonucleotides complementary to the target transcripts
+(48 probes for hb, 33 probes for Kr) were designed and synthesized as
+previously reported35 (Supplementary Table 2). Kr probes were con-
+jugated with tetramethylrhodamine (TAMRA; Thermo Fisher Scien-
+tiﬁc, C6123). hb probes were conjugated with either Alexa Fluor™647
+(Invitrogen, A20106) or TAMRA.
+Live imaging sample preparation and data acquisition
+his2av-mrfp1 embryos were collected directly. Female virgins from line
+yw; histone-rfp; mcp-nonls-gfp were crossed with males from line yw; hb
+BAC>ms2 for embryo collection. Embryos collected at 25 °C were
+dechorionated using bleach, mounted between a semipermeable
+membrane (Biofolie; In Vitro Systems & Services) and a coverslip, and
+embedded in Halocarbon 27 oil (Sigma, 9002-83-9), following pre-
+vious literature7.
+Live embryos were imaged using a Zeiss LSM 710 and 880 con-
+focal microscopes equipped with a 63×/1.4 NA oil immersion objective
+in confocal or fast airyscan mode. For his2av-mrfp1 embryos, 16-bit
+Fig. 5 | Uncovering hb transcription kinetics through time-resolved single-
+molecule mRNA statistics. a Schematic of the theoretical pipeline for deciphering
+unsteady-state transcription kinetics. Time inference for multiple smFISH-labeled
+ﬁxed embryos enables reconstructing the evolution of single-cell mRNA signals
+(left), which were ﬁtted to a time-dependent two-state transcription model (right).
+The mRNA signal at a time point is inﬂuenced by kinetic parameters within a pre-
+ceding time window. b Histograms of nascent hb mRNAs at individual anterior gene
+loci (0.25–0.35 EL) over time in nc13. Data from n = 63 WT embryos were binned
+along the time axis (bin size: 0.5 min, step size: 0.5 min). All histograms were
+simultaneously ﬁtted to the time-dependent two-state transcription model.
+c Percentage of activatable gene loci as a function of time during nc11–13. Data from
+various AP positions (0.2–0.4 EL) were averaged and ﬁtted with a trapezoidal curve.
+The rising, plateau, falling, and silent phases of the trapezoidal curve for nc12 are
+highlighted in different colors. d Comparison of each trapezoidal phase across
+nc11–13. e Spatiotemporal proﬁle of gene activation rate across nc11–13, for the AP
+position range of 0.05–0.55 EL. f Promoter activation rate and nuclear Bcd con-
+centration at three distinct AP positions as functions of time in nc13. Dashed lines
+mark the period during which the Bcd concentration reaches its maximum, while
+the promoter activation rate continues to rise. Horizontal square bracket marks the
+period for subsequent steady-state analysis. g Schematic of cooperative Bcd
+binding-induced gene activation. h Steady-state promoter activation rate at dif-
+ferent AP positions (0.20–0.55 EL) during 4.4–6.3 min in nc13 was plotted against
+nuclear Bcd concentration and ﬁtted to a Hill function. i Unsteady-state promoter
+activation rate within the marked time period in (f) (2.8–4.2 min, 0.45 EL) was
+plotted against time and ﬁtted to anexponential function. Source data are provided
+as a Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-61907-7
+Nature Communications|   (2025) 16:6565 
+9
+image sequences were acquired at 1 AU pinhole aperture with a pixel
+size of 132 nm and a z-step size of 1 μm. Most confocal-mode images
+consisted of 1024 × 1024 × 15 pixels. An exception of ﬁve image
+sequences was captured at 512 × 512 × 15 pixels. Airyscan-mode images
+were captured at 1012 × 1012 × 19 pixels. The standard temporal reso-
+lution was one frame per minute (fpm). An exception of a short image
+sequence for the cell division process had a temporal resolution
+of 12 fpm.
+For live-imaging of hb-MS2 signal, the pixel size remained at
+132 nm, with z-step sizes adjusted to either 0.5 or 0.6 μm. These image
+sequences were acquired at a resolution of 512 × 512 pixels, with a
+temporal resolution set to 2 fpm. The excitation wavelengths used
+were 488 nm for MCP-GFP and 561 nm for Histone-RFP.
+Fixed imaging sample preparation and data acquisition
+Data of 82 OreR embryos were from previous studies35,43. All other
+embryos were collected, ﬁxed, and labeled according to a previously
+published protocol35,43. Brieﬂy, his2av-mrfp1 embryos collected at
+25 °C were ﬁxed in 8% (v/v) paraformaldehyde solution for 30 min,
+hand devitellinized, and stored in 1× PBS with 0.1% (w/v) BSA and 0.1%
+(v/v) Triton X-100 at 4 °C. OreR and 1×bcd embryos collected at 25 °C
+were ﬁxed in 4% (v/v) paraformaldehyde solution for 15 min, vortexed
+in 100% methanol for devitellinization, and stored in 100% methanol
+at −20 °C.
+For smFISH, ﬁxed embryos were rehydrated (4 × 10 min) in PBTx
+(1× PBS, 0.1% (v/v) Triton X-100), washed (3 × 10 min) in hybridization
+wash buffer (2× SSC, 20% (w/v) formamide, 0.1% (v/v) Triton X-100) at
+room temperature, and incubated with probe-containing hybridiza-
+tion buffer (10% Dextran sulfate, 0.1% E.coli tRNA, 20% (w/v) for-
+mamide, 2×SSC, 0.1% (v/v) Triton X-100, 2 mM Vanadyl ribonucleoside
+complex (NEB, S1402S), 0.02% (w/v) BSA) at 30 °C overnight. After
+hybridization, embryos were washed in hybridization wash buffer at
+30 °C (3 × 30 min) and in 2× SSC at room temperature (2 × 10 min). For
+immunoﬂuorescence, embryos were washed (4 × 10 min) in PBTx and
+blocked in PBT-B (1× PBS, 20% (v/v) western blocking reagent (Roche,
+11921673001), 2 mM ribonucleoside vanadyl complex (NEB, S1402S),
+0.1% (v/v) Triton X-100) at room temperature for 1 h. Embryos were
+then incubated with preabsorbed primary antibodies diluted in PBT-B
+at 4 °C for 20 h, followed by washes (4 × 10 min) in PBTx, another 1 h
+block in PBT-B, and 1 h incubation with secondary antibodies diluted in
+PBT-B at room temperature.
+For smFISH and immunoﬂuorescence colabeling of OreR and
+1×bcd embryos, hb or Kr mRNAs were labeled using smFISH, followed
+by immunostaining for Bcd and Hb proteins using rabbit anti-Bcd
+(Santa Cruz Biotechnology, cat: SC-66818, lot: A0108, 1:50 (v/v)) and
+rat anti-Hb antibody (obtained from Asian Distribution Center for
+Segmentation Antibodies, 576, 1:300 (v/v)) primary antibodies. Sec-
+ondary antibodies were Alexa Fluor™647-conjugated goat anti-rabbit
+IgG (Invitrogen, cat: A21245, lot: 1922848, 1:500 (v/v)) and Alexa Fluor™
+488-conjugated goat anti-rat IgG (Invitrogen, cat: A11006, lot: 1921310,
+1:500 (v/v)). For a small set of OreR embryos, Cyclin B protein was
+individually labeled using immunoﬂuorescence with mouse anti-Cyclin
+B antibody (Santa Cruz Biotechnology, cat: SC-166210, lot: E1016, 1:50
+(v/v)), followed by goat anti-mouse IgG secondary antibody con-
+jugated with Alexa Fluor™488 (Invitrogen, cat: A11001, lot: 1890503A,
+1:500 (v/v)).
+Following smFISH and/or immunoﬂuorescence labeling, embryos
+were washed (4 × 10 min) in PBTx and incubated with Hoechst 33342
+(Thermo Fisher Scientiﬁc, 62249, 0.1% (v/v) diluted in PBTx) at room
+temperature for 10 min to stain nuclear DNA. his2av-mrfp1 embryos
+were only stained for nuclear DNA. Following staining, embryos were
+washed (4 × 10 min) in PBTx (1× PBS, 0.1% (v/v) Triton X-100) and
+mounted in Aqua-Poly/Mount (Polysciences, 18606) for imaging.
+Fixed embryos were imaged using a Zeiss LSM 880 confocal
+microscope equipped with a GaAsP detector and a 63×/1.4 NA oil
+immersion obje

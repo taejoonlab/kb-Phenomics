@@ -1,0 +1,855 @@
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+AI-based approach to dissect the variability
+of mouse stem cell-derived embryo models
+Paolo Caldarelli
+1,5, Luca Deininger
+2,3,5, Shi Zhao1, Pallavi Panda
+1,
+Changhuei Yang
+1, Ralf Mikut
+2
+& Magdalena Zernicka-Goetz
+1,4
+Recent advances in stem cell-derived embryo models have transformed
+developmental biology, offering insights into embryogenesis without the
+constraints of natural embryos. However, variability in their development
+challenges research standardization. To address this, we use deep learning to
+enhance the reproducibility of selecting stem cell-derived embryo models.
+Through live imaging and AI-based models, we classify 900 mouse post-
+implantation stem cell-derived embryo-like structures (ETiX-embryos) into
+normal and abnormal categories. Our best-performing model achieves 88%
+accuracy at 90 h post-cell seeding and 65% accuracy at the initial cell-seeding
+stage, forecasting developmental trajectories. Our analysis reveals that nor-
+mally developed ETiX-embryos have higher cell counts and distinct morpho-
+logical features such as larger size and more compact shape. Perturbation
+experiments increasing initial cell numbers further supported this ﬁnding by
+improving normal development outcomes. This study demonstrates deep
+learning’s utility in improving embryo model selection and reveals critical
+features of ETiX-embryo self-organization, advancing consistency in this
+evolving ﬁeld.
+In recent years, the ﬁeld of developmental biology has undergone a
+transformative shift with the introduction of stem cell-derived embryo
+models1. These innovative models emulate various stages of embryo-
+nic development, offering new research avenues that were previously
+constrained by ethical and practical limitations associated with using
+actual embryos. Among these, some are designed to mimic pre-
+implantation development2,3, while others capture post-implantation
+stages
+of
+mouse
+(e.g.,
+ETS4,
+ETXs5
+and
+ETiXs6)
+and
+human
+embryogenesis7–9. The ability of these post-implantation models to
+progress to advanced developmental stages makes them invaluable
+tools for translational research, particularly in unraveling develop-
+mental disorders and advancing regenerative medicine10.
+Despite their considerable promise, these models face signiﬁcant
+challenges, primarily stemming from a limited understanding of the
+initial stages of cell and tissue self-organization. The initial phases of
+development in these models are crucial, as they set the foundation for
+all subsequent growth and differentiation11. However, the lack of
+detailed characterization of these phases results in variability in
+development outcomes. Typically, within just a few days of develop-
+ment, there are observable differences in growth and morphology
+among embryo models. This variability complicates efforts to stan-
+dardize experiments and limits the models’ applicability for more high-
+throughput screens.
+The ETiX-embryo model stands as one of the most advanced
+model systems for simulating post-implantation development in
+mice12. This model is constructed by aggregating embryonic stem cells
+(ESCs) with trophoblast stem cells (TSCs) derived from extra-
+embryonic ectoderm (ExE) precursors. Additionally, ESCs that are
+Received: 30 August 2024
+Accepted: 5 February 2025
+Check for updates
+1Division of Biology and Biological Engineering, California Institute of Technology, Pasadena, CA, USA. 2Group for Automated Image and Data Analysis,
+Institute for Automation and Applied Informatics, Karlsruhe Institute of Technology, Eggenstein‑Leopoldshafen, Germany. 3Division of Pediatric Neurology
+and Metabolic Medicine, Department I, Center for Pediatric and Adolescent Medicine, Medical Faculty Heidelberg, Heidelberg University,
+Heidelberg, Germany. 4Mammalian Embryo and Stem Cell Group, Department of Physiology, Development and Neuroscience, University of Cambridge,
+Cambridge, UK. 5These authors contributed equally: Paolo Caldarelli, Luca Deininger.
+e-mail: ralf.mikut@kit.edu; magdaz@caltech.edu
+Nature Communications|   (2025) 16:1772 
+1
+1234567890():,;
+1234567890():,;
+transiently induced to express the visceral endoderm master regulator
+GATA4, are incorporated to enhance the model’s ﬁdelity to natural
+development processes. The ETiX model has demonstrated potential
+in reaching early organogenesis stages6,13,14. However, by the 4th-day
+post-seeding, a culling process is necessary to eliminate structures that
+fail to meet the developmental criteria akin to the natural progression
+of embryogenesis at a comparable stage. Such selection is common in
+organoid and stem cell-derived embryo models research, where typi-
+cally only the most promising samples are carried forward for further
+study. The selection process is inherently subjective and reliant on the
+individual researcher’s judgment, leading to variability in outcomes
+across different laboratories.
+To address these challenges and improve the reliability of stem
+cell-derived embryo models, it is essential to adopt innovative analy-
+tical approaches. One such promising solution is the integration of
+Artiﬁcial Intelligence (AI) techniques for image analysis, which has
+been proven a valuable tool in a variety of complex scenarios15. Parti-
+cularly, a branch of AI known as deep learning revolves around training
+neural networks on large datasets. In the context of image classiﬁca-
+tion, convolutional neural networks (CNNs) and vision transformers
+(ViTs) play a pivotal role. CNNs leverage hierarchical layers that per-
+form convolution operations, allowing them to extract features from
+raw data, particularly suited for tasks like image classiﬁcation16–18.
+Notable CNN architectures include AlexNet16, MobileNet17, and
+ResNet18, each contributing unique innovations like pioneering deep
+network structures (AlexNet), mobile device optimization (Mobile-
+Net), and residual connections for deep network training (ResNet). In
+contrast, ViTs divide images into ﬁxed-size patches, transforming each
+into a sequence of tokens processed by a transformer encoder for
+feature extraction. One recent ViT, in particular, designed for video
+classiﬁcation, is the Multiscale Vision Transformer (MViT)18, which
+combines hierarchical features with ViTs.
+The proven success of deep learning in image and video classiﬁ-
+cation has driven signiﬁcant breakthroughs across various ﬁelds,
+including biomedicine, by enabling precise disease diagnosis, drug
+discovery,
+and
+personalized
+treatment
+strategies.
+In
+organoid
+research, deep-learning models facilitate the monitoring, tracking, and
+analysis of organoid morphological features over time19,20. In embryo
+research, models like EmbryoNet21, a ResNet-based model, identiﬁed
+molecular defects in zebraﬁsh embryos. These successes highlight the
+potential for deep learning to accurately classify and analyze stem cell-
+derived embryo models such as ETiX-embryos.
+Here, we developed a model optimized for the cultivation and
+imaging of hundreds of stem cell-derived embryo models at a time and
+applied deep-learning-based classiﬁcation across various stages of
+ETiX-embryo development to provide insights into embryo features
+predictive of future successful development and discuss how our
+ﬁndings can improve embryo cultivation efﬁciency.
+Results
+Detailed dynamics and expert classiﬁcation of ETiX-embryos via
+live-imaging
+We employed a custom-developed live-imaging platform to observe
+the development of ETiX-embryos within microwells constructed from
+agarose, focusing on the initial 90 h (Supplementary Fig. 1). This
+platform, accommodating ~320 stem cell-derived embryo-like struc-
+tures per session, utilized confocal microscopy to capture multifocal
+images of each ETiX-embryo (Fig. 1A, B and Supplementary Movie 1).
+To enable detailed visualization, the cells were ﬂuorescently labeled:
+ESCs were tagged with membrane-targeted RFP6, ESC-iGata4 with
+membrane-targeted GFP12, and TSCs with a membrane far-red dye
+(CellMask), enabling tracking of each cell type within the developing
+ETiX-embryo.
+Employing this methodology, we created a dataset of 900 ETiX-
+embryos, which were subsequently annotated based on images of the
+last 25 h of the time-lapse, focusing on speciﬁc characteristics namely
+lineage segregation, the presence of the pro-amniotic cavity—a ﬂuid-
+ﬁlled space forming soon after implantation through lumenogenesis of
+the epiblast22—and an overall cylindrical shape (Fig. 1C). All of these
+characteristics had to be met for an ETiX-embryo to be classiﬁed as
+normal. Speciﬁcally, ETiX-embryos were classiﬁed by an expert
+embryologist as normal if they displayed a cylindrical shape with dis-
+tinct cellular compartments derived from TSCs and ESCs, enveloped
+by a monolayer of ESC-iGata4 cells that resemble the visceral endo-
+derm. The formation of a well-deﬁned pro-amniotic cavity was also a
+crucial indicator. These features are classical hallmarks of a properly
+developed mouse embryo at the early post-implantation stage, just
+before the onset of anterior visceral endoderm migration to specify
+the anterior-posterior axis and gastrulation. Of the ETiX-embryos
+analyzed in three independent experiments, only 23% (206) met the
+criteria for normal development throughout the observation period
+(Fig. 1D, F and Supplementary Movie 2), while the remaining 77% (694)
+were classiﬁed as abnormal, showing structural and developmental
+abnormalities (Fig. 1D, G and Supplementary Movie 3). Additionally, by
+carrying out the time-lapse studies, we noticed that most ETiX-
+embryos were not synchronized in their development, and therefore,
+we annotated an end time point for each ETiX-embryo at a similar
+developmental stage, ranging between 65 and 90 h post-cell-seeding
+(Fig. 1E and Supplementary Fig. 2A, B). We refer to this as the syn-
+chronized dataset, which was subsequently used to train our deep-
+learning model, StembryoNet.
+These ﬁndings demonstrate the capability of our imaging plat-
+form to provide insights into ETiX-embryo development. While
+conﬁrming the known variability in ETiX-embryogenesis, our time-
+lapse imaging enables tracking of each embryo’s developmental
+history, allowing us to investigate the underlying causes of this
+variability.
+StembryoNet: an AI model for stem cell-derived embryo classi-
+ﬁcation at advanced developmental stages
+For deep-learning-based ETiX-embryo classiﬁcation at 90 h post-cell-
+seeding, we introduce StembryoNet, a deep-learning model built on a
+ResNet18 architecture (Fig. 2A). StembryoNet is speciﬁcally designed
+to be trained on synchronized data while also enabling predictions on
+unsynchronized data. It retains the ﬁve sequential convolutional layers
+and global average pooling of ResNet18 but replaces the original 1000-
+neuron fully connected layer with a single-neuron layer for binary ETiX
+classiﬁcation. Additionally, we substitute the softmax function with a
+sigmoidal activation function to calculate class probabilities. A key
+feature of StembryoNet is its ability to predict outcomes from
+unsynchronized data. It achieves this by processing consecutive time
+points from the last 25 h of the same ETiX-embryo, generating indivi-
+dual outputs for each time point. These outputs are then con-
+catenated, and the thresholded maximum probability across the time
+points is used to determine the ﬁnal classiﬁcation (Fig. 2A). To train
+StembryoNet on the phenotype of normal ETiX-embryos, we used the
+synchronized dataset, which aligns ETiX-embryo-speciﬁc time points
+at similar developmental stages (Supplementary Fig. 2B, D). As syn-
+chronization is not feasible for abnormal embryos, we sampled their
+synchronized time points using a normal distribution with the same
+mean and standard deviation as those of normal ETiX-embryos. To
+highlight the advantage of StembryoNet over state-of-the-art deep
+learning models, we compared its performance to a single ResNet18
+trained on ETiX-embryo images captured at 90 h (ResNet90h) and a
+Multiscale Vision Transformer (MViT) trained on videos of ETiX-
+embryo development spanning from 65 to 90 h (MViT65–90 h). To
+obtain an unbiased estimate of the models’ performances, we used
+ﬁve-times repeated 5-fold cross-validation (Supplementary Fig. 2C).
+Detailed information on model training and evaluation is provided in
+the Methods section.
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+2
+Fig. 1 | Long-term live imaging and expert annotation of mouse post-
+implantation stem cell-derived embryo models (ETiX). A Schematic illustrating
+the formation and structural organization of ETiX-embryos from 0 h to 90 h.
+B Representative time points of live imaging movies displaying around 320 ETiX-
+embryos at 0, 45, and 90 h after seeding in the Agarwell (n = 3, N = 900). C Dataset
+annotation of 900 ETiX-embryos by an expert embryologist based on 4D time-lapse
+imaging data. D Bar chart displaying the mean percentage of ETiX-embryos iden-
+tiﬁed as normal or abnormal, with error bars representing variability across
+datasets (n = 3, 95% CI). E Cumulative histogram of expert-selected time points of
+normal ETiX-embryos. F Sequential ﬂuorescence and bright ﬁeld images show-
+casing a representative normal ETiX-embryo development at key time points:
+seeding (0 h), aggregation (17 h), sorting (38 h), elongation (60 h), and cavitation
+(90 h). G Comparative ﬂuorescence and bright ﬁeld images of a representative
+ETiX-embryo exhibiting abnormal development at corresponding stages to (F).
+ESCs (red), ESC-iGata4 (green), and TSCs (blue). Scale bars: 1000 µm for (C) and
+100 µm for (F, G). Source data are provided as a Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+3
+While a baseline random classiﬁer achieves an accuracyof 50% (F1-
+Score = 31%), StembryoNet, ResNet90h, and MViT65-90h all exceeded
+this baseline (Fig. 2B). Notably, StembryoNet achieved a mean accu-
+racy of 88% (F1 = 77%), outperforming ResNet90h (80% accuracy,
+F1 = 67%) and MViT65-90h (81% accuracy, F1 = 68%). The confusion
+matrix for StembryoNet indicates a recall of 83% for normal ETiX-
+embryos at a precision of 71% (Fig. 2C). In comparison, ResNet90h
+yielded more false positives, resulting in a recall of 87% and a precision
+of 55% for normal ETiX-embryos (Fig. 2C and Supplementary
+Fig.
+3D,
+E).
+StembryoNet
+consistently
+outperformed
+not
+only
+ResNet90h and MViT65-90h but also other advanced deep learning
+models, demonstrating signiﬁcant superiority across comparisons
+(Supplementary Fig. 3C). All models are trained on RGB images con-
+sisting of three ﬂuorescence channels, as adding the brightﬁeld
+channel did not enhance performance (Supplementary Fig. 3A).
+Testing StembryoNet on synchronized data (pre-selected time
+points) did not yield better performance, demonstrating that Stem-
+bryoNet makes a human in the loop expendable (Supplementary
+Fig. 3B, E, F). To assess whether StembryoNet’s training on synchro-
+nized data accounts for its superior performance compared to
+ResNet90h, we tested it on ETiX-embryos at 90 h, achieving 79% accu-
+racy (StembryoNet90 h, Supplementary Fig. 3B). This suggests that
+training on synchronized data alone does not account for the perfor-
+mance difference; instead, the advantage lies in StembryoNet’s ability
+to fuse model predictions on unsynchronized data.
+To evaluate StembryoNet’s performance in terms of both accu-
+racy and speed, we compared it to three embryologists. The results
+show that, when using two of the three embryologists as the ground
+truth, StembryoNet slightly outperforms the least accurate embryol-
+ogist (Supplementary Fig. 3G, H). For the third embryologist, Stem-
+bryoNet’s performance is slightly lower than that of the least accurate
+embryologist (Supplementary Fig. 3I). In terms of speed, StembryoNet
+is 18 times faster than the embryologists (Supplementary Fig. 3J).
+Overall, these ﬁndings suggest that StembryoNet achieves accuracy
+comparable to that of human experts but with a substantial speed
+advantage, highlighting its practical utility for high-throughput
+applications.
+To contextualize StembryoNet’s predictions biologically, we used
+Grad-CAM heatmaps to visualize the model focus areasonboth normal
+and abnormal ETiX-embryos (Fig. 2D, E). For normal ETiX-embryos, the
+model predominantly focused on the pro-amniotic cavity and the
+regions where the visceral endoderm-like (ESC-iGata4-derived tissue)
+encircles the epiblast-like and extraembryonic ectoderm-like (ESCs
+and TSCs-derived tissues), indicating proper lineage allocation during
+early post-implantation development (Fig. 2D). Conversely, for
+abnormal ETiX-embryos, the model’s attention varied, focusing on
+disparate image parts such as ESC-tissue, ESC-iGata4-tissue, or a mix
+thereof, aligning with indicators of abnormal development such as lack
+of lumenogenesis, improper compartment formation, or incorrect
+lineages positioning (Fig. 2E).
+Fully supervised methods like StembryoNet rely on labor-
+intensive
+human
+annotations,
+which
+makes
+self-supervised,
+annotation-free deep learning approaches an appealing alternative.
+DINO22, a recent self-supervised deep learning method, trains vision
+transformers to learn meaningful visual representations without
+labeled data. Although DINO performed inferiorly to StembryoNet, it
+was able to cluster normal and abnormal ETiX-embryos to some
+extent, showcasing the potential of annotation-free approaches for the
+future (Supplementary Fig. 4A–C).
+In conclusion, StembryoNet signiﬁcantly enhances our ability to
+classify ETiX-embryos at advanced developmental stages, achieving
+superior accuracy and precision compared to state-of-the-art deep
+learning models. By closely aligning with embryologist perceptions
+and providing biological insights, StembryoNet represents a robust
+tool for the analysis of ETiX-embryo development.
+Early identiﬁcation of successful ETiX-embryos via deep
+learning
+Deep-learning-based classiﬁcation of normal and abnormal ETiX-
+embryos at 90 h post-cell-seeding can enhance the reproducibility of
+ETiX-embryo selection across laboratories. However, to advance this
+approach and delve deeper into the self-organization mechanism of
+normal ETiX-embryogenesis, we aimed to (1) predict ETiX-embryo
+development outcomes at earlier stages, and (2) identify the features
+most predictive of successful development. Since our goal was to
+forecast whether an ETiX-embryo would develop normally by 90 h, we
+used the embryologist’s annotations at that time point as target labels
+(Fig. 3A). To assess model accuracy and pinpoint key classiﬁcation
+features over time, we trained models at 5-h intervals from 0 to 90 h,
+generating 19 distinct model sets in total. StembryoNet was not
+applied for this task, as it is speciﬁcally designed for classiﬁcation at
+later developmental stages where ETiX-embryo synchronization—
+annotating the time point of similar development—is feasible.
+We used two types of models, a ResNet18 and a Support Vector
+Machine (SVM), applied to both brightﬁeld and ﬂuorescence images:
+ResNetBF, ResNetFluor, SVMBF, and SVMFluor (Fig. 3B). While we trained
+the ResNet models directly on the images, SVM models were trained
+on simple, pre-extracted image features of ETiX-embryos. Compared
+to the deep-learning-based ResNet18, SVM models offer greater
+explainability as their manually deﬁned features can be analyzed for
+importance. The performance gap between ResNet18 and SVM pro-
+vides insights into the advantages of deep-learning features in
+comparison to simple features. We employed ﬁve-times repeated
+5-fold cross-validation to ensure unbiased estimates of model
+performance.
+At the cell-seeding stage (t0), both SVMFluor and ResNetFluor sig-
+niﬁcantly outperformed a baseline random classiﬁer (Fig. 3C).
+ResNetFluor achieved an accuracy of 65% (F1 = 43%), while SVMFluor
+performed comparably by achieving an accuracy of 64% (F1 = 42%).
+SVMFluor feature weights indicated that the red (ESCs) and green (ESCs-
+iGata4) channels were most predictive (Fig. 3D). In contrast, SVMBF
+performed signiﬁcantly worse than random and ResNetBF showed no
+improvement over random (Fig. 3C), highlighting the critical role of
+ﬂuorescence information—i.e., the ﬂuorescent labeling of ESC, ESC-
+iGata4, and TSC cells—in early-stage predictions.
+Inherently, the channel-wise ﬂuorescence sum (Fig. 3B) is an
+estimate of the initial cell number and emerged as a distinguishing
+feature of ETiX-embryos with normal and abnormal future develop-
+ment. The protocol aims for each ETiX-embryo to contain, on average,
+ﬁve ESCs, ﬁve ESCs-iGata4, and sixteen TSCs at the initial cell-seeding
+stage. However, achieving these exact cell numbers during seeding is
+challenging due to the stochastic nature of cell distribution ineach well
+intrinsic to the experimental protocol. This variability could explain
+the differences in cell counts observed between normal and abnormal
+ETiX-embryos. Indeed, at the time of seeding (t0), an SVM model
+trained on the initial number of ESC, ESC-iGata4, and TSC cells
+(SVMcellcount) performed comparably to ResNetFluor (Supplementary
+Fig. 5A), indicating that the initial number of cells serves as a predictor
+for successful development. Further analysis showed that abnormal
+embryos typically had signiﬁcantly fewer ESC cells (normal: 6.7 ± 2.9,
+abnormal: 4.5 ± 2.5, mean ± SD) and ESC-iGata4 cells (normal: 6.0 ± 2.7,
+abnormal: 4.1 ± 2.3, mean ± SD) on average (Supplementary Fig. 5B). In
+line with this ﬁnding, additional datasets were generated where the
+initial cell numbers for all three cell types were doubled (Data2X,
+n = 306) or tripled (Data3X, n = 276). This approach was taken to
+explore whether increasing the overall cell count could mitigate the
+variability during seeding and ensure that each ETiX-embryo receives
+the necessary complement of cells for normal development. By uni-
+formly increasing the numbers of all three cell types, we hypothesized
+that the chances of each embryo receiving sufﬁcient cell numbers
+would improve, thereby increasing the proportion of embryos that
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+4
+develop normally. The results conﬁrmed this hypothesis, showing a
+higher proportion of normal ETiX-embryos as the initial cell counts
+increased, with Data1X, Data2X, and Data3X exhibiting normal ETiX-
+embryos proportions of 23%, 32%, and 60%, respectively (Supple-
+mentary Fig. 5C and Supplementary Movie 4). This suggests that
+increasing the initial number of cells across all lineages may enhance
+developmental outcomes by ensuring that each ETiX-embryo receives
+the minimum necessary amount of each cell type. Additionally, deep-
+learning-based brightﬁeld embryo segmentation showed accelerated
+ETiX-embryo growth for Data2X and Data3X, allowing them to
+reach similar developmental stages earlier than those in Data1x (Sup-
+plementary Fig. 5E). This was further supported by a negative corre-
+lation between the synchronized time points and the number of ESC
+cells
+(r = −0.33,
+Supplementary
+Fig.
+5F)
+and
+ESC-iGata4
+cells
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+5
+(r = −0.27, Supplementary Fig. 5G) in Data1X, underscoring the need for
+synchronization.
+As development progressed, classiﬁcation accuracy improved
+compared to the cell-seeding stage (Fig. 3E). ResNetFluor consistently
+outperformed SVMBF, SVMFluor, and ResNetBF, particularly during later
+stages (i.e., 60 to 90 h, Fig. 3E). Over time, ﬂuorescence sum values
+decreased in importance while ETiX-embryo shape features gained
+relevance (Fig. 3F). In particular, ETiX-embryos with normal develop-
+ment followed a clear morphological trajectory (Supplementary
+Fig. 6B–E), displaying a higher perimeter and a lower PerimeterSurfa-
+ceRatio, indicative of a more compact shape, as opposed to the more
+fragmented appearance of abnormal ETiX-embryos likely due to tissue
+mispositioning (Supplementary Fig. 6A and Supplementary Movie 5).
+Based on the Slingshot method23, we calculated the trajectory by
+connecting clusters of ETiX-embryos from distinct time points from 0
+to 90 h in 5-h intervals and ordering them based on morphological
+similarity, using nine ETiX-embryo shape features extracted from
+brightﬁeld ETiX-embryo segmentations, beginning from the initial
+time point of 0 h. The analysis also captured radial symmetry breaking
+around 65 h, where normal ETiX-embryos, initially spherical with radial
+symmetry, began to elongate, while abnormal ones maintained similar
+sphericity (Supplementary Fig. 6A and Supplementary Movie 5).
+In summary, deep-learning approaches can predict ETiX-embryo
+success from the cell-seeding stage, with ﬂuorescence data and initial
+cell numbers as key predictors. Increasing initial cell counts improves
+the proportion of normal embryos. As development progresses, pre-
+diction accuracy increases, and morphological features gain predictive
+importance.
+Analyzing individual ETiX-embryo development identiﬁes dis-
+tinct developmental progressions
+We next aimed to analyze individual ETiX-embryos to assess their
+developmental progression and evaluate their likelihood of becoming
+normal ETiX-embryos over the course of development. We identiﬁed
+four distinct patterns of ETiXs development: continuously normal,
+abnormal that transition to normal, continuously abnormal, and initi-
+ally normal-looking embryos that manifested abnormalities as devel-
+opment progressed (Fig. 4A–D and Supplementary Movie 6). For
+instance, one ETiX-embryo initially showed abnormal development
+and apparent lineage allocation failure but eventually readjusted after
+35 h post-cell-seeding, exhibiting a 20-h delay compared to a normal
+embryo (Fig. 4B, E and Supplementary Movie 6). Another ETiX-
+embryo, which transitioned from normal to abnormal development,
+initially resembled
+a continuously normal ETiX-embryo before
+deviating at around 35 h post-cell-seeding, likely due to a failure in
+tissue sorting (Fig. 4D, E and Supplementary Movie 6).
+This classiﬁcation revealed a spectrum of developmental out-
+comes, ranked from most to least frequent: continuously abnormal,
+initially normal then becoming abnormal, continuously normal, and
+initially abnormal then turning normal (Fig. 4F). Applying this cate-
+gorization to Data2X and Data3X revealed higher proportions of normal
+EtiX-embryos, further supporting our previous ﬁndings (Supplemen-
+tary Fig. 5D). This categorization deepens our understanding of ETiX-
+embryogenesis dynamics and underscores the importance of tracking
+and analyzing individual ETiX-embryo trajectories over time, rather
+than assuming successful development is established early on and
+maintained throughout the observation period. Indeed, our ﬁndings
+conﬁrm the non-deterministic and highly self-organizing nature of the
+system, demonstrating that ETiX-embryos can readjust in response to
+ﬂuctuations.
+Discussion
+Our study marks an advancement in the use of deep learning to classify
+and dissect the experimental variability of stem cell-derived embryo
+models, representing the ﬁrst study of this kind in the ﬁeld. We
+introduced StembryoNet, a deep-learning model speciﬁcally designed
+to classify ETiX-embryos at advanced developmentalstages (90 h post-
+seeding), achieving a remarkable accuracy of 88% (F1-Score = 77%).
+This performance signiﬁcantly surpasses that of other state-of-the-art
+models, such as ResNet18 and MViT (p < 0.0001), conﬁrming the
+robustness and reliability of StembryoNet in distinguishing between
+normal and abnormal embryonic forms. We found that the simpler 2D
+ResNet performs on par with the more complex video classiﬁcation
+model MViT. We speculate that MViT might require larger datasets to
+effectively learn which speciﬁc time points are relevant for classifying
+an ETiX-embryo as normal or abnormal. Given the moderate size of our
+dataset, the added complexity of MViT did not translate into better
+performance, suggesting it may be more suited to larger datasets
+where its advanced temporal resolution could be fully leveraged.
+Currently, StembryoNet is limited to classiﬁcation at advanced stages,
+as embryo synchronization—where an embryologist annotates the
+time point of similar development—is only feasible at that stage. Syn-
+chronization at earlier time points may enable StembryoNet to per-
+form early classiﬁcation in the future.
+At the cell-seeding stage, our best-performing deep learning
+model achieved a classiﬁcation accuracyof 65% (F1 = 43%), signiﬁcantly
+outperforming a random classiﬁer (p < 0.0001). The critical role of
+ﬂuorescence data at this stage indicates that early developmental
+predictions rely heavily on initial cell count. By doubling and tripling
+the number of ESC, ESC-iGata4, and TSC cells, we increased the ratio of
+normal ETiX-embryos, underscoring the importance of precise cell
+seeding techniques. However, with larger datasets and enhanced
+imaging techniques, such as more frequent imaging intervals and
+higher spatial resolution, we may uncover subtle developmental cues
+in brightﬁeld images at the cell-seeding stage that correlate with suc-
+cessful outcomes.
+As ETiX embryogenesis progresses, raw ﬂuorescence data
+become less informative, and morphological characteristics gain pre-
+dictive importance. Normal ETiX-embryos follow a distinct morpho-
+logical trajectory, characterized by overall larger sizes, more compact
+shapes in early stages (i.e., from 15 to 60 h), and less spherical shapes
+post-radial symmetry-breaking (i.e., from 65 h onwards). During this
+period, ResNetFluor outperforms ResNetBF. We hypothesize that
+ResNetFluor can detect the formation of properly sorted tissue com-
+partments during this period, while ResNetBF is limited to overall ETiX-
+embryo shape.
+Fig. 2 | AI-based ETiX-embryo classiﬁcation at advanced stages ofdevelopment.
+A Consecutive images from the ﬁnal 25 h (65–90 h post-seeding) of each embryo
+development are input into the StembryoNet. StembryoNet comprises ﬁve con-
+volutional layers, followed by a global average pooling (GAP) layer, fully connected
+(FC) layer, and sigmoidal activation function (S). The model predicts the probability
+of the normal class at each time point. These probabilities are concatenated, and
+the maximum probability is thresholded by a parameter θ to determine the class.
+B Performance comparison of different classiﬁers that are trained on single-time
+points (ResNet90h) and multiple-time points: MViT65–90 h and StembryoNet, over
+ﬁve times repeated 5-fold cross validation (CV, n = 25). MViT65–90 h vs. ResNet90h:
+t(44) = 0.7, p = 0.48, d = 0.2, 95% CI [−0.01, 0.02], StembryoNet vs. ResNet90 h:
+t(41) = 12.5, p = 1.2 × 10−15, d = 3.5, 95% CI [0.07, 0.09], StembryoNet vs. MViT65–90 h:
+t(34) = 9.0, p = 1.4 × 10−10, d = 2.6, 95% CI [0.06, 0.09], StembryoNet vs. Random:
+t(81) = 76.0, p = 3.6 × 10−77, d = 11.4, 95% CI [0.37, 0.39]. C Confusion matrices of
+random classiﬁer, ResNet90 h, and StembryoNet averaged across ﬁve times repe-
+ated 5-fold CV. Grad-CAM attention maps highlight signiﬁcant areas contributing to
+the classiﬁcation decision of StembryoNet for normal (D) and abnormal (E)
+embryos. Box plots: center line, median; box limits, ﬁrst and third quartile; whis-
+kers, smallest/largest value no further than 1.5*IQR from the corresponding hinge.
+****P < 0.0001, ns not signiﬁcant, two-sided Welch’s t-test. Scale bars: 100 µm.
+Source data are provided as Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+6
+Previous work focused on manually selected ETiX-embryos
+around 4–8 days after seeding6,14 for further molecular and cellular
+characterization, leaving the early stage of self-organization relatively
+unexplored. Our AI models, trained at distinct time points from 0 to
+90 h, enable the selection of embryos at earlier stages when human
+selection is not feasible. For example, our model trained on data at
+60 h, achieving a classiﬁcation accuracy of 76%, can select ETiX-
+embryos at the time of radial symmetry breaking for further analysis of
+this important developmental milestone. Furthermore, despite the
+predictive power of the cell count at seeding for normal development,
+ETiX-embryos with adequate initial cell setups can still fail at later
+stages and vice versa. Our deep learning model successfully identiﬁed
+such anomalies (Fig. 4). Future studies could utilize single-cell RNA
+sequencing to explore the mechanisms underlying these develop-
+mental deviations, which are central to the system’s highly self-
+organizing properties. Building on this concept, our deep-learning-
+based automated selection of well-developed ETiX-embryos could be
+integrated into microscope software, utilizing photoactivable dyes to
+select normal ETiX-embryos at any stage for further characterization.
+In summary, this study not only enhances our ability to reliably
+classify and predict ETiX-embryo development using deep learning
+but also deepens our understanding of the developmental dynamics
+Fig. 3 | AI-based prediction of future normal ETiX-embryo development.
+A Diagram illustrating the approach to predicting future developmental outcomes
+of ETiX-embryos and identifying key classiﬁcation features over time. Embryologist
+annotations from 65 to 90 h served as target labels. Models were trained at 5-h
+intervals across the 0–90-h timeframe, using 5-fold cross-validation repeated 5
+times (n = 25) for each interval. B ResNet and Support Vector Machine (SVM)
+models were trained on various types of images and features for explainable clas-
+siﬁcation. ResNet models included ResNetBF and ResNetFluor, trained on brightﬁeld
+and ﬂuorescence images, respectively. SVM models were based on inferred ETiX-
+embryo characteristics, namely ﬂuorescent intensity for SVMFluor and shape fea-
+tures extracted from brightﬁeld ETiX-embryo segmentations for SVMBF.
+C Classiﬁcation performance of ResNetBF, ResNetFluor, SVMBF, and SVMFluor at the
+time of seeding (t0) across ﬁve times repeated 5-fold cross-validation. SVMFluor vs.
+Random: t(104) = 23.1, p = 1.1 × 10−42, d = 3.9, 95% CI [0.13, 0.15], ResNetFluor vs.
+Random: t(27) = 10.6, p = 3.1 × 10−11, d = 3.4, 95% CI [0.12, 0.18], SVMBF vs. Random:
+t(112) = −27.1, p = 5.1 × 10−51, d = −4.5, 95% CI [−0.17, −0.14], ResNetBF vs. Random:
+t(25) = −0.4, p = 0.72, d = −0.2, 95% CI [−0.08, 0.05], SVMFluor vs. ResNetFluor:
+t(30) = −0.7, p = 0.46, d = −0.2, 95% CI [−0.04, 0.02]. D Absolute feature weights of
+different channels of SVMFluor model at the time of seeding (t0) E Classiﬁcation
+performance of all models along complete ETiX-embryos observation time, from 0
+to 90 h. F Absolute SVM feature weights of SVMBF + Fluor model throughout obser-
+vation time. Feature importances of brightﬁeld features were averaged. E, F Data
+are presented as mean values with error bar CI 95%. Box plots:center line, median;
+box limits, ﬁrst and third quartile; whiskers, smallest/largest. value no further than
+1.5*IQR from the corresponding hinge. ****P < 0.0001, ns not signiﬁcant, two-sided
+Welch’s t-test. Source data are provided as Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+7
+involved. These insights pave the way for a reliable selection of ETiX-
+embryos for further research throughout the entire observation per-
+iod, contributing to the emerging ﬁeld of stem cell-derived models’
+embryology. Finally, the methodologies and ﬁndings presented can be
+extended to all stem cell-derived embryo models, both in mouse and
+humans, broadening the impact of our work and opening new avenues
+for research and clinical innovations.
+Methods
+Cell culture and transgenic lines
+Embryonic stem cells (ESCs) were maintained on plates coated with
+0.1% gelatin. The culture medium used was N2B27, which is a 50:50
+mixture of Dulbecco’s Modiﬁed Eagle Medium/F12 (11320033) and
+Neurobasal-A media (10888022), supplemented with 0.5% (v/v) N2
+(17502048), 1% (v/v) B27 (17504044), 100 µM β-mercaptoethanol
+Fig. 4 | Time course AI prediction allows the identiﬁcation of distinct ETiX-
+embryo developmental trajectories. A, B ResNet model predictions of the
+probability of being classiﬁed as normal for two selected normal ETiX-embryos
+plotted over the entire observation period. For this application, ResNet was trained
+on unsynchronized data on distinct time points along the complete observation
+time, from 0 to 90 h in 5-h intervals, using ﬁve repeated 5-fold cross-validation runs.
+(C, D) same as (A, B) but for two selected abnormal ETiX-embryos. E ETiX-embryos
+from (B, D) are shown at −20 h and +20 h relative to the model prediction switch, as
+well as at the moment of the switch. For (A), we show the same time point as in (B),
+and for (C), the same as in (D). F The proportion of embryos in different categories
+based on ResNet-predicted probabilities throughout the observation period. Scale
+bar: 100 µm. A–D Data are presented as mean values with error bar CI 95%. Source
+data are provided as Source Data ﬁle.
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+8
+(31350-010), 1% (v/v) penicillin-streptomycin (15140122), and 1% (v/v)
+GlutaMAX (35050079). To promote an undifferentiated state, the
+medium was enriched with 1 μM of PD0325901 (72182), 3 μM
+CHIR99021 (72052), and 10 ng/ml of leukemia inhibitory factor
+(78056.1). The cells were cultured at 37 °C in a humidiﬁed atmosphere
+containing 5% CO2 and passaged bi-daily. Weekly PCR tests were
+conducted to conﬁrm the absence of Mycoplasma contamination. The
+ESC lines used included CAG-GFP/tetO-mCherry/tetO-Gata4 and mtmg
+ESCs, as established by refs. 6,12.
+Trophoblast stem cells (TSCs) were cultured on a layer of mouse
+embryonic ﬁbroblasts (MEFs) inactivated with mitomycin C. The
+medium used was RPMI 1640 (11875093) supplemented with 20% fetal
+bovine serum, 1% (v/v) penicillin-streptomycin (15140122), and 1% (v/v)
+GlutaMAX (35050079) and 1 mM sodium pyruvate (11360070). Addi-
+tionally, the growth factors FGF4 at 25 ng/ml and heparin at 1 μg/ml
+were included to support cell growth and maintenance. Cells were
+incubated under the same conditions as ESCs and similarly passaged
+every other day. Wild-type TS cells were stained with Far Red Cell Mask
+(C37608) for 20 min at 1:1000 before the start of the experiment.
+Live imaging of ETiX
+The live imaging platform was prepared using a 24-well glass-bottom
+plate. Each well was ﬁrst lined with a 1.5% solution of hot agarose.
+Subsequently, a 3D-printed plunger with hydrophobic treatment and
+designed with indentations at the end was used to cast 1200 micro-
+wells into the solidifying agarose, creating the structure necessary for
+cell accommodation (we named this platform AgarWell, in assonance
+with the commercially available AggreWell).
+ETiX-embryos were generated following the procedure described
+previously24.
+In
+summary,
+a
+cell
+suspension
+containing
+6000
+embryonic stem cells (ESCs), 6000 ESCs Gata4-induced embryonic
+stem cells (ESC-iGata4), and 19,200 trophoblast stem (TSCs) cells was
+prepared. The cells were resuspended in FC medium, consisting of
+DMEM (11995-065) with 12.5% FBS, 2 mM GlutaMax (11995-065),
+0.1 mM 2-mercaptoethanol (31350-010), 0.1 mM nonessential amino
+acids (11140-050), 1 mM sodium pyruvate (11360-070), 1% penicillin-
+streptomycin (15140-122), along with 7.5 nM ROCK inhibitor (72304).
+This cell mixture was then carefully added to the previously prepared
+microwells in the imaging platform.
+On the day following cell seeding (Day 1), 1 ml of the medium was
+removed from each well and replaced with a fresh FC medium devoid
+of ROCK inhibitor. This medium exchange was repeated twice to
+ensure the removal of the inhibitor. On Day 2, the medium was again
+replaced with fresh FC medium. On Day 3, the medium in each well was
+substituted with IVC1 medium, which consists of advanced DMEM/F12
+(21331-020) supplemented with 20% (vol/vol) FBS, 2 mM GlutaMax, 1%
+(vol/vol) penicillin-streptomycin, 1× ITS-X (51500-056), 8 nM β-estra-
+diol, 200 ng/ml progesterone, and 25 mM N-acetyl-L-cysteine.
+Live imaging was conducted using a Zeiss LSM980 microscope
+equipped with a 10× objective lens. The imaging was performed at a
+stable temperature of 37 °C in a humidiﬁed atmosphere containing 5%
+CO2, optimized for embryonic development observation. ETiXs were
+imaged every 35 min by collecting stacks of 4 μm z-planes. Different
+time series were concatenated using Fiji.
+ETiXs annotation and staging at advanced stages of
+development
+Each ETiX time-lapse underwent a detailed examination by an expert
+embryologist, who reviewed the last 25 h of the series of images along
+with every Z-plane and various imaging channels. ETiXs that exhibited a
+cylindrical shape and contained two distinct compartments—one from
+Trophoblast Stem Cells (TSCs) and the other from Embryonic Stem Cells
+(ESCs), all enveloped by a monolayer resembling the visceral endoderm
+composed of ESC-iGata4 cells—were classiﬁed as normal ETiX-embryos.
+Structures that failed to meet these criteria were deemed abnormal.
+Given the variability in developmental rates among ETiXs, a speciﬁc and
+consistent endpoint was established for all observations in the syn-
+chronized dataset, ensuring uniformity in data analysis.
+Data preparation
+To derive one image ﬁle per ETiX-embryo, ETiX-embryos were manu-
+ally segmented at the last time point. ETiX-embryos that grew beyond
+the imaging border were excluded. Subsequently, the center point of
+each segmented ETiX-embryo was used to extract individual ETiX-
+embryo images of size 153 × 40 × 288 × 288 × 4 (T × Z × X × Y × C). As in
+few cases, the ETiX-embryos were growing in the imaging frame of
+neighboring ETiX-embryos, for each ETiX-embryo any neighboring
+ETiX-embryo was masked. Therefore, parts of the image belonging to
+neighboring ETiX-embryos were replaced with values 120 (brightﬁeld)
+and 0 (ﬂuorescence). In total, we ended up with 900 ETiX-embryos. To
+correct for varying brightness of the 25 (5 × 5) mosaic tiles in the
+brightﬁeld channel, patches of the same z-plane were normalized by
+the mean intensity of all patches in this z-plane.
+The dataset comprises 4 channels and 40 z-planes. However,
+deep-learning models for image classiﬁcation are mainly designed to
+take 3-channel images as input. Therefore, we explored different data
+inputs most feasible for deep learning training:
+• Brightﬁeld in-focus images. These are obtained by selecting the
+z-plane where the brightﬁeld images are most sharply focused.
+The in-focus brightﬁeld plane was selected based on the z plane
+with the maximum Laplacian variance as commonly done for
+automatic focus detection25.
+• Fluorescence in-focus images. These images are derived from the
+z-plane where the brightﬁeld image is in focus, selected based on
+the brightﬁeld z-plane with the maximum Laplacian variance. We
+used the selected z-plane from the brightﬁeld in-focus image,
+since we noticed that the relevant structures in the ﬂuorescence
+images are likely showing at the same z plane where the
+brightﬁeld image is in-focus.
+• Fluorescence z-sum projection images. The idea is to combine all
+the slices in the z-stack by summing the pixel intensities along the
+z-axis.
+• Four-channel image of brightﬁeld and ﬂuorescence in-focus
+image combined.
+The results demonstrate that ﬂuorescence information signiﬁcantly
+surpasses brightﬁeld information in performance, with ﬂuorescence in-
+focus images showing a superior outcome compared to ﬂuorescence
+z-sum projection images (Supplementary Fig. 3A). Combining the
+brightﬁeld and ﬂuorescence information did not lead to an improved
+performance (Supplementary Fig. 3A). After all considerations, we
+therefore used ﬂuorescence in-focus images for model training.
+AI-based ETiX-embryo classiﬁcation at advanced stages of
+development
+StembryoNet is a deep-learning-based architecture (Fig. 2A). Stem-
+bryoNet leverages a ResNet1818 backbone, pre-trained on ImageNet,
+incorporating ﬁve consecutive convolutional layers, global average
+pooling, a fully connected layer, and a sigmoid activation function. We
+selected ResNet for its rapid and reliable convergence in image
+classiﬁcation21. Additionally, ResNet demonstrated the smallest stan-
+dard deviation among various deep learning architectures, indicating
+greater stability and robustness (Supplementary Fig. 3C). StembryoNet
+was trained on what we refer to as synchronized data. For synchro-
+nized data, an expert embryologist annotated for each embryo the
+time point of similar development (Supplementary Fig. 2A, B). The
+StembryoNet backbone was trained on single-time points of embryos
+at the synchronized time point (Supplementary Fig. 2A, B) for 200
+epochs with batch size 16 using optimizer Adam (learning rate = 0.001,
+beta1 = 0.9, beta2 = 0.999, weight decay = 0.0001) and a binary cross
+Article
+https://doi.org/10.1038/s41467-025-56908-5
+Nature Communications|   (2025) 16:1772 
+9
+entropy loss weighted by inverse class frequencies. For abnormal
+embryos, synchronization was not feasible, so we sampled their syn-
+chronized time points using a normal distribution with the same mean
+and standard deviation as those of normal embryos. We used the
+Python package PyTorch Lightning (version 2.0.4) for model training.
+StembryoNet inference is based on passing consecutive embryo
+images of the last 25 h through the model. Then, the model-predicted
+probability for class normal of each time point is concatenated. Finally,
+the maximum probability is thresholded by θ to derive the prediction.
+θ is the threshold resulting in the highest F1-Score on the unsynchro-
+nized validation set (Supplementary Fig. 2D) and ensures balancing the
+trade-off between precision and recall of predicted normal embryos.
+For comparison to StembryoNet, we trained several models using
+the same training procedure as for the StembryoNet backbone. These
+included
+ResNet18,
+MobileNet17,
+ResNeXt26,
+GoogleNet27,
+and
+DenseNet28, all trained on images at 90 h. For the Multiscale Vision
+Transformer (MViT)29, we used the architecture MViTbase, pretrained
+on Kinetics-400, with frame length 16 and sample rate 4. We trained
+this model for 20 epochs with batch size 1, Adam (beta1 = 0.9,
+beta2 = 0.999, weight decay = 0.0001). To ﬁnd an optimal initial
+learning rate, we used the PyTorch automatic learning rate ﬁnder prior
+to each MViT training. All together, we trained MViT65–90 h which is
+trained on videos spanning 65–90 h. To ensure optimal use of the pre-
+trained weights, 16 images were equally sampled from 65 to 90 h for
+model training and testing. For MViT training, we used PyTorch
+Lightning and PyTorchVideo (version 0.1.5).
+All models were trained with a binary cross entropy loss weighted
+by inverse class frequencies. On-the-ﬂy image augmentations com-
+prised random rotation (0–360°) and color jittering (using PyTorch’s
+ColorJitter), which involved adjusting the saturation (factor = 0.1) and
+contrast (factor = 0.1). The images were normalized according to
+ImageNet default normalization. Model training and evaluation com-
+prised ﬁve-times repeated 5-fold cross-validation, stratiﬁed by ETiX-
+embryo class (Supplementary Fig. 2C). For each split, 75% of the
+training set is reserved for model training, and 25% is reserved for
+model validation. The validation set has two purposes. First, it is used
+to select the best model according to the lowest validation loss. Sec-
+ond, it is used to determine the best threshold θ for late classiﬁcation
+using StembryoNet (Supplementary Fig. 2D). θ is the threshold
+resulting in the highest F1-Score on the validation set. Two-sided
+Welch’s t-tests were used to compare model performances, ensuring
+the normality assumption was met. For instance, StembryoNet’s
+accuracy distribution across ﬁve times repeated 5-fold cross-validation
+yielded a Shapiro-Wilk p-value of 0.56, indicating normality.
+To generate attention heatmaps, we used Gradient-weighted
+Class Activation Mapping (GradCAM)30. We generated the heatmaps
+for StembryoNet for selected samples at the time point with the
+highest probability of the embryo being normal. Our implementation
+used the last feature extraction layer as the model target layer and
+backpropagated the ETiX-embryo ground truth label.
+For additional validation, we compared StembryoNet’s accuracy
+and efﬁciency against three embryologists (A1, A2, and A3). Stem-
+bryoNet was trained using each embryologist’s annotations individu-
+ally. A1–A3 were included in this multi-annotator comparison, A1’s
+annotations were used in the analysis presented in the main text. To
+benchmark annotation speed, we measured the time A2 and A3
+required to annotate the entire dataset of 900 ETiX-embryos and
+compared this to the time taken by StembryoNet to predict labels for
+the same dataset across ﬁve repeated 5-fold cross-validation runs,
+using an NVIDIA A100-40 GPU.
+Random classiﬁer
+We simulated a random classiﬁer by drawing a value from a uniform
+distribution between −5 and 5, which was then transformed using a
+sigmoidalactivation function to derive predicted probabilities for each
+embryo in the respective test set. This random classiﬁer was evaluated
+with twenty-times repeated 5-fold cross-validation to benchmark
+against our models.
+Model evaluation metric
+To assess the model performance, we used Accuracy and F1-Score (F1).
+Accuracy is calculated as the number of correct predictions divided by
+the total number of predictions:
+Accuracy =
+TP + TN
+TP + TN + FP + FN × 100
+ð1Þ
+with TP = true positives, TN = true negatives, FP = false positives,
+and FN = false negatives. The F1 is the harmonic mean of precision and
+recall, providing a single score that balances both aspects:
+F1 = 2 × precision × recall
+precision + recall × 100
+ð2Þ
+precision =
+TP
+TP + FP
+ð3Þ
+recall =
+TP
+TP + FN
+ð4Þ
+A perfect classiﬁcation achieves an Accuracy and F1 of 100%.
+AI-based prediction of future normal ETiX-embryo development
+For AI-based early clas

@@ -1,0 +1,858 @@
+Use of small molecule inhibitors of the Wnt and Notch signaling
+pathways during Xenopus development
+Candace T. Myers a, Sarah C. Appleby b, Paul A. Krieg c,⇑
+a Department of Molecular and Cellular Biology, University of Arizona, Tucson, AZ, United States
+b Department of Veterinary Science and Microbiology, University of Arizona, Tucson, AZ, United States
+c Department of Cellular and Molecular Medicine, University of Arizona, Tucson, AZ, United States
+a r t i c l e
+i n f o
+Article history:
+Available online 11 September 2013
+Keywords:
+Wnt
+Notch
+IWR-1
+XAV939
+WntC59
+BIO
+DAPT
+RO4929097
+Axin2
+Hematopoeisis
+a b s t r a c t
+Small molecule inhibitors of growth factor signaling pathways are extremely convenient reagents for
+investigation of embryonic development. The chemical may be introduced at a precise time, the dose
+can be altered over a large range and the chemical may be removed simply by replacing the medium sur-
+rounding the embryo. Because small molecule modulators are designed to target conserved features of a
+protein, they are usually effective across species. Ideally the chemicals offer remarkable speciﬁcity for a
+particular signaling pathway and exhibit negligible off-target effects. In this study we examine the use of
+small molecules to modulate the Wnt and Notch signaling pathways in the Xenopus embryo. We ﬁnd that
+IWR-1 and XAV939 are effective inhibitors of the canonical Wnt signaling pathway while BIO is an excel-
+lent activator. For Notch signaling, we ﬁnd that both DAPT and RO4929097 are effective inhibitors, but
+that RO4929097 is the more potent reagent. This report provides researchers with useful working con-
+centrations of reagents and a small series of genetic and biological assays that may be used to character-
+ize the role of Wnt and Notch signaling during embryonic development.
+ 2013 Published by Elsevier Inc.
+1. Introduction
+During embryonic development, growth factor signaling path-
+ways are utilized for a multitude of roles including regulation of
+embryonic axis formation, induction and suppression of gene
+expression, regulation of cell migration and control of cell prolifer-
+ation. Understanding the roles of growth factor pathways for
+development of speciﬁc organs and for maintenance of tissue
+structure and function requires the ability to speciﬁcally interfere
+with the signaling pathways, either positively or negatively, at pre-
+cise times during embryogenesis.
+Due to the unusual size and tractability of the early embryo,
+most exploration of growth factor signaling pathways in the Xeno-
+pus system has been carried out by injection of mRNAs encoding
+bioactive proteins. Additional control over the location and timing
+of expression of these proteins can be achieved by targeting injec-
+tions to speciﬁc blastomeres, and hence to speciﬁc regions of the
+developing embryo, and by temporal control of function using
+chemically inducible protein variants [1].
+While these are valuable tools for many studies, there are times
+when they are difﬁcult to use. For example, studies of signaling
+pathways during later development can be limited by the duration
+of expression of the bioactive protein from the injected mRNA.
+Also, although inducible proteins are normally well behaved, some
+show leakiness of expression prior to chemical induction and this
+can preclude studies of subsequent developmental events. In the-
+ory, sufﬁciently speciﬁc pharmacological inhibitors can bypass
+many of these drawbacks. Chemical inhibition or augmentation
+of a signaling pathway can be initiated at any time during develop-
+ment by simply adding the chemical to the culture medium. Small
+molecule inhibitors sometimes target speciﬁc activities within a
+signaling pathway, allowing aspects of the regulation to be dis-
+sected. In most cases, the effects of small molecules are reversible
+by simply removing the chemical from the culture medium.
+In this study we investigated the use of small molecules to reg-
+ulate activity of the Wnt and Notch signaling pathways in the
+Xenopus embryo. For some time, LiCl has been used as an ionic acti-
+vator of the Wnt pathway in Xenopus studies. Li functions by inhib-
+iting the activity of glycogen synthase kinase-3 (GSK3), which
+stabilizes b-catenin and thereby enhances nuclear translocation
+[2]. However, GSK3 is not speciﬁc for the Wnt signaling pathway,
+making interpretation of results difﬁcult in some circumstances.
+Over the last few years, a number of chemical compounds designed
+to speciﬁcally activate or inhibit the Wnt signaling pathway have
+become available [3] but very few of these have been tested for
+use in embryonic systems. In this paper we will assess the
+effectiveness of a small number of Wnt modulators including the
+1046-2023/$ - see front matter  2013 Published by Elsevier Inc.
+http://dx.doi.org/10.1016/j.ymeth.2013.08.036
+⇑Corresponding author. Address: Department of Cellular and Molecular Medi-
+cine, Molecular Cardiovascular Research Program, The University of Arizona,
+Tucson, AZ 85724, United States.
+E-mail address: pkrieg@email.arizona.edu (P.A. Krieg).
+Methods 66 (2014) 380–389
+Contents lists available at ScienceDirect
+Methods
+journal homepage: www.elsevier.com/locate/ymeth
+putative inhibitors, XAV939, IWR-1, WntC59, and the Wnt activa-
+tor, BIO. In addition, we will examine the use of the c-secretase
+inhibitors, DAPT and RO4929097, for inhibition of the Notch sig-
+naling pathway. For each of these studies we will provide informa-
+tion on downstream target genes and effective biological assays to
+assess pathway activity. A table summarizing the approaches and
+results is presented in the Discussion section.
+2. Materials
+2.1. Small molecule modulators of the Wnt and Notch signaling
+pathways
+2.1.1. IWR-1
+IWR-1 was obtained from Sigma (Catalog No. IO161). IWR-1
+stabilizes the scaffold protein Axin, leading to an increase in prote-
+olytic degradation of b-catenin and an overall decrease in Wnt sig-
+naling [4]. The use of 10 lM IWR-1 has been reported to affect
+Wnt-dependent development of the swimbladder [5] and tail ﬁn
+regeneration [4] in zebraﬁsh. IWR-1 has also been used at 50 lM
+to inhibit Wnt signaling in the retina of Xenopus tadpoles [6].
+2.1.2. XAV939
+XAV939 was obtained from Tocris (Catalog No. 3748). Similar to
+IWR-1, XAV939 stabilizes Axin [7]. The use of 50 lM XAV939 has
+been reported to effect Wnt-dependent lung development in Xeno-
+pus [8]. XAV939 has also been used at 15 lM to inhibit Wnt signal-
+ing in the developing zebraﬁsh retina [9].
+2.1.3. WntC59
+WntC59 was obtained from Cellagen (Catalog No. C7641-2s) as a
+10 mM solution in DMSO. WntC59 prevents Wnt protein secretion
+by blocking palmitylation of Wnt by the O-acyltransferase Porcupine
+(PORCN) (Novartis, U.S. patent WO/2010/101849). The drug is solu-
+ble in DMSO, but upon dilution into 0.2x MMR it partially comes out
+of solution giving a faint milky white appearance. WntC59 has been
+reported to reduce tumor growth in mice at 5 or 10 mg/kg/day doses
+[10]. These same authors report preliminary studies in Xenopus that
+demonstrated Xenopus Porcn to be resistant to WntC59, suggesting
+WntC59 may only work in mammalian cells [10].
+2.1.4. BIO
+BIO (6-bromoindirubin-30-oxime) was obtained from Tocris
+(Catalog No. 3194). BIO is a GSK3 inhibitor, allowing b-catenin to
+translocate into the nucleus and activate Wnt responsive genes
+[11,12]. The drug has a bright red physical appearance, and when
+treated in 10 and 20 lM solutions, embryos became discolored,
+taking on a faint pink hue. We recommend BIO to be used at
+10 lM, while other Xenopus groups have found 6–10 lM BIO to
+be optimal [8,13]. BIO at 10 lM has been used to study the role
+of Wnt during tail regeneration in zebraﬁsh [14].
+2.1.5. DAPT
+DAPT
+(N-[(3,5-Diﬂuorophenyl)acetyl]-L-al-anyl-2-phenyl]gly-
+cine-1,1-dimethylethyl ester) was obtained from Tocris (Catalog
+No. 2634). DAPT is an inhibitor of c-secretase, the enzyme respon-
+sible for cleaving and activating Notch [15]. The successful use of
+DAPT has been reported for a number of embryonic model systems
+[15–18], including studies of Notch regulation of morphogenic
+movements during Xenopus gastrulation [17], and speciﬁcation
+and proliferation of cells at the midline in zebraﬁsh [18].
+2.1.6. RO4929097
+RO4929097 was obtained from Cellagen (Catalog No. C7649-
+2s). Like DAPT, it is a c-secretase inhibitor [19]. RO4929097 is
+supplied as a solid white compound that dissolves easily in DMSO.
+However, at 16 C and cooler temperatures, the drug precipitated
+out of solution. RO4929097 in vivo use was reported for murine
+xenograft models of lung, colon, and pancreatic cancer [19]. Due
+to the success of this study, RO4929097 is currently being used
+in human clinical trials [20].
+All small molecules were either supplied in DMSO by the man-
+ufacturer or resuspended in DMSO upon arrival to a ﬁnal concen-
+tration of 10 mM. Individual aliquots of 20 ll were stored at
+20 C in small Eppendorf tubes to avoid repeated freeze–thaw
+cycles.
+2.2. In situ hybridization probes
+All antisense probes were labeled using digoxigen-UTP and the
+MEGAscript kit (Ambion). The following list provides where each
+clone was obtained, the enzyme used to linearize, and the poly-
+merase used to synthesize antisense probe, respectively: Xenopus
+laevis axin2 sequence was obtained from Open Biosystems, Clone
+ID: 6863285, linearized with SalI, synthesized using T7 RNA poly-
+merase. Plasmid for hes5 was provided by Dr. Chris Kintner, linear-
+ized with EcoRI, and transcribed with SP6 RNA polymerase.
+Plasmid for hba1 is from Open Biosystems Clone ID: 7008488, lin-
+earized with Sal1 and transcribed with T7 RNA polymerase. Plas-
+mid for lmo2 was obtained from Open Biosystems, Clone ID:
+4174203, linearized with EcoRV and transcribed using T7 RNA
+polymerase. In situ staining patterns were visualized using anti-
+DIG alkaline phosphatase and BCIP/NBT. When comparing differ-
+ent small molecule treatments, all embryos were developed in col-
+or substrate for an equal amount of time, and all photographs were
+taken with the same settings.
+3. Methods and results
+3.1. Axis formation as a read-out of Wnt signaling
+Precisely regulated levels of Wnt signaling are required for nor-
+mal formation of the dorsoventral (DV) axis in Xenopus embryos.
+Any treatment that perturbs normal Wnt signaling results in
+abnormal axis formation [21,22]. The Dorsoanterior Index (DAI)
+is a classiﬁcation system to rate the severity of the axis malforma-
+tion [23]. DAI score is assayed at the mid-tailbud stage, but key
+points of development including gastrulation and closure of the
+neural tube can be used to monitor progress. For some treatments,
+embryos need to be subjected to Wnt disruption as early as possi-
+ble during development, prior to the ﬁrst cleavage, to allow sufﬁ-
+cient time for the chemical to be effective. The protocol below is
+optimized for very rapid handling of fertilized eggs to allow for
+early chemical treatment.
+3.2. Protocol for axis-perturbation
+1. Mince recently harvested testes into 200 ll of 0.8x MMR in a
+petri dish.
+2. Collect eggs from female as usual. Gently mix eggs and testes
+with blunted forceps to distribute eggs evenly around the dish,
+and allow egg and sperm to sit at room temperature for 5 min.
+3. Flood the dish with 0.2x MMR and allow the fertilized eggs to
+sit for an additional minute. Quality eggs adhere to the dish,
+rather than ﬂoating up to the surface at this step.
+4. Pour off the 0.2x MMR and immediately add 0.2x MMR + 2.5%
+L-cysteine, pH 8.0, to the dish. This step will de-jelly the fertil-
+ized eggs. Gently swirl the eggs in the dish. Harsh treatment of
+zygotes at this stage may result in secondary axes. Removal of
+C.T. Myers et al. / Methods 66 (2014) 380–389
+381
+the jelly coat typically takes 5–7 min. Eggs should pack
+together and rotate freely when this step is complete.
+5. Transfer fertilized eggs to a separate container and wash at
+least three times with 0.2x MMR to remove excess cysteine.
+Remove any unfertilized or unhealthy eggs and begin small
+molecule treatment immediately. Embryos were treated with
+small molecule inhibitors prior to the ﬁrst cleavage, and con-
+tinued to develop in this same media until tailbud stage.
+6. Assay for axis perturbation at tailbud stage using the dorsal-
+ization index of Kao and Elinson [23] (also see Fig. 1A) and
+compare to temperature matched, untreated embryos to con-
+trol for any irregularities in development.
+3.3. Controls for axis perturbation
+It is useful to include controls for axis perturbation. For exam-
+ple, treatment with Lithium Chloride (LiCl) may be used as a con-
+trol for dorsalization while treatment with UV light can be used to
+ventralize embryos (Fig. 1B–D). LiCl inhibits GSK3 activity leading
+to upregulation of the Wnt pathway [2]. To dorsalize embryos,
+place fertilized eggs in 0.3 M LiCl for 10 min. This step must be
+done prior to the 32-cell stage. After 10 min of treatment, move
+eggs to 0.2x MMR for further development. We ﬁnd that some
+batches of embryos are quite sensitive to high doses of LiCl and
+so longer treatment times with lower concentrations of LiCl can
+be used to achieve the same effect (e.g. 0.1 M LiCl for 1 h). On
+the other hand, UV treatment ventralizes embryos [24]. UV radia-
+tion interferes with polymerization of microtubules, which are
+normally utilized to transport dorsal determinants (e.g. b-catenin)
+to the dorsal side of the zygote during cortical rotation [25]. To
+ventralize embryos, expose fertilized eggs to 30–90 s of short-wave
+(254 nm) UV light as soon as possible after fertilization. We treat
+embryos on a standard UV light box used for Ethidium Bromide
+visualization. Plastic Petri dishes may attenuate UV light, but an in-
+verted 50 ml conical tube sealed with plastic wrap and a rubber
+band yields good results (see Sive et al., 2000 for more details) [26].
+After LiCl, UV or small molecule treatment, allow embryos to
+develop at 18–23 C in 0.2X MMR. Remove any dead or unhealthy
+Fig. 1. Axis perturbation as an assay for Wnt pathway modulation. (A) DAI index adapted from Kao and Elinson [23]. (B–D) UV light and LiCl treatment were used as controls
+for extreme ventralization and dorsalization, respectively. Panel D, showing ventralization with LiCl treatment was modiﬁed using Photoshop to remove a reﬂected image at
+left of embryo. (E–H) Treatment of embryos with different doses of the Wnt agonist, BIO, resulted in dorsalized embryos. (I–L) Treatment of embryos with the Wnt inhibitor,
+WntC59, resulted in embryos with a dorsalized phenotype, not the ventralized phenotype predicted. (M–T) Treatment of embryos with different doses of the Wnt inhibitors
+IWR-1 and XAV939 resulted in no signiﬁcant change in dorsal/ventral patterning.
+382
+C.T. Myers et al. / Methods 66 (2014) 380–389
+embryos. At the tailbud stage assay for axis perturbation using the
+DAI index [23].
+3.4. Results for small molecule modulation of Wnt signaling for axis
+disruption
+Using dorsalization as an assay, the Wnt agonist, BIO, proved to
+be effective even at 5 lM but results were more consistent at
+10 lM (Fig. 1E and F). At this concentration, embryos displayed a
+robust dorsal phenotype without any indication of toxicity. The
+majority of embryos completely lacked a trunk, but developed rel-
+atively normal heads. No somites were visible, embryos displayed
+enlarged eyes, and in a few cases, a radial cement gland was visible
+by stage 20. At 20 lM BIO, 37% of treated embryos died (n = 17/46)
+compared to 7% in DMSO vehicle-controls (n = 3/42), indicating
+that this is a toxic dose. The phenotypes observed with optimal
+BIO treatment closely mimicked embryos treated with LiCl con-
+ﬁrming that BIO is a potent activator of Wnt signaling.
+None of the Wnt inhibitors functioned effectively using the axis
+disruption assay. First, treatment with XAV939 and IWR-1 resulted
+in embryos that looked grossly normal compared to controls, even
+at the highest doses with no signiﬁcant change in DAI (Fig. 1M–T).
+It is possible that the small molecule inhibitors do not have sufﬁ-
+cient time to stabilize Axin2 protein to cause a change in overall
+degradation of maternally inherited b-catenin. Neither drug pro-
+duced obvious off-target or toxic effects and so we included these
+inhibitors in different bioassays using later stage embryos (see be-
+low). Second, WntC59, produced completely unexpected effects.
+Instead of ventralizing the body axis, embryos presented with DAIs
+above 5 (Fig. 1I–L). WntC59 works by a different mechanism than
+IWR-1 or XAV939. While IWR-1 and XAV939 block Axin degrada-
+tion leading to upregulation of canonical Wnt signaling, WntC59
+blocks palmitylation of Wnt, thus preventing cells from secreting
+Wnt. This would be expected to inhibit all three Wnt signaling
+pathways (Wnt/b-catenin, PCP, and Wnt/Ca2+), and may account
+for the unexpected gross morphologies. Another possibility is that
+WntC59 has non-speciﬁc or off-target effects in Xenopus.
+4. Axin2 transcript levels as a read-out of Wnt signaling
+We were surprised that the well-established DV axis bioassay
+did not prove useful for assay of small molecule modulators and
+so we decided to test activity using a molecular assay during later
+development. Axin2 protein is a negative regulator of Wnt signal-
+ing. It is a major component of the destruction complex responsi-
+ble for phosphorylation and degradation of b-catenin. However,
+when b-catenin is translocated into the nucleus and acts as a
+transcription factor, one of the target genes activated is axin2
+[27]. Therefore, axin2 transcript levels can be used as a measure-
+ment of canonical Wnt signaling. To test the effectiveness of the
+drugs previously tested in the DAI assay we carried out in situ
+hybridization analysis of axin2 levels.
+4.1. Treatment of embryos at stage 20 with Wnt modulators
+1. Frozen aliquots (10 mM) of each small molecule modulator
+were thawed and 1.5 mL solutions in 0.2x MMR were prepared
+with
+the
+following
+ﬁnal
+concentrations:
+IWR-1
+100 lM,
+XAV939 100 lM, BIO 10 lM. 1% DMSO in 0.2X MMR was used
+as control.
+2. At stage 20, 15–20 embryos were placed in chemical solution in
+a 12-well plate and allowed to develop at room temperature.
+The vitelline membrane was not removed.
+3. The drug solution was changed every 24 h until the treatment
+ended.
+4. At stage 34 embryos were ﬁxed in MEMPFA⁄ and processed for
+in situ hybridization following the Harland protocol [28].
+(⁄MEMPFA recipe: 4% PFA, 0.1 M MOPS pH 7.4, 2 mM EGTA,
+1 mM MgSO4)
+5. Embryos were photographed on a Leica MZ APO stereomicro-
+scope using the PaxCam software. The settings for exposure,
+contrast, and saturation were kept constant between treatment
+groups.
+4.2. Results of axin2 in situ hybridization assays
+axin2 is expressed most strongly in dorsal regions of the brain of
+Xenopus embryos and to a lesser extent in the branchial arches
+(Fig. 2A). Following treatment with XAV939 and IWR-1, axin2 tran-
+script levels decreased (Fig. 2B and C) quite dramatically indicating
+effective inhibition of Wnt signaling. As expected, axin2 transcript
+levels increased with exposure to 10 lM BIO (Fig. 2E), consistent
+with the axis perturbation assay and indicating that BIO is a potent
+activator of Wnt signaling. We note that BIO treatment did not lead
+to ectopic axin2 expression, indicating that it increases b-catenin
+activity only in cells that are already engaged in Wnt signaling.
+WntC59 treated embryos exhibited no visible reduction of axin2
+even at 100 lM (Fig. 2D), so further studies using WntC59 were
+discontinued. This is consistent with a preliminary report suggest-
+ing Xenopus Porcn is resistant to WntC59 [10].
+4.3. Quantitative real-time polymerase chain reaction (qRT-PCR)
+analysis of axin2 expression
+Although in situ hybridization can provide an excellent indica-
+tion of up or down-regulation of gene expression, the method is
+not amenable to quantitation. As an independent, quantitative as-
+say to measure transcript levels we carried out qRT-PCR.
+For assay of axin2 transcript levels we used triplicate RNA sam-
+ples, each containing material from 3 treated embryos. RNA was
+isolated using standard protocols and 1 lg of total RNA, assayed
+using a Nanodrop apparatus (Thermo Scientiﬁc), was used in a
+standard cDNA synthesis reaction.
+The qRT-PCR reaction was set up in duplicate as follows:
+4.5 lL of 1:20 cDNA dilution
+1.5 lL 3000 nM Forward primer
+1.5 lL 3000 nM Reverse primer
+7.5 lL Maxima SYBR Green (Thermo Scientiﬁc, Catalog No.
+K0252)
+Each primer set was evaluated by end-point PCR to ensure a
+product of the correct size was ampliﬁed and no dimers formed.
+The following primers were used: rna pol II (rnap2F – 50
+AATTTCTCCAGCAGCCATTG 30, rnap2R – 50 TCCGAAGTGTGTTCAT-
+CAGC 30) and axin2 (axin2F – 50 TGCAGCCAGTATCAACGACAG 30,
+axin2R – 50 CAAAGACACTTGTCCATTGGC 30). PCR reactions and
+analysis were carried out using the standard-curve method.
+Stage-matched cDNA from wild-type embryos was used to make
+a dilution curve. PCR reactions were performed in a Rotor-Gene
+6000 (Qiagen).
+4.4. Results of axin2 qRT-PCR analysis
+Consistent with in situ hybridization results, exposure to the
+Wnt inhibitors XAV939 or IWR-1, each at 100 lM, resulted in re-
+duced levels of axin2 transcripts. By qRT-PCR, the levels were re-
+duced to approximately 50% of control levels for each inhibitor
+(Fig. 2F). We conclude from these results that XAV939 and IWR-1
+are effective Wnt inhibitors in Xenopus. Treatment with 10 lM
+C.T. Myers et al. / Methods 66 (2014) 380–389
+383
+BIO stimulated a 3.2-fold increase in axin2 levels compared to con-
+trols, again consistent with the in situ hybridization results.
+5. Hematopoietic development as a bioassay for Wnt signaling
+In Xenopus, primitive blood forms in the ventral blood islands, a
+structure analogous to the extra-embryonic blood islands of avian
+and mammalian embryos. It has been reported in Xenopus and zeb-
+raﬁsh that Wnt signaling is required for primitive blood speciﬁca-
+tion and development [29,30]. We tested for the effect of XAV939
+and IWR-1 on primitive blood formation in developing Xenopus
+embryos. Embryos were treated exactly as described in the previ-
+ous axin2 assay, except that chemical treatment of embryos began
+at stage 15, and blood speciﬁcation was visualized by hba1 (hemo-
+globin, alpha 1) and lmo2 (LIM domain only 2) antisense probes at
+stage 32.
+5.1. Results: Wnt inhibiton by either XAV939 or IWR-1 causes a
+decrease in blood markers
+Treatment with 100 lM XAV939 or 100 lM IWR-1 caused a
+reduction in erythrocyte speciﬁcation as visualized by the in situ
+probes hba1 and lmo2 (Fig. 3B and C, F and G). Treatment with
+10 lM BIO did not dramatically change the ventral blood island
+pattern, although slight expansion of the pattern could be observed
+in a few embryos (Fig. 3G). We assume that this is related to the
+previous observation that BIO treatment did not expand the
+domain of axin2 expression (Fig. 2E and E0). It seems likely that
+Wnt signaling alone is not sufﬁcient to specify cells to the ery-
+throid lineage and that Wnt signaling is not limiting in this devel-
+opmental process.
+When we combine the results of axin2 in situ hybridization,
+qRT-PCR and the blood bioassay, we have convincing evidence that
+XAV939, IWR-1, and BIO are effective modulators of Wnt signaling.
+However, we ﬁnd that WntC59 is not a useful inhibitor for Xenopus
+embryo experiments. We hope our studies will serve as a template
+for other researchers when considering the use of these reagents,
+and perhaps other small molecule inhibitors, that have the poten-
+tial to modulate Wnt signaling.
+6. Down-regulation of Notch signaling by small molecule
+inhibitors
+While use of the Notch pathway inhibitor, DAPT, has been well
+characterized in a number of model systems [15–18], there are no
+reports for use of RO4929097 in embryo studies. We have charac-
+terized the effectiveness of both of these inhibitors during early
+Xenopus development.
+6.1. Hes5 transcript levels as a read-out of Notch signaling
+Activation and cleavage of Notch leads to the transcriptional
+up-regulation of hes1 and hes5 (hairy enhancer of split) [31]. Hes1
+and Hes5 are basic helix-loop-helix transcription factors that are
+Fig. 2. Expression of axin2 as an assay for Wnt pathway modulation. Transcriptional activation of axin2 is a direct readout of canonical Wnt signaling. All embryos were
+assayed for axin2 expression by in situ hybridization at stage 32. Number of embryos showing each exhibited phenotype is provided at the lower right of each panel. (A and
+A0) Lateral and enlarged dorsal view of head of control embryo. (B and B0) Lateral and enlarged dorsal view of head of embryo treated with XAV939 at 100 lM. Note reduction
+in intensity of axin2 signal compared to control. (C and C0) Lateral and enlarged dorsal view of head of embryo treated with IWR-1 at 100 lM. Intensity of axin2 staining is
+clearly reduced compared to controls. (D and D0) Lateral and enlarged dorsal view of head of embryo treated with WntC59 at 100 lM. There is no detectable difference in
+intensity of axin2 staining relative to control. (E and E0) Lateral and enlarged dorsal view of head of embryo treated with the Wnt agonist BIO. Increased intensity of axin2
+staining compared to control is clearly visible. (F) Quadruplicate qRT-PCR analysis of axin2 transcript levels in embryos treated with different small molecule Wnt pathway
+modulators. Values statistically different from control are marked with an asterisk (Student’s T test, P < 0.05).
+384
+C.T. Myers et al. / Methods 66 (2014) 380–389
+downstream effectors of Notch signaling [31]. To test how effective
+RO4929097 and DAPT are at attenuating Notch signaling, embryos
+were treated with either drug from stage 20 to stage 34, then as-
+sayed for hes5 expression levels by in situ hybridization and qRT-
+PCR (Fig. 4) following the protocols mentioned above.
+Quantitative real-time PCR was performed as described earlier,
+with RNA Pol II used as the reference gene, and the following prim-
+ers were used to amplify hes5 (hes5F – 50 CGTGCAGTTCCTGTGCTA-
+ATTA 30, hes5R – 50 TCGCCAGAGCTACTTGTTTG 30).
+6.2. Results: RO4929097 and DAPT treatments decrease expression of
+the Notch target gene, hes5
+Dose curves were performed with both inhibitors using 10, 20,
+50, or 100 lM concentrations. When assayed by in situ hybridiza-
+tion, RO4929097 and DAPT both inhibit Notch signaling, though
+RO4929097 appears to be the more effective inhibitor of the two.
+With RO4929097, a decrease in hes5 expression was visible at
+10 lM and hes5 was almost undetectable at 100 lM without any
+obvious effects on the overall development of the embryos
+(Fig. 4F–I). Treatment with DAPT also decreased hes5 expression
+at 10 lM, but we observed no further reduction in hes5 expression
+as the dose was increased to 100 lM (Fig. 4B–E).
+When hes5 levels were assayed using qRT-PCR, hes5 transcripts
+decreased to approximately 40% of normal levels with exposure to
+either 20 lM RO4929097 or 100 lM DAPT (Fig. 4J). Higher doses of
+RO4929097 decreased levels to 30% expression compared to con-
+trols (Fig. 4J). These results indicate that both RO4929097 and
+DAPT are effective inhibitors of the Notch signaling pathway. How-
+ever, it is difﬁcult to reconcile the reduction in hes5 expression
+after DAPT treatment shown by qPCR, with the very slight
+reductions observed in hes5 expression when assayed by in situ
+hybridization analysis.
+7. Analysis of multiciliated cells as a bioassay for Notch
+signaling
+In an effort to ﬁnd a biological assay to test the effectiveness of
+Notch inhibition by DAPT and RO4929097, we examined formation
+of ciliated epidermal cells. During development of the ciliated epi-
+dermis in Xenopus, Notch signaling works via lateral inhibition to
+maintain a balance between the number of secretory mucosal cells
+and ciliated cells [32]. Previous studies have shown that inhibition
+of Notch signaling increases the number of ciliated cells and so we
+have assayed the effectiveness of DAPT and RO4929097 using this
+model [32]. Embryos were treated starting at stage 10 with 100 lM
+DAPT, 100 lM RO4929097, or 1% DMSO. The drug was changed
+every 24 h until embryos developed to stage 28. Embryos were
+ﬁxed in MEMPFA for 1 h at room temperature or overnight at
+4 C. Ciliated-cells were visualized by immunostaining techniques
+using an a-tubulin antibody following the protocol below. More
+useful information on immunostaining of Xenopus embryos can
+be found in Lee et al., [33].
+7.1. Protocol for visualizing multiciliated cells
+1. Wash embryos 3  5 min in PBST (1X Phosphate Buffered
+Saline + 0.1% Triton X-100).
+2. Pigmented embryos should be bleached in a formamide
+solution containing 0.5X SSC, 5% formamide, and 1% hydro-
+gen peroxide. Place vials on a light box until pigmentation
+is no longer apparent (1–2 h).
+3. Wash embryos 3  5 min in PBST.
+4. Block embryos for 1 h in PBST + 4% goat serum.
+5. Incubate embryos overnight at 4 C in 1:250 mouse anti-a-
+tubulin antibody (Sigma, Catalog No. T0926) diluted in PBST.
+6. Wash 6  20 min in PBST.
+7. Incubate embryos for 4 h at room temperature in 1:500 goat
+anti-mouse alkaline phosphatase (Jackson ImmunoResearch,
+Catalog No. 115-055-062). Fluorescent secondary antibodies
+may also be used at 1:500 in PBST.
+8. Wash 6  20 min in PBST.
+9. Develop
+stain
+in
+BM
+Purple
+(Roche,
+Catalog
+No.
+11442074001).
+10. When substrate develops to desired strength, stop the reac-
+tion by 4  5 min washes in PBST.
+11. Reﬁx embryos in MEMPFA for 20 min at room temperature.
+12. Wash embryos 3  5 min in PBST. For long-term storage,
+embryos can be moved to a glycerol solution (70% glyc-
+erol/30% PBST).
+13. Software such as Cell Proﬁler or the ImageJ plug-in ITCN
+(Image-based Tool for Counting Nuclei) can be used to auto-
+mate the process of counting multi-ciliated cells. Hand-
+counts should be done with a few images to verify the soft-
+ware counts are accurate. It can be difﬁcult for the software
+to distinguish between cells because cilia stains vary in
+shape and intensity.
+7.2. Results of multiciliated cell analysis
+Embryos treated with 100 lM RO4929097 and 100 lM DAPT
+displayed more cilia compared to DMSO controls. RO4929097 trea-
+ted embryos had on average 67% more multi-ciliated cells and that
+the relatively regular organization of the ciliated cells observed in
+controls was strongly disrupted (Fig. 5D and G) (n = 6). DAPT trea-
+ted embryos displayed 46% more multi-ciliated cells, also with
+Fig. 3. Expression of blood markers as an assay of canonical Wnt signaling. All
+embryos were assayed by in situ hybridization using hba1 (globin) and lmo2 probes
+as indicated at the top of the column. Both probes are markers for the erythroid
+lineage. Panels show ventral view of stage 32 embryos centered on the blood island.
+The number of embryos showing each exhibited phenotype is provided at the upper
+right of each panel. (A and B) Control embryos assayed for hba1 and lmo2,
+respectively. (C and D) Embryos treated with XAV939 at 100 lM showing reduction
+in hba1 and lmo2 staining relative to controls. (E and F) Embryos treated with IWR-1
+at 100 lM showing reduction in hba1 and lmo2 staining relative to controls. (G and
+H) Embryos treated with canonical Wnt agonist BIO at 10 lM. There is no consistent
+increase in staining intensity or the domain of expression of markers for embryos
+treated with BIO compared to controls.
+C.T. Myers et al. / Methods 66 (2014) 380–389
+385
+irregular spacing and organization (Fig. 5E and H) (n = 5). These re-
+sults using a bioassay indicate that DAPT does indeed inhibit Notch
+signaling, at least for superﬁcial cells on the Xenopus embryo. In
+general however, RO4929097 appears to be the more effective
+reagent.
+8. Discussion
+8.1. Wnt modulators
+The results of our small molecule activator/inhibitor studies are
+summarized in Table 1. We ﬁnd that XAV939 and IWR-1 are very
+useful inhibitors of canonical Wnt signaling and that BIO is a po-
+tent activator of canonical Wnt signaling (Figs. 2 and 3). When
+assaying for modulators of Wnt signaling, most people would think
+of the extremely well characterized DV axis disruption assay
+[21,22]. However, we found that this assay did not yield positive
+results for XAV939 or IWR-1, two inhibitors that were later shown
+to be quite effective. In our studies we found that in situ hybridiza-
+tion analysis of chemical treated embryos provided the most satis-
+fying assay. Expression of axin2 is a speciﬁc marker for canonical
+Wnt signaling activity and axin2 staining levels were clearly re-
+duced when XAV939 and IWR-1 treated embryos were assayed
+by in situ hybridization (Fig. 2). In contrast, treatment of embryos
+with the Wnt agonist, BIO, resulted in a very clear increase in axin2
+staining, including the appearance of expression domains that
+were barely visible in untreated embryos such as the otic vesicle,
+pharyngeal arches and a ventral posterior domain. The changes
+in axin2 expression observed by in situ hybridization were broadly
+conﬁrmed by qRT-PCR analysis, although it is difﬁcult to believe
+that transcript levels in XAV939 and IWR-1 treated embryos were
+only reduced to about half of control levels (Fig. 2G and below).
+Wnt signaling is known to regulate blood development in Xenopus
+[29], and the small molecule inhibitors XAV939 and IWR-1 did in-
+deed reduce the size of the globin-expressing domain in the ventral
+region of embryo (Fig. 3). WntC59 does not function as an effective
+inhibitor in Xenopus, with axin2 levels appearing unchanged in the
+in situ hybridization assay. Although successful use of WntC59 has
+been reported for mammalian cells in culture, the same investiga-
+tors found that the compound was ineffective in the Xenopus em-
+bryo. While our studies have focused on the use of small
+molecule modulators, it is important to remember that a range of
+Fig. 4. Expression of hes5 as an assay for Notch pathway inhibition. Transcriptional activation of hes5 is a direct readout of Notch signaling. All embryos were assayed for hes5
+expression by in situ hybridization at stage 32. Concentration of inhibitor is indicated at the top of each column. The number of embryos showing each exhibited phenotype is
+provided at the lower right of each panel. (A and A0) Lateral and dorsal view of head of control embryo showing hes5 expression in neural tissues. (B–E0) Lateral and dorsal
+view of heads of embryos treated with DAPT at 10–100 lM concentration. Intensity of hes5 staining at 10 lM is reduced relative to controls (A and A0) but does not decrease
+further at higher doses. (F–I0) Lateral and dorsal view of heads of embryos treated with RO4929097 at 10–100 lM concentration. Intensity of hes5 staining decreases steadily
+relative to controls (A and A0) as dose increases. (J) Triplicate qRT-PCR analysis of hes5 transcript levels in embryos treated with DAPT and RO4929097. Values statistically
+different from control are marked with an asterisk (Student’s T test, P < 0.05).
+386
+C.T. Myers et al. / Methods 66 (2014) 380–389
+speciﬁc and effective protein modulators of the Wnt signaling,
+including the Wnt/Ca2+ and Planar Cell Polarity (PCP) pathways,
+are available and may prove to be more effective for certain exper-
+iments [34,35].
+8.2. Notch signaling
+DAPT is routinely used for small molecule inhibition of Notch
+signaling [15–18]. However, our studies suggest that RO4929097is
+a more effective Notch inhibitor than DAPT. Using in situ hybrid-
+ization and qRT-PCR assays, both inhibitors caused a decrease in
+expression of the Notch target gene hes5, but in each assay,
+RO4929097 brought about the greater reduction (Fig. 4). Similarly,
+using regulation of the number of multi-ciliated epidermal cells as
+a biological assay, RO4929097 was the more effective reagent
+(Fig. 5). Again, while small molecule inhibitors may be the reagents
+of choice for certain studies, well-characterized, inducible protein
+reagents are available for both activation and inhibition of the
+Notch pathway [36,37].
+Taken together our studies have validated a number of small
+molecule inhibitors that are effective in Xenopus, and are most
+likely useful for embryo experiments in other model systems. This
+Fig. 5. Multi-ciliated epidermal cells as an assay for Notch signaling. Inhibitor treatment is indicated at lower left of each panel. (A and B) Location of the multi-ciliated
+epidermal cell assay. Black box in A, corresponds to photographed region of embryo shown in B. White box in B, corresponds to region shown in DMSO treated control embryo
+shown in C. (C–E) White light images of st28 embryo epidermis stained with anti-a-tubulin antibody to detect multi-ciliated cells. Note increase in number of ciliated cells
+and disorganization (arrows) relative to controls. Scale bar is 50 microns. (F–H) Fluorescent images of antibody stained multi-ciliated cells of embryo epidermis at stage 28.
+Images are enlarged relative to F–H. Note loss of linear organization relative to controls. Scale bar is 20 microns. (I) Quantitation of multi-ciliated cell number. Counts are
+average of ciliated cell number per microscope frame. DMSO (118 cells ± 9), RO4929097 (198 cells ± 15), DAPT (172 cells ± 8). Number of embryos examined is indicated
+within columns. Numbers statistically different from controls are indicated by an asterisk (Student’s T-test, P < 0.05).
+C.T. Myers et al. / Methods 66 (2014) 380–389
+387
+work should provide a reference point to researchers using these
+small molecules for their own experimental purposes and may also
+serve as a template for assay of other, perhaps even more effective,
+small molecule modulators of the Wnt and Notch pathways.
+Acknowledgements
+The authors would like to thank Chinedu Nworu for his techni-
+cal help with the Cell Proﬁler software, Scott Rankin for useful
+comments regarding the Wnt inhibitors, and Dr. Chris Kintner for
+providing the hes5 plasmid. CTM is supported by NIH Training
+Grant (#T32 GM08659) and a Philanthropic Educational Outreach
+Scholar Award. PAK is the Allan C. Hudson and Helen Lovaas En-
+dowed Professor of the Sarver Heart Center at the University of Ari-
+zona College of Medicine. This work was supported by the Sarver
+Heart Center and by the Heart Lung and Blood Institute of the
+NIH, grant #HL093694.
+References
+[1] P.J. Kolm, H.L. Sive, Developmental Biology 171 (1995) 267–272.
+[2] P.S. Klein, D.A. Melton, Proceedings of the National academy of Sciences of the
+United States of America 93 (1996) 8455–8459.
+[3] W. Chen, M. Chen, L.S. Barak, Gastrointestinal and Liver Physiology 299 (2010)
+G293–G300.
+[4] B. Chen, M.E. Dodge, W. Tang, J. Lu, Z. Ma, C.W. Fan, S. Wei, W. Hao, J. Kilgore,
+N.S. Williams, M.G. Roth, J.F. Amatruda, C. Chen, L. Lum, Nature Chemical
+Biology 5 (2009) 100–107.
+[5] A. Yin, S. Korzh, C.L. Winata, V. Korzh, Z. Gong, PLoS One 6 (2011) e18431.
+[6] C. Borday, P. Cabochette, K. Parain, N. Mazurier, S. Janssens, H.T. Tran, B.
+Sekkali, O. Bronchain, K. Vleminckx, M. Locker, M. Perron, Development 139
+(2012) 3499–3509.
+[7] S.M. Huang, Y.M. Mishina, S. Liu, A. Cheung, F. Stegmeier, G.A. Michaud, O.
+Charlat, E. Wiellette, Y. Zhang, S. Wiessner, M. Hild, X. Shi, C.J. Wilson, C.
+Mickanin, V. Myer, A. Fazal, R. Tomlinson, F. Serluca, W. Shao, H. Cheng, M.
+Shultz, C. Rau, M. Schirle, J. Schlegl, S. Ghidelli, S. Fawell, C. Lu, D. Curtis, M.W.
+Kirschner, C. Lengauer, P.M. Finan, J.A. Tallarico, T. Bouwmeester, J.A. Porter, A.
+Bauer, F. Cong, Nature 461 (2009) 614–620.
+[8] S.A. Rankin, A.L. Gallas, A. Neto, J.L. Gomez-Skarmeta, A.M. Zorn, Development
+139 (2012) 3010–3020.
+[9] J.R. Meyers, L. Hu, A. Moses, K. Kaboli, A. Papandrea, P.A. Raymond, Neural
+Development 7 (2012) 30.
+[10] K.D. Profﬁtt, B. Madan, Z. Ke, V. Pendharkar, L. Ding, M.A. Lee, R.N. Hannoush,
+D.M. Virshup, Cancer Research 73 (2013) 502–507.
+[11] L. Meijer, A.L. Skaltsounis, P. Magiatis, P. Polychronopoulos, M. Knockaert, M.
+Leost, X.P. Ryan, C.A. Vonica, A. Brivanlou, R. Dajani, C. Crovace, C. Tarricone, A.
+Musacchio, S.M. Roe, L. Pearl, P. Greengard, Chemistry and Biology 10 (2003)
+1255–1266.
+[12] N. Sato, L. Meijer, L. Skaltsounis, P. Greengard, A.H. Brivanlou, Nature Medicine
+10 (2004) 55–63.
+[13] J. Martin, B.A. Afouda, S. Hoppler, Journal of Anatomy 216 (2010) 92–107.
+[14] L.K. Mathew, S.S. Sengupta, J. Ladu, E.A. Andreasen, R.L. Tanguay, FASEB
+Journal: Ofﬁcial Publication of the Federation of American Societies for
+Experimental Biology 22 (2008) 3087–3096.
+[15] H.F. Dovey, V. John, J.P. Anderson, L.Z. Chen, P. de Saint Andrieu, L.Y. Fang, S.B.
+Freedman, B. Folmer, E. Goldbach, E.J. Holsztynska, K.L. Hu, K.L. Johnson-Wood,
+S.L. Kennedy, D. Kholodenko, J.E. Knops, L.H. Latimer, M. Lee, Z. Liao, I.M.
+Lieberburg, R.N. Motter, L.C. Mutter, J. Nietz, K.P. Quinn, K.L. Sacchi, P.A.
+Seubert, G.M. Shopp, E.D. Thorsett, J.S. Tung, J. Wu, S. Yang, C.T. Yin, D.B.
+Schenk, P.C. May, L.D. Altstiel, M.H. Bender, L.N. Boggs, T.C. Britton, J.C.
+Clemens, D.L. Czilli, D.K. Dieckman-McGinty, J.J. Droste, K.S. Fuson, B.D. Gitter,
+P.A. Hyslop, E.M. Johnstone, W.Y. Li, S.P. Little, T.E. Mabry, F.D. Miller, J.E.
+Audia, Journal of Neurochemistry 76 (2001) 173–181.
+[16] C.M. Moran, C.T. Myers, C.M. Lewis, P.A. Krieg, Developmental Dynamics: An
+Ofﬁcial Publication of the American Association of Anatomists 241 (2012)
+1034–1042.
+[17] D.R. Revinski, A.R. Paganelli, A.E. Carrasco, S.L. Lopez, Developmental Biology
+339 (2010) 477–492.
+[18] A.J. Latimer, B. Appel, Developmental Biology 298 (2006) 392–402.
+[19] L. Luistro, W. He, M. Smith, K. Packman, M. Vilenchik, D. Carvajal, J. Roberts, J.
+Cai, W. Berkofsky-Fessler, H. Hilton, M. Linn, A. Flohr, R. Jakob-Rotne, H.
+Jacobsen, K. Glenn, D. Heimbrook, J.F. Boylan, Cancer Research 69 (2009)
+7672–7680.
+[20] A.W. Tolcher, W.A. Messersmith, S.M. Mikulski, K.P. Papadopoulos, E.L. Kwak,
+D.G. Gibbon, A. Patnaik, G.S. Falchook, A. Dasari, G.I. Shapiro, J.F. Boylan, Z.X.
+Xu, K. Wang, A. Koehler, J. Song, S.A. Middleton, J. Deutsch, M. Demario, R.
+Kurzrock, J.J. Wheler, Clinical Oncology 30 (2012) 2348–2353.
+[21] A.P. McMahon, R.T. Moon, Cell 58 (1989) 1075–1084.
+[22] J. Heasman, A. Crawford, K. Goldstone, P. Garner-Hamrick, B. Gumbiner, P.
+McCrea, C. Kintner, C.Y. Noro, C. Wylie, Cell 79 (1994) 791–803.
+[23] K.R. Kao, R.P. Elinson, Developmental Biology 127 (1988) 64–77.
+[24] S.R. Scharf, J.C. Gerhart, Developmental Biology 99 (1983) 75–87.
+[25] G.A. Ubbels, K. Hara, C.H. Koster, M.W. Kirschner, Journal of Embryology and
+Experimental Morphology 77 (1983) 15–37.
+[26] H.L. Sive, R.M. Grainger, R.M. Harland, Early Development of Xenopus Laevis: A
+Laboratory Manual, Cold Spring Harbor Laboratory Press, Cold Spring Harbor,
+N.Y., 2000.
+Table 1
+Summary of Wnt and Notch pathway activation and inhibition assays. Details of the studies are contained in the text. DAI is Dorso-anterior index. Treatments that failed to yield
+predicted results are indicated by an asterisk.
+Drug
+Signaling
+pathway
+Conc.
+Treatment conditions
+Assay
+Predicted result
+Result
+XAV939
+Wnt
+inhibitor
+100 mu
+10 min post fertilization
+onwards
+DAI at st22
+Ventralized embryo, DAI <5
+No effect
+observed (⁄)
+IWR-1
+Wnt
+inhibitor
+100 mu
+10 min post fertilization
+onwards
+DAI at st22
+Ventralized embryo, DAI <5
+No effect
+observed (⁄)
+BIO
+Wnt
+activator
+10 mu
+10 min post fertilization
+onwards
+DAI at st22
+Dorsalized embryo, DAI >5
+Active in assay
+LiCl
+Wnt
+activator
+0.3 M
+10 min, prior to 32-cell stage,
+then 0.2X MMR
+DAI at st22
+Dorsalized embryo, DAI >5
+Active in assay
+XAV939
+Wnt
+inhibitor
+100 mu
+St20–34
+In situ hyb. or qPCR for axin2
+Reduction in axin2 levels
+Active in assay
+IWR-1
+Wnt
+inhibitor
+100 mu
+St20–34
+In situ hyb. or qPCR for axin2
+Reduction in axin2 levels
+Active in assay
+BIO
+Wnt
+activator
+10 mu
+St20–34
+In situ hyb. or qPCR for axin2
+Increase in axin2 levels
+Active in assay
+XAV939
+Wnt
+inhibitor
+100 mu
+St15–32
+In situ hyb. for blood (hba1)
+Reduction in hba1 levels
+Active in assay
+IWR-1
+Wnt
+inhibitor
+100 mu
+St15–32
+In situ hyb. for blood (hba1)
+Reduction in hba1 levels
+Active in assay
+BIO
+Wnt
+activator
+10 mu
+St15–32
+In situ hyb. for blood (hba1)
+Increase in hba1 levels
+No effect
+observed (⁄)
+RO4929097
+Notch
+inhibitor
+100 mu
+St20–34
+In situ hyb. or qPCR for hes5
+Reduction in hes5 levels
+Active in assay
+DAPT
+Notch
+inhibitor
+100 mu
+St20–34
+In situ hyb. or qPCR for hes5
+Reduction in hes5 levels
+Active in assay
+RO4929097
+Notch
+inhibitor
+100 mu
+St10–28
+Antibody detection of multi-
+ciliated cells
+Increase in number and disarray of
+multi-ciliated cells
+Active in assay
+DAPT
+Notch
+inhibitor
+100 mu
+St10–28
+Antibody detection of multi-
+ciliated cells
+Increase in number and disarray of
+multi-ciliated cells
+Active in assay
+388
+C.T. Myers et al. / Methods 66 (2014) 380–389
+[27] E.H. Jho, T. Zhang, C. Domon, C.K. Joo, J.N. Freund, F. Costantini, Molecular and
+Cellular Biology 22 (2002) 1172–1183.
+[28] R.M. Harland, Methods in Cell Biology 36 (1991) 685–695.
+[29] H.T. Tran, B. Sekkali, G. Van Imschoot, S. Janssens, K. Vleminckx, Proceedings of
+the National academy of Sciences of the United States of America 107 (2010)
+16160–16165.
+[30] C. Lengerke, S. Schmitt, T.V. Bowman, I.H. Jang, L. Maouche-Chretien, S.
+McKinney-Freeman, A.J. Davidson, M. Hammerschmidt, F. Rentzsch, J.B. Green,
+L.I. Zon, G.Q. Daley, Cell Stem Cell 2 (2008) 72–82.
+[31] T. Ohtsuka, M. Ishibashi, G. Gradwohl, S. Nakanishi, F. Guillemot, R. Kageyama,
+The EMBO Journal 18 (1999) 2196–2207.
+[32] G.A. Deblandre, D.A. Wettstein, N. Koyano-Nakagawa, C. Kintner, Development
+126 (1999) 4715–4728.
+[33] C. Lee, E. Kieserman, R.S. Gray, T.J. Park, J. Wallingford, CSH Protocols 2008
+(2008). pdb prot4957.
+[34] D.L. Lavery, S. Hoppler, Methods in Molecular Biology 469 (2008) 401–415.
+[35] S.Y. Sokol, J. Klingensmith, N. Perrimon, K. Itoh, Development 121 (1995) 3487.
+[36] C.M. Miazga, K.A. McLaughlin, Developmental Biology 333 (2009) 285–296.
+[37] K.A. McLaughlin, M.S. Rones, M. Mercola, Developmental Biology 227 (2000)
+567–580.
+C.T. Myers et al. / Methods 66 (2014) 380–389
+389

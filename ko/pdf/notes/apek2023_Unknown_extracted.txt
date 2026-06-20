@@ -1,0 +1,1310 @@
+Nature Methods | Volume 20 | June 2023 | 815–823
+815
+nature methods
+https://doi.org/10.1038/s41592-023-01873-4
+Resource
+EmbryoNet: using deep learning to  
+link embryonic phenotypes to signaling 
+pathways
+Daniel Čapek 
+  1,2,5, Matvey Safroshkin3,5, Hernán Morales-Navarrete 
+  1,2,4,5, 
+Nikan Toulany 
+  1,2, Grigory Arutyunov3, Anica Kurzbach1, Johanna Bihler2, 
+Julia Hagauer2, Sebastian Kick2, Felicity Jones2, Ben Jordan1 & 
+Patrick Müller 
+  1,2,4 
+Evolutionarily conserved signaling pathways are essential for early 
+embryogenesis, and reducing or abolishing their activity leads to 
+characteristic developmental defects. Classification of phenotypic defects 
+can identify the underlying signaling mechanisms, but this requires expert 
+knowledge and the classification schemes have not been standardized. Here 
+we use a machine learning approach for automated phenotyping to train 
+a deep convolutional neural network, EmbryoNet, to accurately identify 
+zebrafish signaling mutants in an unbiased manner. Combined with a model 
+of time-dependent developmental trajectories, this approach identifies and 
+classifies with high precision phenotypic defects caused by loss of function 
+of the seven major signaling pathways relevant for vertebrate development. 
+Our classification algorithms have wide applications in developmental 
+biology and robustly identify signaling defects in evolutionarily distant 
+species. Furthermore, using automated phenotyping in high-throughput 
+drug screens, we show that EmbryoNet can resolve the mechanism of action 
+of pharmaceutical substances. As part of this work, we freely provide more 
+than 2 million images that were used to train and test EmbryoNet.
+Early development is governed by a handful of signaling pathways that 
+balance tissue growth, differentiation and morphogenesis1–3. Given 
+their important roles in controlling cell identity and behavior, misregu-
+lation of signaling pathways in adult tissues can induce the formation 
+of tumors with embryo-like properties, defective cell proliferation 
+and migration4,5.
+During zebrafish development, seven major signaling pathways 
+orchestrate the formation of the body plan. Bone morphogenetic pro-
+tein (BMP), retinoic acid (RA), Wnt, fibroblast growth factor (FGF) and 
+Nodal pattern the germ layers and regulate the formation of the orthog-
+onal anterior–posterior and dorsal–ventral axes; Sonic hedgehog (Shh) 
+and planar cell polarity (PCP) signaling, in turn, control the elongation 
+and morphogenesis of the body axis and later shape the formation 
+of tissues2,3,6–8. The ligands activating these signaling pathways are 
+dynamically expressed from specific source tissues in the embryo 
+(Fig. 1a and Supplementary Note 1). Loss of activity in any of these 
+pathways causes characteristic patterning defects, which, however, 
+can be difficult to distinguish (Fig. 1b and Supplementary Videos 1–8). 
+For example, both Nodal and Shh mutants have cyclopic eyes (Fig. 1b 
+and Supplementary Videos 6 and 7), but the defect in Nodal mutants is 
+caused by an early lack of mesoderm9, whereas cyclopia in Shh mutants 
+is caused by a late defect in midline patterning10. Furthermore, while 
+Received: 26 September 2022
+Accepted: 5 April 2023
+Published online: 8 May 2023
+ Check for updates
+1Systems Biology of Development, University of Konstanz, Konstanz, Germany. 2Friedrich Miescher Laboratory of the Max Planck Society, Tübingen, 
+Germany. 3Computer Vision Studio, Tübingen, Germany. 4Centre for the Advanced Study of Collective Behaviour, Konstanz, Germany. 5These authors 
+contributed equally: Daniel Čapek, Matvey Safroshkin, Hernán Morales-Navarrete. 
+ e-mail: patrick.mueller@uni-konstanz.de
+Nature Methods | Volume 20 | June 2023 | 815–823
+816
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+g
+f
+Input
+Image filters and convolution
+Classification
+Fully connected
+14 × 2,049
+Soft max
+1 timestamp
+channel
+7 × 7 ConvRelu
+64 s2
+1 × 1 ConvRelu
+64 s1
+3 × 3 ConvRelu
+64 s1
+Residual Block 1
+1 × 1 Conv
+256 s1
+1 × 1 Conv
+256 s1
+Relu
+Global 
+average pool
+Concat
+Max pooling
+s2
++
+1 × 1 ConvRelu
+64 s1
+3 × 3 ConvRelu
+64 s1
+1 × 1 Conv
+256 s1
+Relu
++
+1 × 1 ConvRelu
+128 s1
+3 × 3 ConvRelu
+128 s2
+Residual Block 2
+1 × 1 Conv
+512 s1
+1 × 1 Conv
+512 s2
+Relu
++
+1 × 1 ConvRelu
+128 s1
+3 × 3 ConvRelu
+128 s1
+1 × 1 Conv
+512 s1
+Relu
++
+1 × 1 ConvRelu
+256 s1
+3 × 3 ConvRelu
+256 s2
+Residual Block 3
+1 × 1 Conv
+1,024 s1
+1 × 1 Conv
+1,024 s2
+Relu
++
+1 × 1 ConvRelu
+256 s1
+3 × 3 ConvRelu
+256 s1
+1 × 1 Conv
+1,024 s1
+Relu
++
+1 × 1 ConvRelu
+512 s1
+3 × 3 ConvRelu
+512 s2
+Residual Block 4
+1 × 1 Conv
+2,048 s1
+1 × 1 Conv
+2,048 s2
+Relu
++
+1 × 1 ConvRelu
+512 s1
+3 × 3 ConvRelu
+512 s1
+1 × 1 Conv
+2,048 s1
+Relu
++
+Normal
+–BMP
++RA
+–Wnt
+–FGF
+–PCP
+Dead
+Unkn.
+...
+–Nodal
+–Shh
+Input
+224 × 224
+3 image channels
+1 timestamp channel
+a
+b
+–Nodal
+–BMP
+–FGF
+–Wnt
+–Shh
+–PCP
++RA
+Normal
+e
++ lefty1, A647
+Wild type
++ chordin, A488
+Normal
+Dead
+Unknown
+h
+i
+d
+c (ii)
+c (i)
+c (iii)
+Normal
+Nodal
+Nodal inhibitor, sphere stage
+Nodal inhibitor, 24 h.p.f.
+Classification
+lefty1/chordin/wild type mix, sphere
+lefty1/chordin/wild type mix, 24 h.p.f.
+FGF
+BMP
+Shh
+PCP
+RA
+Wnt
+Yolk
+Nodal
+Nodal
+BMP
+Classification
+Nodal mutant + wild-type mix
+Fig. 1 | The CNN EmbryoNet robustly identifies molecular defects based 
+on phenotype data. a, Simplified schematic of signaling domains during 
+zebrafish development projected onto an early embryo. b, Schematic drawings 
+of zebrafish embryo phenotypes. −BMP loss of function causes reduced and 
+often curled tails, +RA gain-of-function embryos lack head structures and have 
+shortened tails, −Wnt leads to enlarged heads and shortened tails, −FGF causes 
+loss of mesoderm and tail tissue, −Nodal embryos lack mesoderm and have 
+cyclopia, −Shh embryos frequently have mispatterned somites and cyclopia, 
+and −PCP leads to a shortened and widened body axis, manifested, for example, 
+by shorter somites. c,d, Treatment with the chemical Nodal inhibitor SB-505124 
+caused specific phenotypes that were not yet apparent at sphere stage (c (i)), but 
+which were clearly visible at segmentation stages (c (ii)); n = 36. The inhibitor 
+treatment (c (iii)) phenocopied the MZoep (d) mutant, and both phenotypes 
+were robustly identified by EmbryoNet; n = 58. e,f, Schematic overview of the 
+neural network architecture with convolutional (Conv) layers shown in blue. 
+Stack sizes after each image filter are illustrated in e, whereas f details the filters 
+of the network. Relu, rectified linear unit. g–i, EmbryoNet correctly classified 
+embryos in a mixed population. g, Experimental set-up. Embryos at the one-
+cell stage were injected with mRNA encoding the Nodal inhibitor Lefty1 and 
+Alexa647-labeled dextran (magenta), mRNA encoding the BMP inhibitor Chordin 
+and Alexa488-labeled dextran (green), or were left uninjected (wild type) and 
+then imaged. Black bounding boxes indicate the class Unknown; green indicates − 
+Nodal; red indicates −BMP; white indicates Normal and magenta indicates 
+Dead. h, At the sphere stage, EmbryoNet labeled the phenotypes as Unknown. 
+Dextran-labeling shows the applied treatment. i, During segmentation stages the 
+Normal, −BMP and −Nodal samples were correctly identified by EmbryoNet. The 
+classification is in accordance with the dextran colors; n = 85. Scale bar, 500 µm.
+Nature Methods | Volume 20 | June 2023 | 815–823
+817
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+misregulation of the BMP, Wnt, RA, FGF and PCP signaling pathways 
+leads to specific defects, for example, an enlarged head in the case of 
+Wnt mutants11,12, all of these mutants also have malformed shortened 
+tails13–17 (Fig. 1b and Supplementary Videos 2–5, 8). Thus, the pheno-
+types caused by changes in the activity of different signaling pathways 
+can be easily confused by even the most experienced developmental 
+biologists. Automated and unbiased phenotyping based on a multitude 
+of morphological features would overcome this challenge. Such an 
+approach would rapidly link phenotypes arising from genetic defects, 
+mutants identified in forward and reverse genetic screens, or treatment 
+with small-molecule inhibitors to the relevant signaling pathway. Auto-
+mated phenotyping of morphological defects would thus enhance both 
+the speed and accuracy of biological and pharmaceutical discovery.
+Advances in deep learning approaches18 have brought unprec-
+edented breakthroughs in numerous fields ranging from bioimage 
+analysis and visual object recognition19 to protein structure predic-
+tion20–23 and earth system science24. Deep learning approaches perform 
+exceptionally well in decoding the content of images25,26, and convo-
+lutional neural networks (CNNs) in particular have been extensively 
+used for bioimage restoration27, cell detection and classification28 and 
+bioimage data segmentation29. Recent studies have also used machine 
+learning approaches to examine embryonic phenotypes30–36, but these 
+approaches were limited to staging, segmentation and classification 
+of specific embryos and organs without being able to uncover the 
+molecular basis of morphological alterations.
+Here, we introduce a deep learning approach, EmbryoNet, that 
+can detect specific defects linked to the seven major vertebrate signal-
+ing pathways by automated phenotyping. EmbryoNet was trained on 
+more than 2 million images, comprising thousands of trajectories of 
+normally developing and signaling-defective zebrafish embryos. We 
+found that EmbryoNet identified phenotypes more precisely and often 
+long before human evaluators could detect them. By using the accel-
+erated phenotype classification of EmbryoNet in an automated drug 
+screen, we identified novel teratogenic effects caused by Food and Drug 
+Administration (FDA)-approved substances not previously associated 
+with the regulation of developmental signaling pathways. Finally, we 
+show that EmbryoNet can identify signaling defects in evolutionarily 
+distant species, demonstrating the generalizability of our approach.
+Results
+Identification of signaling defects in zebrafish embryos
+To test whether deep learning approaches can be used for the automatic 
+classification of complex phenotypes caused by the loss of signaling 
+pathways in zebrafish, we combined high-throughput imaging with 
+specific drug-mediated loss-of-function approaches. We started with 
+proof-of-concept experiments focused on Nodal signaling because 
+both the signaling pathway constituents and their functions during the 
+first day of zebrafish embryogenesis are well described37 (Supplemen-
+tary Note 1 and Fig. 1a). In addition, a specific small molecule targeting 
+the ATP-binding pocket of the receptor kinase is available38 (Supplemen-
+tary Note 2), facilitating the rapid acquisition of defined developmental 
+phenotypes from a large number of embryos. Indeed, the inhibitor 
+SB-505124 clearly recapitulated the known loss-of-function phenotypes 
+of Nodal signaling pathway components39, that is, cyclopia and loss of 
+all endoderm and head–trunk mesoderm (Fig. 1a–c and Supplementary 
+Video 6). We then acquired bright-field movies of SB-505124-treated 
+and untreated embryos in random orientations, comprising a total 
+of 342,559 images between 2 and 26 hours post-fertilization (h.p.f.). 
+A modified version of the ResNet18 CNN that includes a timestamp 
+of the images (Fig. 1e,f and Methods)40 trained with these datasets 
+robustly and correctly identified normal and Nodal-defective embryos, 
+independent of their orientation and whether small molecules 
+(SB-505124) or mutants (maternal zygotic oep mutants, MZoep41) 
+were used to create Nodal loss-of-function phenotypes (Fig. 1c,d and 
+Extended Data Fig. 1).
+We next extended this approach to the seven major signaling 
+pathways that control early development: BMP, RA, Wnt, FGF, Nodal, 
+Shh and PCP (Fig. 1a,b). Using a chemical genetics approach with spe-
+cific signaling pathway modulators38,42–45 (Supplementary Table 1 and 
+Supplementary Note 2), we created a dataset of more than 2 million 
+images with loss-of-function (or gain-of-function in the case of RA) 
+phenotypes (Supplementary Videos 1–8). The dataset was manually 
+annotated by curators who were informed about the treatment of each 
+embryo. The curators assigned classes appropriate for each treatment 
+(that is, −BMP, +RA, −Wnt, −FGF, −Nodal, −Shh and −PCP) at the devel-
+opmental timepoint when the phenotype first became apparent for a 
+given embryo. The class Unknown was assigned when an image did not 
+contain sufficient information for classification, and the class Dead was 
+assigned if an embryo disintegrated over the course of development. 
+In addition, each image was assigned a timestamp for classification 
+(Fig. 1f). This high-confidence dataset was then used to train a 
+large-scale CNN with accelerated graphics processing unit comput-
+ing (Methods and Supplementary Tables 2 and 3).
+To correct for potential classification errors, we introduced a 
+model transition logic based on our knowledge of developmental 
+changes: in very early embryos, phenotypic differences are not yet 
+apparent because signaling changes result in morphological changes 
+only at later stages1–3. These early embryos, characterized by the phe-
+notype class Unknown, can then transition to another phenotype 
+class (−BMP, +RA, −Wnt, −FGF, −Nodal, −Shh and −PCP) and can also 
+change to Dead at any point in time (Extended Data Fig. 1c). However, 
+certain transitions, for example, from Dead to Normal, are not possible. 
+We therefore assigned a cost to every state transition in an individual 
+embryo track and scored the cost for different models. The transition 
+sequence that achieved the lowest cost was selected for classification. 
+This approach yielded a classification performance of 89%. The deep 
+learning-based classification network, termed EmbryoNet, was able to 
+robustly identify the loss-of-function phenotypes caused by orthogo-
+nal approaches such as the injection of messenger RNAs (mRNAs) 
+encoding the Nodal and BMP pathway inhibitors Lefty1 and Chor-
+din, respectively (Fig. 1g–i, Supplementary Note 2 and Extended Data 
+Fig. 1f,g). EmbryoNet’s algorithms for the detection, tracking, manual 
+and automatic classification of embryos are available as easy-to-use, 
+modular and open-source graphical user interface (GUI) software 
+(Extended Data Fig. 1e; http://github.com/mueller-lab/EmbryoNet 
+and http://embryonet.uni-konstanz.de).
+EmbryoNet is proficient, fast and accurate
+To evaluate EmbryoNet’s performance, we tested its classification 
+speed and accuracy in competition with human assessors. We gener-
+ated stacks of 98 embryo images, representing the full spectrum of our 
+phenotype classes. These images had not been used previously for the 
+training of EmbryoNet, and information about the specific treatment 
+of each embryo was not disclosed to the assessors.
+Random guessing resulted in an accuracy of 9% (F-score = 0.09; 
+Fig. 2a and Supplementary Table 4). The images were then classified 
+by non-experts. These 55 teams, each consisting of two assessors with a 
+biology background, received 1 day of developmental biology training 
+with a focus on developmental defects caused by modulated signaling 
+in zebrafish (Supplementary Videos 1–8, Fig. 2b and Extended Data 
+Figs. 2 and 3). We encouraged the assessors to discuss the pheno-
+types to make the best classification choice. On average, non-experts 
+confidently identified the class Dead but identified signaling defects 
+with an overall accuracy of only 53% (F-score = 0.52; Fig. 2b, Extended 
+Data Fig. 2 and Supplementary Tables 5 and 6), even when temporal 
+information about the developmental stage was provided (accuracy 
+of 54%, F-score = 0.52; Fig. 2c, Extended Data Fig. 3 and Supplementary 
+Tables 5 and 7). The images were next classified by an expert assessor, 
+an experienced developmental biologist with several years of relevant 
+background in early zebrafish embryogenesis. The expert confidently 
+Nature Methods | Volume 20 | June 2023 | 815–823
+818
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+identified embryonic phenotypes across classes with an overall accu-
+racy of 79% (F-score = 0.78; Fig. 2d and Supplementary Tables 5 and 
+8). Strikingly, EmbryoNet outperformed both expert and non-expert 
+human assessors on these images: it completed the task in a few sec-
+onds and with an overall accuracy of 91% (F-score = 0.90; Fig. 2e and 
+Supplementary Tables 5 and 9), comparable to the performance across 
+the entire validation dataset (see above).
+To test whether context-dependent information could improve 
+human classification performance, we asked two human experts to 
+classify additional time-series experiments. Information about the 
+specific treatment for each embryo was not disclosed to the assessors, 
+but they were aware that all embryos in one video received the same 
+treatment. Human classification performance slightly increased to an 
+overall accuracy of 83% (F-score = 0.84). EmbryoNet still outperformed 
+the human experts with an accuracy of 90% (F-score = 0.90), espe-
+cially for the classification of the most difficult and subtle phenotypes 
+(−Shh and −PCP) with F-scores of 0.54 (−PCP) and 0.72 (−Shh) compared 
+with the human F-scores of 0.04 and 0.36, respectively (Extended Data 
+Fig. 4a–d and Supplementary Tables 10–15). In addition, EmbryoNet 
+accurately identified phenotypes that were not fully penetrant, such 
+as weaker BMP14 and Nodal defects46 (Extended Data Fig. 5 and Sup-
+plementary Tables 16–19).
+Given EmbryoNet’s performance in identifying subtle phe-
+notypes, we hypothesized that we could leverage artificial intelli-
+gence to detect very early embryonic defects before they would be 
+recognized by human experts. We therefore retrained EmbryoNet 
+by moving the relevant developmental timepoint corresponding to 
+each treatment class to 4 hours earlier, before the phenotype was 
+obvious to a human annotator (Fig. 2f). Strikingly, the resulting net-
+work, EmbryoNet-Prime, was able to identify Nodal loss-of-function 
+phenotypes at the beginning of gastrulation, several hours before 
+human annotators could confidently recognize them (Extended Data 
+Fig. 6), with an accuracy of 90% (F-score = 0.93; Fig. 2h–j, Extended 
+Data Fig. 4e and Supplementary Tables 10 and 20–24). Similarly, the 
+network detected the −BMP, +RA, −Wnt, −Shh and −PCP phenotypes 
+on average 2–3 hours earlier (Fig. 2g and Extended Data Fig. 6), consist-
+ent with the known expression and activation profiles of the signaling 
+molecules (Supplementary Note 1).
+a
+–BMP
++RA
+–Wnt
+–FGF
+–Nodal
+–Shh
+–PCP
+Normal
+Dead
+Ground truth
+Assessor
+0
+2
+6
+14
+25
+9
+4
+Time (h.p.f.)
+First timepoint of
+robust identification
+by an expert
+4 h earlier
+timepoint
+retraining
+j
+Experienced
+developmental
+biologist 2
+Experienced
+developmental
+biologist 1
+Assessor
+f
+EmbryoNet
+EmbryoNet-Prime
+1.0
+0
+0.2
+0.4
+0.6
+0.8
+Fraction of embryos per class
+EmbryoNet-Prime 
+i
+h
+4 h before ground truth
+e
+EmbryoNet
+Time (h.p.f.)
+g
+Normal
+–BMP
++RA
+–Wnt
+–FGF
+–Nodal
+–Shh
+–PCP
+6
+8
+10
+12
+14
+16
+18
+20
+22
+EmbryoNet
+EmbryoNet-Prime
+Humans
+Non-expert team
+b
+c
+t = 1,420 min
+Non-expert team
++ time information
+d
+Experienced
+developmental biologist
+Random guessing
+1.0
+0
+0.2
+0.4
+0.6
+0.8
+Fraction of embryos per class
+Fig. 2 | Classification of 98 single embryo images by non-expert teams, 
+experienced researchers and EmbryoNet. a–e, Schematic set-ups and confusion 
+matrices showing the classification of the respective labeler compared with the 
+ground truth (human annotation, treatment known). Classification performance 
+is shown as a heatmap and fractions of 1 for the classification of 98 single images 
+by a pseudo-random number generator (a), by a non-expert team without (b) 
+or with (c) additionally provided time information (average performance), by 
+an experienced researcher (d) and by EmbryoNet (e). f, Schematic of embryo 
+detection over time. To allow for earlier detection, we annotated the training 
+data 4 h before (blue time frame) the timepoint at which they could be robustly 
+annotated by a labeler aware of the treatment (pink time frame). The embryo 
+sketches show the phenotype of Nodal-inhibited samples at the respective time. 
+The resulting network with earlier detection was termed ‘EmbryoNet-Prime’.  
+g, Characteristic times of detection for each class based on the assessment 
+of human experts, EmbryoNet and EmbryoNet-Prime. nNormal = 74, n−BMP = 119, 
+n+RA = 66, n−Wnt = 70, n−FGF = 74, n−Nodal = 110, n−Shh = 63, n−PCP = 57. h–j, Classification 
+performance in the early detection of phenotypes. Confusion matrices show the 
+classification of image series by the respective labeler compared with the ground 
+truth (human annotation, treatment known; detection time shifted to 4 h earlier). 
+The number of analyzed images is shown in Supplementary Tables 20–22.
+Nature Methods | Volume 20 | June 2023 | 815–823
+819
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+EmbryoNet recognizes known and latent defect features
+What could be the features that are detected by EmbryoNet-Prime, 
+which facilitate earlier classification compared with human assessors? 
+To address this question, we leveraged class activation map (CAM) 
+visualization47, which can be used to perform object localization 
+without additional annotation by projecting the probability of the 
+trained classes onto an input image. The resulting CAM should show 
+the discriminative image regions used by the CNN to identify a class: 
+positively activated domains should highlight image regions that sup-
+port a particular class, whereas negative domains should show regions 
+that oppose that class (Fig. 3 and Supplementary Note 3).
+To evaluate the utility of CAM visualization, we first examined 
+steep and sudden switches in classification. For example, BMP-inhibited 
+embryos frequently disintegrate (Supplementary Video 2), switching 
+from −BMP to Dead in terms of classification. Indeed, this classifica-
+tion switch can be observed in EmbryoNet-Prime’s CAMs. Once −BMP 
+embryos disintegrate, their CAMs in the −BMP channel immediately 
+show negative activation accompanied by a positive activation in the 
+CAMs for the Dead class (Supplementary Videos 11 and 12). These 
+results indicate that CAM visualization can provide insight into the 
+logic of phenotype classification.
+Using this approach, we found that EmbryoNet-Prime identified 
+known defects caused by the disruption of signaling pathways, but also 
+detected latent features at an earlier developmental stage compared 
+with human assessors. For example, Wnt mutants are known to exhibit 
+prominent tail bud and head defects at 24 h.p.f.11,12. EmbryoNet-Prime 
+was indeed activated in these regions at late stages (Fig. 3i). Strikingly, 
+during early segmentation the whole body-axis already showed activa-
+tion (Supplementary Videos 15 and 16), and the detection of head and 
+tail defects also occurred as early as the bud stage (Fig. 3d, Extended 
+Data Fig. 6 and Supplementary Videos 15 and 16). Thus, −Wnt embryos 
+were detected earlier by EmbryoNet-Prime than by human assessors 
+(Fig. 2g and Extended Data Fig. 6). Similarly, late-stage classification 
+of −Nodal embryos by EmbryoNet-Prime relied on well-known defects 
+in the ectodermal thickening (Fig. 3j), head, tail and trunk regions 
+(Fig. 3k). Surprisingly, however, EmbryoNet-Prime was also able 
+to classify early-stage −Nodal embryos (~6 h.p.f.; Supplementary 
+Video 19) based on latent defects. The detection started with activa-
+tion at the margin (Fig. 3f and Supplementary Videos 19 and 20) and 
+continued with activation spots at the border between yolk and blas-
+toderm, directly adjacent to the embryo proper. Although this fits 
+well with known regions of Nodal expression and activity37,48,49, it will 
+0%
+0%
+0%
+0%
+0%
+0%
+1%
+98%
+0%
+Normal
+–BMP
++RA
+–Wnt
+–FGF
+–Nodal
+–Shh
+–PCP
+0%
+0%
+0%
+0%
+1%
+0%
+99%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+91%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+93%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+100%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+98%
+0%
+0%
+0%
+0%
+0%
+0%
+t = 9.0 h.p.f.
+0%
+98%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+t = 12.0 h.p.f.
+94%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+0%
+Normal
+–BMP
++RA
+–Wnt
+–Nodal
+–FGF
+–PCP
+–Shh
+Dead
+Treatment
+Classification
+t = 11.1 h.p.f.
+t = 9.2 h.p.f.
+t = 14.7 h.p.f.
+t = 5.7 h.p.f.
+t = 17.5 h.p.f.
+t = 14.7 h.p.f.
+a
+b
+c
+d
+e
+f
+g
+h
+Activation
+Positive
+Negative
+Unknown
+6%
+1%
+1%
+0%
+7%
+9%
+0%
+1%
+k
+i
+–Nodal, 26.0 h.p.f.
+–Wnt, 13.4 h.p.f.
+j
+–Nodal, 10.6 h.p.f.
+j
+Fig. 3 | Embryo features activating the neural network. Class activation 
+heatmaps based on the last convolutional layer of EmbryoNet-Prime showing the 
+part of the image that activates the network at the given timepoint for normal (a) 
+and signaling-defective embryos (b–h). Every signaling-defective embryo (−BMP 
+(b), +RA (c), −Wnt (d), −FGF (e), −Nodal (f), −Shh (g), −PCP (h)) is displayed in all 
+classification channels, but only the classification channels corresponding to the 
+correct signaling manipulation show warm colors. The percentages represent 
+the probability of detection. See Supplementary Note 3 for sample sizes. Also see 
+Supplementary Videos 9–24. i–k, Selected embryos showing defects highlighted 
+by the corresponding class activation heatmaps for −Wnt at 13.4 h.p.f. (i) and −
+Nodal at 10.6 h.p.f. (j) and 26 h.p.f. (k). Scale bars, 500 µm.
+Nature Methods | Volume 20 | June 2023 | 815–823
+820
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+be interesting to determine how these molecular signatures manifest 
+in latent cellular and morphological features.
+EmbryoNet can identify novel signaling modulators
+High-content image-based drug screens can be used to identify novel 
+compounds affecting cellular phenotypes. However, large-scale 
+drug screens assessing whole phenomes with rich biological 
+information50 are currently hampered by the need to visually assess 
+a very large number of images, and are further complicated by the 
+potential ambiguity of defects and variability between assessors. 
+To determine whether EmbryoNet could be used to link chemical 
+manipulations to signaling-based phenotypic defects, we performed 
+a large-scale zebrafish screen using FDA-approved and bioactive 
+compounds (Fig. 4a).
+Lovastatin
+a
+b
+A
+B
+C
+D
+E
+F
+G
+H
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11
+12
+A
+B
+C
+D
+E
+F
+G
+H
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10 11
+12
+A
+B
+C
+D
+E
+F
+G
+H
+1
+2
+3
+4
+5
+6
+7
+8
+9 10 11
+12
+Zebrafish embryos
+at 8-cell stage
+Drug screen and
+automated imaging
+Classification
+Normal
+Normal
+–Nodal
+–Nodal
+Stage 25
+Stage 19
+f
+–BMP
++RA
+–Wnt
+–FGF
+–Nodal
+–Shh
+–PCP
+Normal
+01
+A
+B
+C
+D
+E
+F
+G
+H
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+Dead
+g
+n = 39
+n = 35
+n = 4
+n = 4
+1.0
+0.8
+0.6
+0.4
+0.2
+0
+1.00
+0.00
+0.03
+0.97
+Normal
+Nodal
+Dead
+Normal
+Nodal
+Dead
+EmbryoNet
+Ground truth
+Fraction of embryos per class
+0.00
+0.00
+0.00
+0.00
+1.00
+Dead
+Normal
+Nodal
+Dead
+Normal
+Nodal
+0.06
+0.94
+EmbryoNet
+Ground truth
+1.00
+1.00
+0.00
+0.00
+0.00
+0.00
+0.00
+c
+Untreated
+n = 21
+Simvastatin
+n = 21
+n = 22
+Atorvastatin
+n = 23
+Lovastatin
+e
+0
+200
+100
+0
+1,000
+2,000
+3,000
+6,000
+4,500
+3,000
+1,500
+0
+4,000
+Background-
+substracted intensity
+Distance from the margin (µm)
+Untreated (n = 8)
+Simvastatin (n = 6)
+Atorvastatin (n = 10)
+Lovastatin (n = 6)
+d
+pErk
+DRAQ7
+DRAQ7
+Intensity
+DRAQ7
+pErk
+pErk
+DRAQ7
+Untreated
+Simvastatin
+Atorvastatin
+pErk
+Fig. 4 | Applications of EmbryoNet in drug screening and other species.  
+a,b, Automated phenotype-based drug screening. a, Schematic of the phenomic 
+drug screen. Embryos were exposed to compounds in 96-well plates and  
+imaged for 24 h. Phenotypes were classified automatically by EmbryoNet.  
+b, Layout of BML-2843 library plate 2 with majority phenotype classification for 
+each well. Simvastatin in well H-02 was classified as −FGF. c, Statins identified 
+by EmbryoNet in the drug screen caused body axis defects similar to −FGF 
+loss-of-function phenotypes. d, Representative immunofluorescence images 
+of the FGF signaling transducer pErk in untreated and statin-treated embryos, 
+respectively. The representative images have pErk profiles that are closest to the 
+mean signaling profile of each group. Images are shown at the same contrast and 
+brightness. The inserted lower panels show cell nuclei labeled with DRAQ7.  
+e, Quantification of background-subtracted pErk fluorescence intensity gradients 
+in wild-type (black), simvastatin-treated (blue), atorvastatin-treated (yellow)  
+and lovastatin-treated (green) embryos along the marginal-to-animal pole axis. 
+The error envelopes show s.e.m. f,g, Extension of EmbryoNet to other species.  
+f, Images of wild-type (left) and Nodal-deficient (right) medaka embryos with 
+the confusion matrix of classification performance. g, Images of wild-type (left) 
+and Nodal-deficient (right) three-spined stickleback embryos with the confusion 
+matrix of classification performance. Black arrows point to somites in healthy 
+embryos, while red arrows point out missing somites. The red arrowhead shows a 
+mispatterned central nervous system. Scale bars: 500 µm (c,f,g) and 200 µm (d).
+Nature Methods | Volume 20 | June 2023 | 815–823
+821
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+We screened approximately 1,000 compounds using 96-well plates 
+containing four to five zebrafish embryos per well. The screen spanned 
+2–26 h.p.f. We first tested well-known viability modulators with char-
+acterized mechanisms of action such as aphidicolin, bafilomycin A1, 
+blebbistatin, brefeldin A, cycloheximide, cytochalasin B, latrunculin B, 
+staurosporin, trichostatin A, tunicamycin and vinblastine. EmbryoNet 
+reliably classified embryos treated with these substances as Dead, 
+while classifying mock-treated embryos as Normal (Supplementary 
+Tables 25–35, Extended Data Figs. 7 and 8 and Supplementary 
+Videos 25–35). EmbryoNet also correctly detected known modulators 
+of signaling pathways, such as the RA agonists all-trans-retinoic acid 
+and TTNPB (Extended Data Fig. 7 and Supplementary Table 26).
+Importantly, for some small molecules we identified previously 
+unrecognized effects on signaling pathways in embryos. This group 
+includes several hydroxymethylglutaryl-coenzyme A reductase 
+inhibitors, a class of compounds also known as statins51–54. Interest-
+ingly, embryos treated with several statins, including simvastatin, 
+atorvastatin and lovastatin, were classified as −FGF by EmbryoNet 
+(Fig. 4b, Supplementary Videos 36–38 and Supplementary Tables 29, 32 
+and 35). Consistent with the −FGF classification, embryos treated with 
+these drugs showed defects in dorsal–ventral patterning51,52 and had 
+loss of posterior tissues typical of −FGF embryos13,55–57 (Fig. 4c). Strik-
+ingly, the activity of the FGF signal transducer pErk was also reduced in 
+statin-treated compared with untreated embryos (Fig. 4d,e), possibly 
+due to dampened isoprenylation of the upstream small GTPase Ras58. 
+According to patient information regarding side-effects and databases 
+of potentially embryotoxic teratogenic therapeutics, the intake of 
+selected hydroxymethylglutaryl-coenzyme A reductase inhibitors 
+such as lovastatin is not recommended during pregnancy and lactation 
+(Supplementary Note 4). Notably, simvastatin is recommended as a 
+substitute, although EmbryoNet detected the same defects in response 
+to this drug. However, the bioavailability in zebrafish compared with 
+human cells is currently unclear.
+In summary, our drug screen shows that EmbryoNet can be used 
+to identify teratogenic effects caused by bioactive compounds and to 
+associate them with signaling pathways.
+Generalization of EmbryoNet to other species
+To test the generalizability of our approach, we next applied Embry-
+oNet to identify signaling defects in the evolutionarily distant species 
+medaka (Oryzias latipes) and three-spined stickleback (Gasterosteus 
+aculeatus). These fish diverged from zebrafish hundreds of millions 
+of years ago59,60. We adjusted the imaging length of our recordings to 
+match the slower developmental speed of both species61,62 and modified 
+species-specific parameters such as temperature, number of embryos 
+per well and drug concentration as needed.
+We found that in both medaka and stickleback, wild-type animals 
+had well-formed somites (Fig. 4f,g, black arrows) and eyes (Supple-
+mentary Videos 39 and 41), while Nodal-inhibited embryos showed a 
+loss of somites (Fig. 4f,g, red arrows) concomitant with severe central 
+nervous system defects and frequent cyclopia (Fig. 4f, red arrowhead; 
+Supplementary Videos 40 and 42). After training with these datasets, 
+EmbryoNet robustly identified wild-type and Nodal-inhibited indi-
+viduals in both species (Fig. 4f,g). These results support the broad 
+applicability of EmbryoNet in identifying signaling-based complex 
+phenotypic defects in different species.
+Discussion
+Phenome refers to the entire set of phenotypes of an organism over 
+time, and phenomics has emerged as a promising approach for con-
+necting these phenotypes with the underlying genotypes and environ-
+mental influences50. A quantitative understanding of how the phenome 
+changes in response to genetic mutations and environmental stimuli 
+would be highly informative, but phenomics requires the processing 
+of large amounts of high-dimensional data36,63–66. Computer vision and 
+machine learning techniques are therefore promising approaches for 
+advancing this field and indeed are increasingly being applied in plant 
+and crop phenomics67. Here, we present a machine learning-assisted 
+method for the robust phenomic analysis of developmental defects 
+during vertebrate embryogenesis.
+The automated phenotyping tool that we developed, EmbryoNet, 
+is based on CNNs. Strikingly, EmbryoNet outcompeted human asses-
+sors in terms of speed, accuracy and sensitivity. Assessing zebrafish 
+embryos, EmbryoNet was able to quickly and accurately link pheno-
+types to major signaling pathways, including classifying incompletely 
+penetrant phenotypes. We were also able to retrain EmbryoNet for 
+assessing other fish species separated from zebrafish by hundreds of 
+millions of years in evolution, enabling the analysis of high-dimensional 
+phenomic data in different taxa. EmbryoNet may thus be able to accel-
+erate the characterization of developmental mutants in multiple spe-
+cies. Finally, in a proof-of-concept drug screen with two drug libraries, 
+we showed that EmbryoNet correctly associated compounds with 
+signaling functions. We therefore believe that this approach can be 
+used to understand the signaling effects of various compounds and 
+medications, thus opening up the possibility of applying drugs to new 
+therapeutic contexts and applications.
+While EmbryoNet offers significant advantages in identifying 
+phenotypes at earlier developmental stages, there are some caveats 
+and weaknesses to consider. It remains uncertain whether EmbryoNet 
+can outperform humans in detecting very mild phenotypes, such as 
+those caused by low drug concentrations. Additionally, its reliance 
+on a library of manual annotations limits its ability to classify novel 
+phenotypes, particularly those arising from the combinatorial disrup-
+tion of signaling pathways. The rapid development of deep learning 
+technologies could be leveraged to enhance EmbryoNet’s capabilities 
+and help address EmbryoNet’s current limitations. By building on these 
+technological breakthroughs, it may become possible in the future 
+to bridge the genotype–phenotype gap and tackle the long-standing 
+question of how diverse body plans are genetically encoded68.
+We provide EmbryoNet as open-source software, with Python 
+packages, a GitHub repository and GUIs for labeling data and phe-
+notype classification (http://github.com/mueller-lab/EmbryoNet). 
+We also provide the training, testing and the drug screen imaging data 
+as a resource to the community (http://embryonet.uni-konstanz.de, 
+http://github.com/mueller-lab/EmbryoNet). Due to its modular 
+open-source nature, EmbryoNet can be easily adapted to a variety of 
+purposes, including embryos of other species and organoids, in which 
+automated phenotyping will expedite biological and pharmaceutical 
+discovery.
+Online content
+Any methods, additional references, Nature Portfolio reporting sum-
+maries, source data, extended data, supplementary information, 
+acknowledgements, peer review information; details of author contri-
+butions and competing interests; and statements of data and code avail-
+ability are available at https://doi.org/10.1038/s41592-023-01873-4.
+References
+1.	
+Marlow, F. L. Setting up for gastrulation in zebrafish. Curr. Top. 
+Dev. Biol. 136, 33–83 (2020).
+2.	
+Schier, A. F. & Talbot, W. S. Molecular genetics of axis formation in 
+zebrafish. Annu. Rev. Genet. 39, 561–613 (2005).
+3.	
+Heisenberg, C. P. & Solnica-Krezel, L. Back and forth between cell 
+fate specification and movement during vertebrate gastrulation. 
+Curr. Opin. Genet. Dev. 18, 311–316 (2008).
+4.	
+Manzo, G. Similarities between embryo development and cancer 
+process suggest new strategies for research and therapy of 
+tumors: a new point of view. Front. Cell Dev. Biol. 7, 20 (2019).
+5.	
+Nusse, R. & Clevers, H. Wnt/beta-catenin signaling, disease, and 
+emerging therapeutic modalities. Cell 169, 985–999 (2017).
+Nature Methods | Volume 20 | June 2023 | 815–823
+822
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+6.	
+Gray, R. S., Roszko, I. & Solnica-Krezel, L. Planar cell polarity: 
+coordinating morphogenetic cell behaviors with embryonic 
+polarity. Dev. Cell 21, 120–133 (2011).
+7.	
+Huang, P. & Schier, A. F. Dampened Hedgehog signaling but 
+normal Wnt signaling in zebrafish without cilia. Development 136, 
+3089–3098 (2009).
+8.	
+Woods, I. G. & Talbot, W. S. The you gene encodes an EGF-CUB 
+protein essential for Hedgehog signaling in zebrafish. PLoS Biol. 
+3, e66 (2005).
+9.	
+Schier, A. F. & Talbot, W. S. Nodal signaling and the zebrafish 
+organizer. Int. J. Dev. Biol. 45, 289–297 (2001).
+10.	 Nasevicius, A. & Ekker, S. C. Effective targeted gene ‘knockdown’ 
+in zebrafish. Nat. Genet. 26, 216–220 (2000).
+11.	
+Hino, H. et al. Roles of maternal wnt8a transcripts in axis 
+formation in zebrafish. Dev. Biol. 434, 96–107 (2018).
+12.	 Lekven, A. C., Thorpe, C. J., Waxman, J. S. & Moon, R. T. Zebrafish 
+wnt8 encodes two wnt8 proteins on a bicistronic transcript and is 
+required for mesoderm and neurectoderm patterning. Dev. Cell 1, 
+103–114 (2001).
+13.	 Rohner, N. et al. Duplication of fgfr1 permits Fgf signaling to serve 
+as a target for selection during domestication. Curr. Biol. 19, 
+1642–1647 (2009).
+14.	 Kishimoto, Y., Lee, K. H., Zon, L., Hammerschmidt, M. & 
+Schulte-Merker, S. The molecular nature of zebrafish swirl: 
+BMP2 function is essential during early dorsoventral patterning. 
+Development 124, 4457–4466 (1997).
+15.	 Shinya, M., Eschbach, C., Clark, M., Lehrach, H. & Furutani-Seiki, 
+M. Zebrafish Dkk1, induced by the pre-MBT Wnt signaling, is 
+secreted from the prechordal plate and patterns the anterior 
+neural plate. Mech. Dev. 98, 3–17 (2000).
+16.	 Begemann, G., Schilling, T. F., Rauch, G. J., Geisler, R. & Ingham, 
+P. W. The zebrafish neckless mutation reveals a requirement 
+for raldh2 in mesodermal signals that pattern the hindbrain. 
+Development 128, 3081–3094 (2001).
+17.	 Stainier, D. Y. & Fishman, M. C. Patterning the zebrafish heart  
+tube: acquisition of anteroposterior polarity. Dev. Biol. 153,  
+91–101 (1992).
+18.	 LeCun, Y., Bengio, Y. & Hinton, G. Deep learning. Nature 521, 
+436–444 (2015).
+19.	 Russakovsky, O. et al. ImageNet large scale visual recognition 
+challenge. Int. J. Comput. Vis. 115, 211–252 (2015).
+20.	 Jumper, J. et al. Highly accurate protein structure prediction with 
+AlphaFold. Nature 596, 583–589 (2021).
+21.	 Jumper, J. & Hassabis, D. Protein structure predictions to atomic 
+accuracy with AlphaFold. Nat. Methods 19, 11–12 (2022).
+22.	 Senior, A. W. et al. Improved protein structure prediction using 
+potentials from deep learning. Nature 577, 706–710 (2020).
+23.	 Tunyasuvunakool, K. et al. Highly accurate protein  
+structure prediction for the human proteome. Nature 596, 
+590–596 (2021).
+24.	 Reichstein, M. et al. Deep learning and process understanding for 
+data-driven Earth system science. Nature 566, 195–204 (2019).
+25.	 Hallou, A., Yevick, H. G., Dumitrascu, B. & Uhlmann, V. Deep 
+learning for bioimage analysis in developmental biology. 
+Development 148, dev199616 (2021).
+26.	 Moen, E. et al. Deep learning for cellular image analysis.  
+Nat. Methods 16, 1233–1246 (2019).
+27.	 Weigert, M. et al. Content-aware image restoration: pushing  
+the limits of fluorescence microscopy. Nat. Methods 15,  
+1090–1097 (2018).
+28.	 McQuin, C. et al. CellProfiler 3.0: next-generation image 
+processing for biology. PLoS Biol. 16, e2005970 (2018).
+29.	 Stringer, C., Wang, T., Michaelos, M. & Pachitariu, M. Cellpose: a 
+generalist algorithm for cellular segmentation. Nat. Methods 18, 
+100–106 (2021).
+30.	 Naert, T. et al. Deep learning is widely applicable to phenotyping 
+embryonic development and disease. Development 148, 
+dev199664 (2021).
+31.	 Tyagi, G., Patel, N. & Ishwar, S. A fine-tuned convolution neural 
+network based approach for phenotype classification of 
+zebrafish. Procedia Computer Science 126, 1138–1144 (2018).
+32.	 Jeanray, N. et al. Phenotype classification of zebrafish embryos by 
+supervised learning. PLoS ONE 10, e0116989 (2015).
+33.	 Khosravi, P. et al. Deep learning enables robust assessment and 
+selection of human blastocysts after in vitro fertilization. npj Digit. 
+Med. 2, 21 (2019).
+34.	 Baris Atakan, H., Alkanat, T., Cornaglia, M., Trouillon, R. & Gijs, 
+M. A. M. Automated phenotyping of Caenorhabditis elegans 
+embryos with a high-throughput-screening microfluidic platform. 
+Microsyst. Nanoeng. 6, 24 (2020).
+35.	 Suryanto, M. E. et al. Using DeepLabCut as a real-time and 
+markerless tool for cardiac physiology assessment in zebrafish. 
+Biology 11, 1243 (2022).
+36.	 Tills, O. et al. A high-throughput and open-source platform for 
+embryo phenomics. PLoS Biol. 16, e3000074 (2018).
+37.	 Shen, M. M. Nodal signaling: developmental roles and regulation. 
+Development 134, 1023–1034 (2007).
+38.	 DaCosta Byfield, S., Major, C., Laping, N. J. & Roberts, A. B. SB-
+505124 is a selective inhibitor of transforming growth factor-beta 
+type I receptors ALK4, ALK5, and ALK7. Mol. Pharmacol. 65, 
+744–752 (2004).
+39.	 Hagos, E. G. & Dougan, S. T. Time-dependent patterning of the 
+mesoderm and endoderm by Nodal signals in zebrafish. BMC Dev. 
+Biol. 7, 22 (2007).
+40.	 He, K., Zhang, X., Ren, S. & Sun, J. Deep residual learning for 
+image recognition. In 2016 IEEE Conference on Computer Vision 
+and Pattern Recognition (CVPR) 770–778 (2016).
+41.	 Gritsman, K. et al. The EGF-CFC protein One-eyed pinhead is 
+essential for Nodal signaling. Cell 97, 121–132 (1999).
+42.	 Wang, X. et al. The development of highly potent inhibitors for 
+porcupine. J. Med. Chem. 56, 2700–2704 (2013).
+43.	 Sun, L. et al. Design, synthesis, and evaluations of substituted 
+3-[(3- or 4-carboxyethylpyrrol-2-yl)methylidenyl]indolin-2-ones  
+as inhibitors of VEGF, FGF, and PDGF receptor tyrosine kinases.  
+J. Med. Chem. 42, 5120–5130 (1999).
+44.	 Cuny, G. D. et al. Structure-activity relationship study of bone 
+morphogenetic protein (BMP) signaling inhibitors. Bioorg. Med. 
+Chem. Lett. 18, 4388–4392 (2008).
+45.	 Incardona, J. P., Gaffield, W., Kapur, R. P. & Roelink, H. The 
+teratogenic Veratrum alkaloid cyclopamine inhibits  
+sonic hedgehog signal transduction. Development 125,  
+3553–3562 (1998).
+46.	 Dougan, S. T., Warga, R. M., Kane, D. A., Schier, A. F. & Talbot, W. S. 
+The role of the zebrafish nodal-related genes squint and  
+cyclops in patterning of mesendoderm. Development 130, 
+1837–1851 (2003).
+47.	 Zhou, B., Khosla, A., Lapedriza, A., Oliva, A. & Torralba, A.  
+Learning deep features for discriminative localization. Preprint at 
+https://arxiv.org/abs/1512.04150 (2015).
+48.	 Müller, P. et al. Differential diffusivity of Nodal and Lefty  
+underlies a reaction–diffusion patterning system. Science 336, 
+721–724 (2012).
+49.	 van Boxtel, A. L. et al. A temporal window for signal activation 
+dictates the dimensions of a Nodal signaling domain. Dev. Cell 35, 
+175–185 (2015).
+50.	 Bilder, R. M. et al. Phenomics: the systematic study of phenotypes 
+on a genome-wide scale. Neuroscience 164, 30–42 (2009).
+51.	 Campos, L. M. et al. Alterations in zebrafish development induced 
+by simvastatin: comprehensive morphological and physiological 
+study, focusing on muscle. Exp. Biol. Med. 241, 1950–1960 (2016).
+Nature Methods | Volume 20 | June 2023 | 815–823
+823
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+52.	 Campos, L. M. et al. Structural analysis of alterations in zebrafish 
+muscle differentiation induced by simvastatin and their recovery 
+with cholesterol. J. Histochem. Cytochem. 63, 427–437 (2015).
+53.	 Maerz, L. D. et al. Pharmacological cholesterol depletion 
+disturbs ciliogenesis and ciliary function in developing zebrafish. 
+Commun. Biol. 2, 31 (2019).
+54.	 Thorpe, J. L., Doitsidou, M., Ho, S. Y., Raz, E. & Farber, S. A. Germ 
+cell migration in zebrafish is dependent on HMGCoA reductase 
+activity and prenylation. Dev. Cell 6, 295–302 (2004).
+55.	 Leerberg, D. M., Hopton, R. E. & Draper, B. W. Fibroblast growth 
+factor receptors function redundantly during zebrafish embryonic 
+development. Genetics 212, 1301–1319 (2019).
+56.	 Draper, B. W., Stock, D. W. & Kimmel, C. B. Zebrafish fgf24 
+functions with fgf8 to promote posterior mesodermal 
+development. Development 130, 4639–4654 (2003).
+57.	 Economou, A. D., Guglielmi, L., East, P. & Hill, C. S. Nodal signaling 
+establishes a competency window for stochastic cell fate 
+switching. Dev. Cell 57, 2604–2622 (2022).
+58.	 Piotrowski, P. C. et al. Statins inhibit growth of human endometrial 
+stromal cells independently of cholesterol availability. Biol. 
+Reprod. 75, 107–111 (2006).
+59.	 Pfister, P., Randall, J., Montoya-Burgos, J. I. & Rodriguez, I. 
+Divergent evolution among teleost V1r receptor genes. PLoS ONE 
+2, e379 (2007).
+60.	 Wittbrodt, J., Shima, A. & Schartl, M. Medaka: a model organism 
+from the far East. Nat. Rev. Genet. 3, 53–64 (2002).
+61.	 Iwamatsu, T. Stages of normal development in the medaka 
+Oryzias latipes. Mech. Dev. 121, 605–618 (2004).
+62.	 Swarup, H. Stages in the development of the stickleback 
+Gasterosteus aculeatus (L.). J. Embryol. Exp. Morphol. 6,  
+373–383 (1958).
+63.	 Houle, D., Govindaraju, D. R. & Omholt, S. Phenomics: the next 
+challenge. Nat. Rev. Genet. 11, 855–866 (2010).
+64.	 Brown, S. D. M. et al. High-throughput mouse phenomics for 
+characterizing mammalian gene function. Nat. Rev. Genet. 19, 
+357–370 (2018).
+65.	 D’Orazio, M. et al. Machine learning phenomics (MLP) combining 
+deep learning with time-lapse-microscopy for monitoring 
+colorectal adenocarcinoma cells gene expression and 
+drug-response. Sci. Rep. 12, 8545 (2022).
+66.	 Watson, C. J. et al. Phenomics-based quantification of CRISPR- 
+induced mosaicism in zebrafish. Cell Syst. 10, 275–286 (2020).
+67.	 Nabwire, S., Suh, H. K., Kim, M. S., Baek, I. & Cho, B. K. Review: 
+application of artificial intelligence in phenomics. Sensors 21, 
+4363 (2021).
+68.	 Čapek, D., Ünalan, M. & Müller, P. Wie Tiere sich selbst 
+konstruieren. Biospektrum 27, 473–477 (2021).
+Publisher’s note Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.
+Open Access This article is licensed under a Creative Commons 
+Attribution 4.0 International License, which permits use, sharing, 
+adaptation, distribution and reproduction in any medium or format, 
+as long as you give appropriate credit to the original author(s) and the 
+source, provide a link to the Creative Commons license, and indicate 
+if changes were made. The images or other third party material in this 
+article are included in the article’s Creative Commons license, unless 
+indicated otherwise in a credit line to the material. If material is not 
+included in the article’s Creative Commons license and your intended 
+use is not permitted by statutory regulation or exceeds the permitted 
+use, you will need to obtain permission directly from the copyright 
+holder. To view a copy of this license, visit http://creativecommons.
+org/licenses/by/4.0/.
+© The Author(s) 2023
+Nature Methods
+Resource
+https://doi.org/10.1038/s41592-023-01873-4
+Methods
+Embryo preparation
+The experiments were performed exclusively with embryos and larvae 
+that were not yet freely feeding. All procedures and zebrafish, medaka 
+and stickleback husbandry were carried out in accordance with the 
+guidelines of the European Union directive 2010/63/EU and the German 
+Animal Welfare Act as approved by the local authorities represented 
+by the Regierungspräsidium Tübingen and the Regierungspräsidium 
+Freiburg (Baden-Württemberg, Germany).
+Zebrafish embryos of the TE strain were collected from batch 
+crosses within 1 h after fertilization. Fertilized embryos were manu-
+ally selected using a glass Pasteur pipette. At this timepoint, zebrafish 
+embryos were between the 2- and 8-cell stages. A total of 10–20 embryos 
+were pipetted into each well of a 24- or 48-well plate in 1 ml zebrafish 
+embryo medium48. Small-molecule signaling pathway agonists and 
+antagonists were added by pipetting them into the filled well with 
+the final concentrations listed in Supplementary Table 1. To obtain 
+PCP phenotypes, 1 ng vangl2-targeting morpholino69 was injected 
+at the one-cell stage. Shh treatment was carried out either by cyclo-
+pamine incubation or gli3R-GFP mRNA injection. For overexpression 
+of signaling antagonists, 10 pg lefty1 mRNA48 together with 0.1 ng 
+of 10 kDa Alexa647-coupled dextran (Invitrogen D22914) or 75 pg 
+chordin mRNA70 together with 0.1 ng of 10 kDa Alexa488-coupled 
+dextran (Invitrogen D22910) were injected into one-cell stage wild-type 
+zebrafish embryos. To validate phenotypes, swirl homozygous 
+mutants70 and maternal zygotic homozygous oep mutants41 were used. 
+All zebrafish embryos were between 0 h.p.f. and 48 h.p.f.
+Medaka eggs of t

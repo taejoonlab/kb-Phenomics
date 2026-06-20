@@ -1,0 +1,835 @@
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Deep phenotypic proﬁling of neuroactive
+drugs in larval zebraﬁsh
+Leo Gendelev
+1, Jack Taylor
+1,2, Douglas Myers-Turnbull1, Steven Chen3,
+Matthew N. McCarroll1,3, Michelle R. Arkin
+3, David Kokel1
+&
+Michael J. Keiser
+1,3,4,5
+Behavioral larval zebraﬁsh screens leverage a high-throughput small molecule
+discovery format to ﬁnd neuroactive molecules relevant to mammalian phy-
+siology. We screen a library of 650 central nervous system active compounds
+in high replicate to train deep metric learning models on zebraﬁsh behavioral
+proﬁles. The machine learning initially exploited subtle artifacts in the phe-
+notypic screen, necessitating a complete experimental re-run with rigorous
+physical well-wise randomization. These large matched phenotypic screening
+datasets (initial and well-randomized) provide a unique opportunity to quan-
+tify and understand shortcut learning in a full-scale, real-world drug discovery
+dataset. The ﬁnal deep metric learning model substantially outperforms cor-
+relation distance–the canonical way of computing distances between
+proﬁles–and generalizes to an orthogonal dataset of diverse drug-like com-
+pounds. We validate predictions by prospective in vitro radio-ligand binding
+assays against human protein targets, achieving a hit rate of 58% despite
+crossing species and chemical scaffold boundaries. These neuroactive com-
+pounds exhibit diverse chemical scaffolds, demonstrating that zebraﬁsh
+phenotypic screens combined with metric learning achieve robust scaffold
+hopping capabilities.
+The mechanism of action of central nervous system (CNS) drugs
+remains poorly understood, even for those used for decades (e.g.,
+ketamine1). The complex nature of G-Protein Coupled Receptor
+(GPCR) and ion channel-mediated pathways of the vertebrate nervous
+system2–11 exacerbate the problem. Because of the prevalence of
+polypharmacology in neuroactive drugs12, a magic bullet single-target
+approach to drug discovery13 falls short14. Phenotypic screening cir-
+cumvents these problems by identifying compounds that may interact
+with individual or multiple targets15,16. These screens prioritize desired
+and often biologically complex readouts of induced phenotypes on
+higher-level model systems. Despite historically limited throughput,
+rapid phenotypic proﬁling of thousands of compounds in vivo is now
+possible using larval zebraﬁsh17–21. These vertebrates have high levels
+of shared genetics22,23 and CNS anatomy24 (with humans) and scale to
+high-throughput testing of complex behavioral readouts2–11. Pheno-
+typic screening in larval zebraﬁsh, combined with human-target-based
+cheminformatic methods such as the Similarity Ensemble Approach
+(SEA25,26), and enrichment factor (EF) calculations10,27–29, have enabled
+drug discovery and target deconvolution for neuroactive phenotypes
+in mammals.
+However, high-content zebraﬁsh behavioral screening data are
+both a blessing and a curse for pharmacological studies because of the
+challenges in extracting and comparing features in the collected video
+data. In previous work, larval zebraﬁsh, plated on 96-well plates, were
+Received: 20 March 2024
+Accepted: 6 November 2024
+Check for updates
+1Institute for Neurodegenerative Diseases, University of California, San Francisco, San Francisco, CA, USA. 2UCSF Weill Institute for Neurosciences Memory
+and Aging Center, University of California, San Francisco, CA, USA. 3Department of Pharmaceutical Chemistry, University of California, San Francisco, San
+Francisco, CA, USA. 4Department of Bioengineering and Therapeutic Sciences, University of California, San Francisco, CA, USA. 5Bakar Computational Health
+Sciences Institute, University of California, San Francisco, San Francisco, CA, USA.
+e-mail: dave.kokel@gmail.com; keiser@keiserlab.org
+Nature Communications|   (2024) 15:9955 
+1
+1234567890():,;
+1234567890():,;
+treated with various compounds, and various stimuli — including
+acoustic stimuli and high-intensity light of different colors — elicited a
+broad spectrum of behavioral responses in the ﬁsh10,28. Videos recor-
+ded each well, from which a “motion-index” (MI) time series is com-
+puted to measure bulk motion over time (Fig. 1a–d7, Fig. 1b and
+Equation 1). Traditionally, the phenotypic distance between MI time
+series is computed using correlation distance28. Other approaches
+have included classiﬁcation and video analysis using machine
+learning2,30–34.
+Correlation
+distance
+reliably
+discriminates
+antipsychotic28 and anesthetic10,28,29 phenotypes but fails to distinguish
+more subtle phenotypes. Indeed, ﬁsh rarely respond to stimuli in a
+one-to-one video frame correspondence when each frame is 1/100th of
+a second, breaking a basic assumption of how these MI distances are
+traditionally computed. In an experiment with various assays, the
+strength of the response to each assay may vary in drug-treated ﬁsh;
+however, correlation distance values all frame contributions equally.
+Various deep learning and unsupervised learning techniques have
+been employed toward zebraﬁsh behavior classiﬁcation35. We sought a
+distance metric that leveraged zebraﬁsh phenotypic screens for a
+broader range of induced behaviors. Speciﬁcally, we used a class of
+Fig. 1 | Zebraﬁsh behavioral screening and architecture. Diagrammatic repre-
+sentation of zebraﬁsh experimental screening setup, motion index calculations,
+and deep metric learning model architectures. a Simpliﬁed representation of a
+zebraﬁsh screening platform, with larval zebraﬁsh in 96-well plates under a camera
+subject to varied stimuli such as blue light, purple light, acoustic stimuli, and
+physical tapping. b Example of a representative video frame. c Zoom view of a
+single well. d Example motion index (MI) time series for clozapine-treated (gold)
+ﬁsh and negative control (DMSO) (gray) wells. The MIs are averaged across all the
+drug- and control-treated well replicates. A stimulus legend shows the stimuli types
+occurring at different times in the assay. e Deep metric learning model archi-
+tectures: Twin-NN (top) and Twin-DN (bottom). In both models, the input is a pair
+of MI time-series vectors passing through multiple neural net layers. A contrastive
+loss function72 scores the two learned output vectors (y1 and y2) distances based on
+whether the input MI vectors were from the same or different treatments. As in (d)
+above, gold denotes drug-treated MI, and gray is the negative control (DMSO).
+Source data are provided in the Source Data File.
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+2
+neural networks uniquely suited for learning distances between pairs
+of inputs (Siamese neural networks, or twin neural networks, twin-NNs,
+Fig. 1e). These models were initially developed for biometric ﬁnger-
+print veriﬁcation36, subsequently ﬁnding use in many machine learning
+(ML) tasks, such as “one-shot learning” on small datasets for image
+classiﬁcation37,38. Siamese networks pre-date and often became the
+neural network models and loss functions subsequently adopted by
+various studies in deep metric learning and contrastive learning. Sia-
+mese networks have been applied to study zebraﬁsh behavior at lower
+throughput39 or at higher throughput for embryonic development40,
+but to our knowledge, not in the setting of high-throughput larval
+zebraﬁsh phenotypic screening.
+In this work, we screen a library of 650 ligands (from the SCREEN-
+WELL Neurotransmitter Set, “NT-650”, Methods) in high-replicate and
+train twin-NNs to relate drugs via the phenotypes they induce in larval
+zebraﬁsh. We construct the screens from the ground up with ML
+model training in mind, but the models still exploit unanticipated
+artifacts in the resulting screen dataset via an undesirable process
+known more broadly as “shortcut learning”41. We initially study the
+effect of retraining the deep metric learning models on synthetically
+randomized datasets that we design to test for confounding effects,
+ultimately driving the redesign and re-collection of a new experimental
+screen with full physical randomization. Models trained on the revised
+screen cluster diverse neuroactive compounds in a way that corre-
+sponds strikingly well with known neuroactive biology, and they
+phenotypically link structurally distinct compounds by scaffold
+hopping42,43. Finally, the learned distance metric generalizes to a
+screening dataset of diverse drug-like compounds unseen during
+training, automating the discovery of neuroactive compounds active
+on human receptors when tested prospectively in vitro.
+Results
+Twin neural networks identify drug replicates from complex
+behavioral readouts
+We collect a high-throughput phenotypic dataset based on the NT-650
+neurotransmitter library screened in high replications (7–10 replicates
+per drug) for training machine learning models. We plate larval zeb-
+raﬁsh onto 96-well plates (8 ﬁsh per well) and dose wells with drugs at a
+10 µM concentration, a reasonable dose for in-vivo primary screening
+of neuroactives (Fig. 1a–c). Various stimuli, such as acoustic sounds,
+light stimulus, and physical tapping of the multi-well plate stage, are
+performed to elicit diverse behavioral responses in the ﬁsh, as opti-
+mized previously7 (Fig. 1d). We record videos of the ﬁsh’s behavior
+throughout the experiment. For each well, we encode and convert
+videos of larval ﬁsh into aggregate motion over time, resulting in a
+time-series vector, or motion index (MI).
+We evaluate how well twin NNs can identify whether two MI
+proﬁles, such as those shown in Fig. 1e, originate from the same
+category — speciﬁcally, whether they are caused by the same drug. This
+is in contrast to other correlation metrics that often fail to reliably
+recognize when different samples have been affected by the same
+drug, especially when the resulting phenotypic changes are subtle. By
+necessity, a Twin-NN must learn which time points are most informa-
+tive and how to correct for slightly or partially misaligned MI traces to
+correctly group same-drug replicates accurately across a diverse range
+of pharmacology and their concomitant behavioral traces. Twin NNs
+consist of twin encoding layers, which share model weights and
+operate on a pair of different inputs (MI traces) to output a distance
+reﬂecting whether the MIs represent replicates of the same drug
+(distance = 0) or traces from mismatched drugs (distance > 1)36.
+We ﬁlter the dataset to remove human drugs that do not alter
+zebraﬁsh behavior, namely those whose MI traces cannot be dis-
+tinguished from vehicle controls with a simple random forest model
+(see “Methods”, Supplementary Fig. 1). Drugs can fail to induce strong
+behavioral responses in zebraﬁsh due to many factors, including
+differences in cross-species biology, concentration, incubation time,
+absorption route, or other factors. The neural network embedding
+architecture of each half of the model is a design choice; we implement
+a fully connected multi-layer perceptron (Twin-NN) (Fig. 1e) as a
+baseline model and a second architecture motivated by DenseNet44
+(Twin-DN) as a more computationally expressive alternative. We con-
+sidered using recurrent architectures – neural networks designed to
+operate on sequences, such as the LSTM45 or GRU45,46 – but were
+concerned that the long length of the time series samples raised issues
+with vanishing gradients and run-time.
+Prior work using zebraﬁsh behavioral MI for scaffold-hopping and
+phenotypic drug discovery predominantly uses vector distance cal-
+culations to compare MI traces without warping, alignment, or relative
+weighting of individual time points. Compared to these conventional
+correlation and Euclidean distance approaches, both the Twin-NN and
+Twin-DN models discern positive (matched) and negative (mis-
+matched) drug replicate pairs with drastically improved performance
+(Fig. 2a), with Twin-DN scores achieving 0.97 ROC-AUC and 0.98 PRC-
+AUC (Fig. 2b, c). We observe a near-perfect ability of the learned dis-
+tance metric to discern MIs of replicates from the same drug from MIs
+of different drugs. Further, a Uniform Manifold Approximation and
+Projection (UMAP)47 plot (Fig. 2d), calculated over the means of the
+time series for all replicates of all 650 drugs in the screen, yields pro-
+nounced, discrete, and localized clusters. While heartening, this per-
+formance was substantially higher than we had anticipated and to a
+suspicious degree: many compounds do not reliably induce larval
+zebraﬁsh behavioral phenotypes. Nevertheless, these results sug-
+gested that nearly all the compound library’s experimental replicates
+could be grouped by the Twin-DN model with near-perfect ﬁdelity. We
+wondered whether the model’s exceptional performance might rely
+instead on shortcut learning41 or the exploitation of hidden artifactual
+cues encoded within the data that were invisible to human researchers
+but perceivable by the deep learning model.
+Machine learning exploits high-frequency components and
+plate-location effects
+We evaluate the presence of shortcut learning in our model by testing
+how well the learned distance metric generalizes to an archival quality
+control (QC) screen (“Methods”) performed at an earlier time on data
+never seen by the metric-learning models. For this screen, we select 14
+drugs with diverse mechanisms of action (MOAs) and assay them, also
+in high replications, along with a vehicle (dimethyl sulfoxide; DMSO)
+control and lethal control (eugenol). To test generalizability, we train a
+k-nearest neighbors classiﬁer on the QC replicates using one of three
+distance metrics: Twin-NN, Twin-DN, or correlation distance (“Meth-
+ods”). For most drugs, the Twin-DN distance metric underperforms
+correlation distance (Fig. 2e, orange bars). We suspected that the
+expressive Twin-DN models readily memorize the high-frequency
+components in the time series, which may come from artifacts such as
+plate vibrations or high-frequency noise in the imaging sensor. Indeed,
+when we ablate the high-frequency components of the time series
+(with a Hanning smoothing ﬁlter48 as implemented in the scipy
+package49), Twin-DN performance drops precipitously on the original
+NT-650 screen, with Twin-NN performance likewise dropping, but to a
+lesser extent (Fig. 2c, d). These results indicate that the learned dis-
+tance metrics exploit the high-frequency components of the NT-650
+screen data and that these hidden “shortcut” patterns do not gen-
+eralize to the separate QC screen.
+Per standard practice, we had already attempted to address
+potential overﬁtting or data leakage by splitting the training and vali-
+dation sets by drug - leaving no replicates of any one drug in common
+between train and validation splits. In addition, we performed a set of
+further machine-learning soundness checks (scrambling data labels
+and randomizing the training data features (Supplementary Fig. 2), so
+the Twin-DN model’s evident exploitation of high-frequency signal was
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+3
+initially surprising. However, all compounds in the NT-650 library
+arrived from the supplier in preset layouts, meaning all replicates of
+the same compounds (or all positive pairs) in the dataset always cor-
+responded to identical plate locations. In contrast, mismatched pairs
+could come from any combination of compound locations across and
+within the plates. Our original experimental design for the screen did
+not control forthe potentially confounding layout effect. Even a simple
+machine-learning architecture might be able to learn light-based pat-
+terns for distinguishing different location pairs. The Twin-DN model
+performance took the biggest hit with data smoothing, suggesting that
+the more expressive a model is, the more readily it can exploit feature
+shortcuts.
+d.
+b.
+c.
+colors = k-means 
+clusters
+Receiver Operating 
+Characteristic curves
+Precision–recall curves
+a.
+Twin-NN k-means clusters
+Correlation
+Euclidean
+e.
+Twin-NN Diff
+Twin-DN Diff
+toxic
+Twin-DN
+Twin-NN
+Fig. 2 | Metric learning models exploit high-frequency components of time-
+series signals in an initial non-randomized screen. We compare the Twin-NN and
+Twin-DN models against traditional methods such as correlation and Euclidean
+distance on both raw and smoothed motion index (MI) time series data and
+examine how well the models cluster drugs and generalize to a separate dataset not
+used for training. a Separation of positive (treatment replicate) and negative
+(mismatched replicates) MI vector pairs using the Twin-DN model (left), the Twin-
+NN model (2nd column), correlation distance (“Correlation,” 3rd column), and
+Euclidean distance (“Euclidean,” right). The Twin-DN and Twin-NN models exhibit a
+drastically improved ability to separate positive from negative pairs, as evidenced
+by the strong distance separation (x-axis) between the positive and negative pair
+distributions. Euclidean and correlation distances fail to separate the same- from
+mismatched replicates for most MI pairs, except for those with minimal distances
+(e.g., the most phenotypically similar pairs). b Receiver operator characteristic
+plots. Twin-DN achieves the best area under the curve (AUC = 0.97), followed by
+Twin-NN (0.89). Performance dropped drastically for both learning models using
+MI time-series inputs smoothed with a Hanning window48 of size 11, particularly
+Twin-DN (from 0.97 to 0.78). Correlation and Euclidean distance were robust to
+Hanning smoothing. c Precision recall curves, showing trends consistent with (c).
+d A UMAP47 using the Twin-DN distances reveals extreme clustering with distinct
+phenotypic islands; as many drugs are unlikely to induce strong phenotypes in the
+ﬁsh, this was an unexpected and suspicious result. e We trained k-Nearest-Neighbor
+(kNN) classiﬁers using scikit learn63 on a separate high-replicate MI trace dataset of
+16 quality control drugs never used for training or model evaluation. For many
+drugs (e.g., haloperidol), the Twin-DN-based distance underperforms the zero-
+baseline deﬁned by kNNs using correlation distance. Twin-NN distance outper-
+forms correlation distance on a few drugs (e.g., tiagabine and lidocaine) and always
+matches or exceeds the Twin-DN model. Source data are provided in the Source
+Data File.
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+4
+An optimized experimental screening design
+To unequivocally control for within-plate positional confounding
+effects, we perform a second high replicate screen of NT-650, but this
+time with the treatments fully robotically randomized across plates
+and wells (“Methods”). We also include wells treated with a high dose
+of the anesthetic eugenol as a control7 baseline for lethality. We take a
+near-identical approach to pre-ﬁlter for drugs without effect as in the
+original screen, except that we use the random forest model to label
+the MI proﬁle into three possible bins: “active,” “inactive,” and “lethal”
+(“Methods”, Supplemental Fig. 1).
+We train new Twin-NN and Twin-DN models on this experimen-
+tally randomized NT-650 dataset (NT-650-revised). While the SNN
+models achieved slightly lesser performance on the randomized
+dataset than on the original non-randomized (NT-650-naive) well lay-
+out dataset (e.g., 0.84 vs. 0.89 AUROC for Twin-NN and 0.84 vs. 0.97
+AUROC for Twin-DN), their performance still dramatically exceeded
+that of correlation distance and Euclidean distance approaches (0.66
+and 0.62 AUROC, respectively). Striking differences in the distribution
+of Twin-NN and Twin-DN distances for the positive and negative pairs
+(Fig. 3a) agree with greater ROC-AUC and PRC-AUC performance
+(Fig. 3b, c). Fast-DTW, a popular dynamic time-warping approach for
+time series prediction that optimizes the alignment between time
+series50, marginally improves on Euclidean distance and falls short of
+correlation distance in classifying positive versus negative pairs.
+Training these baseline models on the NT-650-revised screen with
+computationally smoothed high-frequency components did not
+signiﬁcantly reduce performance, indicating the models no longer rely
+on high-frequency feature components.
+Another way of assessing model performance is by measuring its
+ability to identify replicates of a compound. In the ideal case, a model
+can identify all replicates for compounds that induce signiﬁcant
+behavioral responses. In practice, experimental replicates will often be
+ineffective for many reasons. However, the better a model performs,
+the more replicates across drugs it can identify. Although correlation
+distance identiﬁed one replicate for most drugs, it rarely identiﬁed
+three or more replicates, whereas Twin-NN did so frequently and
+sometimes picked up all 7–8 replicates (Fig. 3d). This effect is
+emphasized by the early plateauing of the cumulative count curve for
+correlation distance. The total cumulative count does not reach the
+total number of drugs for either method because no method perfectly
+identiﬁed all replicates for all drugs, some of which may have been
+inactive and thus indistinguishable from negative control (DMSO).
+Mapping a larval zebraﬁsh “behaviorome”
+Using the Twin-NN learned distance metric, we cluster the compounds’
+MI traces from the fully randomized NT-650 screen and visualize the
+resulting phenotypic landscape by UMAP47 (Fig. 4a). We observed
+deﬁned clustering and structure within this view, representing a
+behavior-based pharmacological map of 650 known human drugs in
+larval zebraﬁsh. Ineffective drugs populated the yellow region, while
+drugs inducing behavioral readout changes favored the violet region.
+The most robust phenotypes appeared towards the bottom of the plot,
+b.
+d.
+Receiver operating 
+characteristic curves
+Precision–recall curves
+c.
+Replicate identification
+ Twin-NN
+ Corr
+a.
+Fig. 3 | Metric learning operates actionably on a fully randomized screen. We
+investigate models trained on the second, fully randomized screen. a Separation of
+positive and negative motion index (MI) trace pairs from the fully randomized
+screen with Twin-NN (left), Twin-DN (2nd column), correlation (3rd column),
+euclidean (4th column), and Fast-DTW (right) distances. Assessed as in Fig. 2a, the
+revised deep learning models signiﬁcantly outperform correlation, euclidean, and
+fast-DTW distances. b Twin-NN and Twin-DN receiver operator characteristic per-
+formance is similar (AUC = 0.84 and 0.79, respectively) and signiﬁcantly exceeds
+correlation, euclidean, and fast-DTW (0.66, 0.62, and 0.64). Notably, models
+trained with and without Hanning smoothing no longer differ signiﬁcantly.
+c Precision recall curves are consistent with (b). d The Twin-NN model identiﬁes
+matched drug replicates more effectively than correlation distance, which typically
+starts to fail beyond one replicate. We compute an all-by-all distance matrix across
+NT-650 compounds at the individual replicate level and determine how many
+replicate wells of the compound appear within the top 50 most similar ranked wells.
+We plot the cumulative total of unique drugs (y-axis) versus the increasing count of
+identiﬁed replicates (x-axis). The y-axis maximum does not reach the total number
+of NT-650 compounds because neither method perfectly ranks all replicates within
+the top 50 most phenotypically similar ranked wells for all NT-650 compounds.
+Indeed, some compounds are inactive, with replicates indistinguishable from
+DMSO. Source data are provided in the Source Data File.
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+5
+falling in the negative value range for principal component 2 (y-axis) of
+the UMAP. When we colored the 325-compound subset predicted to
+have strong phenotypes (“Methods”) by the generic functional classes
+corresponding to plate-wide assignments by the chemical vendor (e.g.,
+“opioids”, “serotonergic ligands”), we observed only a weakcorrelation
+with the position in the UMAP (Supplementary Fig. 16). This was
+unsurprising,
+as
+these classes
+do
+not
+account
+for
+the
+poly-
+pharmacology of many neuroactive compounds.
+One qualitative way to assess the behaviorome layout is whether
+speciﬁc drugs with similar known MOAs and indications group toge-
+ther. We highlight several such drugs in this plot with labels. The SSRIs
+ﬂuoxetine and paroxetine clustered (labels 2,13) but distinctly sepa-
+rated from the tricyclic antidepressant clomipramine (label 4),
+although these shared a broader neighborhood as expected. This
+observation is consistent with the intuition that behaviors based on
+different classes of antidepressants should be more closely related to
+each other than to other classes of neuroactive drugs, such as stimu-
+lants. The dopamine D2/3 agonizts lisuride and PD 128,907 also
+appeared in a similar region of space (labels 10,12). Antipsychotics
+clozapine and mianserin appeared closely in phenotypic space (labels
+1,7). Through the lens of correlation distance instead (Supplementary
+Fig. 3), we see some similar high-level patterns but less behaviorome
+structure. For example, mianserin and loxapine are no longer neigh-
+bors; indeed, mianserin (label 1) appears closer to paroxetine (label 2)
+than to loxapine (label 7). In other words, correlation distance places
+an antipsychotic closer to an SSRI than another antipsychotic, sug-
+gesting a lower clustering quality based on this region’s canonical
+MOAs and indications.
+Model generalization to an orthogonal library of diverse drug-
+like compounds
+We test the ability of the machine learning model to generalize to a
+library of diverse drug-like compounds from the DIVERSet, which had
+been screened months before the NT-650 set. The prior screen con-
+tained compounds with less than 0.3 Tanimoto Similarity, on average,
+to their closest match in NT-650 (Supplementary Fig. 14). Its goal was
+neuroactive compound discovery rather than quality control or model
+training; thus, it traded fewer replicates than NT-650 for greater
+compound diversity. We previously used a similar library to discover
+drug-like compounds that cause paradoxical excitation in larval
+zebraﬁsh10,28,29. In that study, we performed the phenotypic screen with
+the DIVERSet library, and the resulting MI traces were compared (using
+correlation distance) against a reference drug, etomidate, that con-
+sistently induced a strong phenotype in the larval zebraﬁsh.
+Here, we investigate if the learned distance model outperforms
+correlation distance in identifying drug-like compounds from the
+DIVERSet library that cause similar phenotypes. Instead of focusing on
+a single known reference drug, we calculate a distance matrix for every
+Fig. 4 | A learned phenotypic distance identiﬁes islands of drugs by protein
+target proﬁle that correlation distance cannot. We investigate how well the
+learned phenotypic distance meaningfully clusters drugs using a UMAP47 on Twin-
+NN distances between the average time series across all replicates of each drug of
+the fully randomized NT-650 screen. Labeled example drugs represent anchor
+points across the phenotypic landscape. Dot color changes by phenotype strength
+asdetermined by a separate random forest classiﬁer employed earlier in the dataset
+construction process (“Methods”). A UMAP on correlation distances of the same
+data (Supplementary Fig. S3) fails to form meaningful phenotypic clusters. Source
+data are provided in the Source Data File.
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+6
+known compound in the NT-650 set against every compound in the
+DIVERSet library. Figure 5a shows an example of the top 5 compounds
+matching ﬂuoxetine’s phenotype. Evaluating performance in this
+context was challenging, as the diverse drug-like compounds lack
+known bioactivity ground-truth labels.
+As one means of assessment, we use an established systems
+pharmacology tool, the similarity ensemble approach (SEA25), to
+predict MOAs for all DIVERSet compounds from their chemical
+structures alone and compare these predictions against the estab-
+lished MOAs of NT-650 compounds that were their closest neigh-
+bors in the learned distance-metric space (see “Methods”). While
+SEA predictions are not perfect, they illuminate an otherwise dark
+MOA landscape of chemical matter. In a “phenosearch” approach,
+we rank-order and select the top 500 DIVERSet compounds by
+phenotypic distance to each known drug using correlation distance
+versus the Twin-NN models.
+Fig. 5 | Learned distance is a good proxy for the target bioactivity proﬁle of
+DIVERSet compounds. Assessed in a scaffold-agnostic screening paradigm, we
+compare motion index (MI) traces of NT-650 query compounds against a screened
+library of diverse compounds (Chembridge DIVERSet) using the Twin-NN learned
+distance and correlation distance versus a random baseline wherein the matched
+traces are randomly selected. a As an example, the ﬂuoxetine MI trace (purple)
+from the NT-650 agrees well with the top 5 matched library compound traces (gold)
+ranked by Twin-NN distance. All time series in this plot are scaled to the minimum
+and maximum of the dataset (0 and 6750 MI units, respectively), and the y-axis is
+plotted on this normalized 0 to 1 scale. b We use a separate chemical informatics
+method, the Similarity Ensemble Approach (SEA25,26), to assess the library com-
+pound hits. Ranked by the similarity of their phenotypes to drugs from the NT-650
+screen, we would expect that the likelihood of SEA target proﬁles between a query
+(NT-650) and its closest-match library (DIVERSet) compounds will increase with the
+quality of the phenotypic distance metric. “Hits” (y-axis) are the number of
+DIVERSet compounds in a given sample that match their separate SEA proﬁles.
+“Sample” (x-axis) is the percentage of the DIVERSet library examined, where the
+analysis is limited to the top 500 matches from the library. The learned distance
+metric enriches for SEA hits better than correlation and the random baseline across
+the entire range of the screen. The plot uses a conﬁdence interval of 95% via the
+seaborn lineplot function. c Similar to (b); but for speciﬁc NT-650 compounds
+selected by phenotypic strength (see “Methods”). Learned distance outperforms
+correlation and random distance, as with pindolol, imetit, and chlorpromazine.
+Correlation distance has signiﬁcantly better enrichment for only one NT-650
+compound, MDL 72832 (4th row, 4th column in grid plot). All subplots use a con-
+ﬁdence interval of 95% via the seaborn lineplot function. Source data are provided
+in the Source Data File.
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+7
+We observe a striking enrichment for known-target MOAs for the
+Twin-NN distance over correlation distance (Fig. 5b, d) based on the
+phenotypic associations for these diverse drug-like compounds. Twin-
+NN identiﬁes more DIVERSet compounds with similar MoAs to the
+drug queries than correlation distance (Fig. 5b). Unexpectedly, ran-
+dom selection (as a null hypothesis; Fig. 5b, violet line) typically out-
+performs
+correlation
+distance
+at
+identifying
+shared
+MOAs,
+highlighting the limitations of correlation distance as a metric for time-
+series data such as MI. We also compare distance metrics by examining
+how often negative control wells match up with known drugs. With
+correlation distance, negative controls frequently rank in the top-500
+“phenosearch” list for known drugs, but not by Twin-NN distance
+(Supplementary Fig. 4a, b). These ﬁndings suggest that the Twin-NNs
+are more effective than correlation distance at discovering DIVERSet
+compounds that induce similar phenotypes to known drugs and
+improve scaffold-hopping and neuroactive drug discovery for diverse
+drug-like chemical matter.
+We also asked how the phenotypic space of the DIVERSet com-
+pares to the NT-650. We computed a combined UMAP (all compounds
+from NT-650 combined with DIVERSet), colored by the dataset the
+compounds came from (Supplementary Fig. 17). Strikingly, there is a
+large overlap between the blue (NT-650) and orange (DIVERSet)
+compounds, considering that the models were not trained on
+DIVERSet data. Despite this out-of-domain setting, on new compounds
+and behavioral data, the models usefully associate drug-like com-
+pounds from the DIVERSet with known compounds in the NT-650 set.
+This overlap supports the “phenosearch” approach, as most NT-650
+query compounds have many phenotypically-similar DIVERSet com-
+pound neighbors in the map. Some regions have a higher density of
+NT-650 compounds and vice-versa, suggesting behaviors more com-
+monly appear on one screen versus the other. Further studies might
+focus on selected sub-regions with DIVERSet density higher than
+NT650 to explore phenotypic space unexplored in the NT-650 phe-
+notypic screen.
+Experimental validation of learned-distance metric in ﬁnding
+diverse drug-like compounds with shared pharmacology
+Since the Twin NN models consistently enriched for predicted MOAs
+of DIVERSet compounds shared with known compounds (Fig. 5b), we
+sought to experimentally test these learned-distance predictions pro-
+spectively in a scaffold-hopping drug-discovery scenario. We selected
+12 neuroactive drugs from diverse regions in the behaviorome UMAP
+(Fig. 4a). We purchased the top 5 DIVERSet compounds ranked by
+Twin-NN distance for each drug (60 compounds in total, of generally
+low Tanimoto similarity to their query drug; Supplementary Fig. 15).
+We hypothesized that the DIVERSet compounds acted through the
+same protein targets as those known for the drugs that the DIVERSet
+compounds mimicked phenotypically.
+This was a straightforward logic in some cases: for example,
+IMETIT is a human Histamine H3 agonist with activity at Histamine H4
+51.
+We purchase and test the ﬁve DIVERSet compounds most closely
+ranked by the Twin-NN distance for direct binding to human Histamine
+H3 and H4, discovering binding of three of those compounds to H3, at
+1.1 µM, 0.99 µM, and 2.7 µM (binding afﬁnity Ki), and one of them to H4
+at 5.4 µM (Ki) (Fig. 6c). In other cases, the choice of test targets was
+more complex, such as for the tricyclic antidepressant clomipramine,
+an inhibitor of serotonin and norepinephrine transporters with addi-
+tional activity against other GPCRs, including serotonergic, dopami-
+nergic, adrenergic, and histaminergic receptors. Furthermore, a
+compound’s most potent activity in humans may not always account
+for its observed behavior in zebraﬁsh. Off-target or side activities
+might cause the most pronounced response in the ﬁsh; this is an
+inherent limitation in the cross-organism study’s design for poly-
+pharmacological drugs. Clomipramine’s phenotypic location being
+closer to chlorpromazine than to the SSRIs ﬂuoxetine and paroxetine
+in the behaviorome (Fig. 4a), illustrates one such case. In humans, the
+clinical timescales involved in serotonin reuptake for behavioral
+modiﬁcation are much longer52 than the 1 h treatment duration used in
+our phenotypic screening, so we reasoned that the DIVERSet com-
+pounds phenomatched with ﬂuoxetine might have acted through a
+subset of the targets it shares with chlorpromazine, such as serotonin
+2B (5-HT2B)53,54. Accordingly, two of clomipramine’s top 5 pheno-
+matched DIVERSet compounds achieve afﬁnity (Ki) of 33 nM and
+1.9 µM Kis at 5-HT2B in prospective testing (Fig. 6c).
+We test 216 new compound-target pairs based on 60 unique
+compounds and 17 unique protein targets. Of these, 8.3% are active
+at 10 µM or better Ki (Fig. 6a, b and Supplementary Table 2). IMETIT
+has the highest hit rate; 3 of its top 5 DIVERSet compounds have at
+least 50% inhibition at 10 µM or better against at least one of the
+targets; in the dose-response assays, two yields Ki < 10 µM, and the
+most potent, compound 58040, has a Ki = 0.99 µM for Histamine H3.
+Overall, 7 of the 12 drug queries yield at least one DIVERSet hit for a
+58% per-query hit rate; this corresponded to a 22% hit rate on a per-
+compound basis. All the dose-response binding curves from the
+secondary
+assays
+for
+the
+hits
+are
+provided
+(Supplementary
+Figs. 5–13). Where the tests failed, we may have picked the wrong
+subset of a query drug’s protein targets to test against its DIVERSet
+compounds. For instance, clomipramine has known activities at a
+substantially wider range of targets than we could empirically test
+within the scope of this study, and this may account for mechanisms
+of action for those of its DIVERSet compounds that did not bind
+to 5-HT2B.
+Learned phenotypic distances enable chemical scaffold hopping
+Despite strikingly different chemical structures, the learned distance
+metric identiﬁed compounds that induced a similar behavioral phe-
+notype in the case studies. We explored this idea further by comparing
+ECFP455 (chemical ﬁngerprint Tanimoto distance) versus Twin-NN
+phenotypic distance for all possible combinations of two drugs from
+the randomized highly-replicated library used for training (Fig. 7). Here
+we deﬁne four quadrants: top-left (low Tanimoto distance, high Twin-
+NN distance), top-right (high Tanimoto and high Twin-NN), bottom-
+left (low Tanimoto and low Twin-NN), and bottom-right (high Tani-
+moto and low Twin-NN). Of potential interest in drug discovery efforts,
+the bottom-right region (dark purple) highlights where the commonly
+used cheminformatic means of comparing two molecules fail, but the
+Twin-NN distance succeeds.
+Tanimoto chemical-structure distance does not correlate with
+phenotypic distance, except for isolated cases in the lower left (Fig. 7).
+Most pairs have Tanimoto chemical-structure distances greater than
+0.4, despite sometimes inducing similar phenotypes through puta-
+tively shared MOAs. Dot size reﬂects observed MOA similarity, com-
+puted as a separate Tanimoto distance between the vectors of known-
+target activities for the two drugs derived from the ChEMBL 23 phar-
+macology database51, “Methods”). The highest concentration of high-
+target-similarity compound pairs (large dots) favors regions where
+phenotypic distance is low, and chemical structure distance is average
+(0.3–0.7). This enrichment of known-MOA matches in the presence of
+good (low) Twin-NN phenotypic distance pairs is consistent with
+learned phenotypic distance predicting shared biological mechanisms.
+We hone in on these known-drug pairs with several thresholds (> 0.2
+ChEMBL target-activity similarity, a chemical-structure distance > 0.5,
+and a Twin-NN phenotypic distance < 0.3), which yields 51 known-drug
+pairs that we rank by biological target similarity (full table provided in
+Supplementary Table 3). We note that there are two seemingly iden-
+tical rows in the table for Clozapine with Chlorpromazine since there
+were two unique occurrences of Clozapine in the NT-650 plates pro-
+vided by the supplier. The drugs in the top pair (7-OH-DPAT and
+ropinirole) are potent Dopamine D3 agonizts and antiparkinsonian
+agents. Thus our Twin-NN phenotypic distance associates known
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+8
+drugs with a shared mechanism of action but high chemical structure
+distance, highlighting its usefulness for scaffold hopping.
+On the other hand, some pairs of drugs with high phenotypic
+similarity and middling structural similarity lack shared MOAs (small
+dots), which suggests these drugs induce similar phenotypic effects in
+larval zebraﬁsh through different, parallel, or unstudied MOAs. These
+pairs correspond to a region of the known drug space of particular
+interest for drug discovery, and further studies might explore why
+these pairs of known drugs are linked phenotypically in our study
+through potentially underexplored mechanisms.
+Discussion
+Deep metric learning models trained on high-replicate phenotypic
+larval zebraﬁsh screens identify pairs of drug-like compounds despite
+experimental variability, group human drugs based on zebraﬁsh effect,
+ﬁnd connections among compounds that traditional chemical data
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+9
+analyses fail to make, and group structurally distinct compounds by
+biological MOAs. These observations support using metric learning on
+large phenotypic screening datasets for drug discovery and scaffold
+hopping. Moreover, our ﬁrst implementation of these complex
+learned-distance models fell prey to shortcut learning41, wherein they
+exploited experimental artifacts in the screening dataset to achieve
+misleadingly high performance that did not generalize to similar but
+independent zebraﬁsh screens. This deep mis-learning was nuanced
+and eluded conventional cross-validation, soundness checks, and
+exploratory data analysis tests. We believe the strategies described
+here to detect, correct, and stress-test the experimental screening
+datasets and revised models will ﬁnd use in other studies that combine
+complex biological data with deep learning models.
+Straightforward measurement methods like correlation, Eucli-
+dean, or dynamic time-warping distance fall short when identifying
+drugs whose replicates induced perceptible but subtle changes in
+zebraﬁsh behavior (Fig. 3a, b). The main issue is that these methods
+cannot differentiate between irrelevant random variations and mean-
+ingful changes that illuminate the underlying pharmacology. Con-
+ventional metrics take all time points into account without weighting
+their importance. On the other hand, contrastive metric learning
+models disregard irrelevant parts of the data (features) and con-
+centrate on the segments that display signiﬁcant behavioral differ-
+ences. For instance, clozapine- and DMSO-treated zebraﬁsh exhibit
+periods of reduced motion (Fig. 1d, time points 600–700). Clozapine
+can look like a negative control by standard correlation methods,
+Fig. 6 | Prospective experimental validation against human receptors in vitro.
+Using a cheminformatic protein target prediction approach (SEA25,26) with the Twin-
+NN phenotypic distance, we make the mechanism of action predictions for NT-650
+compounds and test them experimentally by radioligand binding assays. a Left:
+Top 5 DIVERSet compounds (represented by their motion index time-series, rows
+2–6, gold) matched by Twin-NN distance to the NT-650 drug Imetit (top row,
+purple). Right: Diagram of this “phenoblast” approach. NT-650 drugs are columns.
+DIVERSet compounds are rows, ordered by Twin-NN phenotypic distance. Sup-
+plemental Table 1 maps compound IDs to supplier IDs. All time series in this plot are
+scaled to the minimum and maximum of the dataset (0 and 6750 MI units,
+respectively), and the y-axis is plotted on this normalized 0 to 1 scale. b Primary
+radioligand binding assays (binding inhibition at 10 µM, %) for 7 known drugs. The
+heatmap shows 5 DIVERSet compounds selected for testing (rows), with the SEA-
+predicted human protein targets as columns. c Same as (b) for secondary assays
+(dose-response radioligand binding experiments). d Representative dose-response
+curves from (c) for selected DIVERSet compounds tested against two human tar-
+gets: the histamine H3 receptor (left) and the 5-hydroxytryptamine 2B receptor
+(right). Results (mean ± SEM) from a minimum of 3 independent assays (each in
+triplicate) were normalized, pooled, and ﬁtted to the built-in one-site competition
+binding function in the GraphPad Prism V10.Source data are provided in the Source
+Data File.
+ChEMBL 
+Target Profile 
+Similarity
+Time (seconds)
+MI Scaled
+Time (seconds)
+MI Scaled
+MI Scaled
+Time (seconds)
+Time (seconds)
+MI Scaled
+Clozapine
+WB 4101 HCl
+SIB 1757
+BD 1047 2HBr
+BD 1063 2HCl
+Yohimbine HCl
+Bromocriptine 
+Mesylate
+BD 1047 2HBr
+Tanimoto Distance
+Phenotypic Distance
+Fig. 7 | Phenotypic screening with learned distance reveals scaffold hopping
+and drug prospecting opportunities. Learned phenotypic distance (Twin-NN,
+y-axis) complements conventional chemical informatic distance based on chemical
+structure (Tanimoto coefﬁcient on ECFP4 circular ﬁngerprints, x-axis). The scat-
+terplot contains all pairwise combinations of 83 NT-650 compounds (each pair is a
+dot), calculated from their average MI traces and chemical structures. Where the
+phenotypic distance is low (< 0.3) but the Tanimoto distance is average or high
+(> 0.4), molecular structure dissimilarity misses neuroactive similarity. We illustrate
+each quadrant with examples. Bottom left: low Tanimoto and phenotypic distance
+(both metrics agree that molecules are similar). Bottom right: low phenotypic
+distance and high Tanimoto distance (scaffold hopping opportunity). Top-left: low
+Tanimoto distance, but high phenotypic distance (classic “activity cliff”: disparate
+activity despite high structural similarity). Top right: high Tanimoto and pheno-
+typic distances (both metrics agree that molecules are unrelated). Dot size reﬂects
+the Tanimoto similarity between the target proﬁles (as binary vectors) of the
+compound pairs. All time series in this plot are scaled to the minimum and max-
+imum of the dataset (0 and 6750 MI units, respectively), and the y-axis is plotted on
+this normalized 0 to 1 scale. Source data are provided in the Source Data File.
+Article
+https://doi.org/10.1038/s41467-024-54375-y
+Nature Communications|   (2024) 15:9955 
+10
+which attribute equal importance to periods of inactivity and activity.
+In an extreme example, correlation distance scores two traces as
+almost identical when comparing a drug that sedates the ﬁsh except
+for a sudden movement spike versus a lethal control such as eugenol.
+However, a metric learning model learns that sudden motion spikes
+matter in differentiating drugs.
+At a more global level, we construct a “behaviorome” - a visual
+map of drug similarity based on zebraﬁsh behavior. This landscape,
+created by pairing zebraﬁsh phenotype with an appropriate distance
+metric, reveals relationships between known neuroactive drugs and
+identiﬁes underexplored areas with potential for drug discovery. From
+high-throughput behavioral screening data and the learned distance
+metric, we link human drugs directly to the in vivo vertebrate beha-
+viors they induce. Classical informatic methods falter on diverse che-
+mical structures, as they rely on the necessity of the similar property
+principle of chemical informatics56. This is particularly true at activity
+cliffs57, where slight chemical structure changes drastically affect
+bioactivity. Phenotypic screening, using behavior, circumvents these
+limitations. Different compounds triggering similar zebraﬁsh beha-
+viors may interact with the same targets and pathways. The learned
+distance metric complements raw structural similarity (Fig. 7), under-
+lining traditional cheminformatics limitations and opportunities for
+drug discovery and scaffold hopping.
+We attempted to automate the discovery of diverse drug-like hits
+for disease-related mechanisms and pathways in the CNS. For new
+compounds, such as those from the Chembridge DIVERSet library, the
+Similarity Ensemble Approach25,26,57 predicted unknown experimental
+MOAs. The metric learning models identiﬁed library compounds with
+marked enrichment in their predicted MOAs to the MOAs of known
+drugs, indicating pharmacological similarities (Fig. 5b, d). Instead of
+relying on in silico validation, we experimentally tested the predicted
+MOAs in vitro via prospective radio-ligand binding assays. We found
+that neuroactive drugs successfully linked to DIVERSet library com-
+pounds by phenotype and MOA 58% of the time. This hit rate sur-
+passed early drug discovery hit rates using high throughput screening
+(HTS, 0.01–0.14%) or virtual screening (VS, 1–40%)58. Unlike typical
+HTS or VS hits, behavioral hits may offer more robust lead series
+starting points because they, by deﬁnition, already trigger an in vivo
+effect in zebraﬁsh and show animal tolerance. Many in vitro hits fail
+in vivo due to absorption, distribution, metabolism, excretion (ADME)
+issues, and pharmacodynamic/kinetic properties such as blood-brain
+barrier penetration are crucial for neuroactive drugs. However, deep
+metric learning on behavioral screening data quickly identiﬁed hits
+that could circumvent these issues.
+In an unintended but instructive project outcome, we grappled
+with the ﬁrst metric learning models silently exploiting shortcut
+learning on the original dataset, which had not used randomized plate
+layouts. Despite passing conventional soundness check analyses,
+including label randomization and scrambling input features (y- and x-
+scrambling), the learning models exploited subtle experimental data-
+set artifacts. Pre-determined plate layouts from drug suppliers might
+inadvertently teach the models positional effects by exploiting slight
+irregularities in the experimental setup, such as minor differences in
+distance to directional light and sound sources (Fig. 1a). These effects,
+imprinted in high-frequency components of time-series traces, were
+imperceptible to humans but perceptible to deep learning models.
+This generalizability limitation was not an overﬁtting issue and could
+not be rectiﬁed by reﬁning training-test set splits, such as scaffold-
+splitting drugs or time-series trace clustering. Consequently, we re-ran
+the full-scale experimental screen with robotically randomized plate
+layouts on the same compound library to assess this challenge
+unequivocally. Indeed, models trained on the original dataset dete-
+riorated when we computationally smoothed high-frequency compo-
+nents of the motion index traces (Fig. 2b), but those trained on the ﬁt-
+to-purpose randomized screen remained unaffected (Fig. 3b). While
+we might instead have attempted to train generative adversarial net-
+works (GANs)59 to remove shortcut signals computationally60, complex
+models such as GANs can be brittle, and we sought a more deﬁnitive
+analysis. As an intriguing challenge, follow-up studies by those inter-
+ested in mitigating shortcut learning might ﬁnd value in comparing
+new algorithmic versus the experimental plate-effect removal strate-
+gies on the

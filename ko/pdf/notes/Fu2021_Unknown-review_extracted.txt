@@ -1,0 +1,828 @@
+Review Article
+https://doi.org/10.1038/s41563-020-00829-9
+1Department of Mechanical Engineering, University of Michigan, Ann Arbor, MI, USA. 2Department of Biomedical Engineering, University of Michigan, Ann 
+Arbor, MI, USA. 3Department of Cell and Developmental Biology, University of Michigan Medical School, Ann Arbor, MI, USA. 4Department of Biosciences, 
+Rice University, Houston, TX, USA. 5Department of Bioengineering, Rice University, Houston, TX, USA. 6Laboratory of Stem Cell Bioengineering, Institute of 
+Bioengineering, School of Life Sciences and School of Engineering, École Polytechnique Fédérale de Lausanne, Lausanne, Switzerland. 7Institute of Chemical 
+Sciences and Engineering, School of Basic Science, École Polytechnique Fédérale de Lausanne, Lausanne, Switzerland. ✉e-mail: matthias.lutolf@epfl.ch; 
+aryeh.warmflash@rice.edu; jpfu@umich.edu
+T
+he development of a multicellular organism from a single 
+fertilized egg is a brilliant triumph of evolution that has fas-
+cinated generations of scientists (Box 1). Understanding our 
+own development is of particular fundamental and practical inter-
+est; however, it poses a unique set of technical and ethical challenges. 
+Our current knowledge of embryonic development is derived from 
+a number of animal species, chosen because they are convenient to 
+study and amenable to experimental manipulation or genetic analy-
+sis1. These studies have revealed developmental principles (Box 2), 
+and signalling and transcriptional networks that underlie cell fate 
+patterning and tissue morphogenesis. In particular, most of our 
+knowledge of mammalian development derives from the mouse 
+model. However, it is becoming evident that there are morphologi-
+cal and genetic differences between mice and humans that make 
+cross-species comparisons problematic2.
+Knowledge of human embryogenesis, which is critical for 
+assisted reproductive technologies and prevention of pregnancy 
+loss, birth defects and teratogenesis (Box 3), should ideally be 
+learned from studying the human embryo per se; however, such 
+studies have been challenging due to limited access to and bioethical 
+constraints on human embryo specimens. Excess pre-implantation 
+human embryos generated in in vitro fertilization (IVF) clinics are 
+available for research3,4; however, once a human embryo implants 
+into the uterus, subsequent development is hidden from direct 
+observation. Recent progress in prolonged in vitro culture of IVF 
+human embryos has opened the door for genetic and molecu-
+lar studies of human embryos directly5–7. However, international 
+guidelines prohibit in vitro culture of human embryos beyond 14 
+days post-fertilization (embryonic day 14, E14.0) or reaching the 
+onset of primitive streak (PS) development (‘the 14-day rule’)8,9, 
+which marks the outset of gastrulation. The bioethical regulation of 
+human embryo culture has limited studies of IVF human embryos 
+for understanding post-implantation human development. There is 
+notable progress in studying non-human primate (NHP) monkey 
+embryos10–12, whose developments are similar to humans. However, 
+NHP monkey models remain costly, are difficult to modify geneti-
+cally, and have their own ethical challenges.
+Recent advances in mammalian embryology, stem cell biol-
+ogy, organoid technology, and bioengineering have contributed 
+to a considerable interest in the development of multicellular 
+systems based on emergent self-organization and tissue pattern-
+ing. Importantly, different models of the mammalian conceptus 
+have been developed using mouse and human stem cells13–30. This 
+emerging field aims to use stem cell cultures to create organized 
+embryo-like structures (or embryoids), whose development and 
+architecture bear remarkable similarities to their in vivo coun-
+terparts. Embryoids are distinct from organoids, as organoids 
+are organized multicellular structures that mimic the develop-
+ment, regeneration and homeostasis of a single tissue or organ. 
+In contrast, embryoids aim to model integrated development of 
+the entire conceptus or a considerable portion thereof. In gen-
+eral, embryoids have a more reproducible cellular organization 
+and architecture than organoids, as bioengineering approaches 
+are commonly deployed to guide their development and culture 
+time is limited to a few days. In addition, the stem cells used in 
+embryoids have been well established and their cultures are usu-
+ally robust. This Review discusses the developmental principles 
+manifested in the development of embryoids and their appli-
+cations for advancing human embryology (particularly at the 
+post-implantation stages) and reproductive and regenerative 
+medicine. Bioengineering tools used for controlling multicellular 
+interactions and self-organization critical for embryoid develop-
+ment are highlighted. We conclude with a discussion of impor-
+tant next steps to leverage advanced bioengineering controls of 
+multicellular interactions to promote the continuous, progressive 
+development of this exciting nascent field.
+Stem-cell-based embryo models for fundamental 
+research and translation
+Jianping Fu   1,2,3 ✉, Aryeh Warmflash   4,5 ✉ and Matthias P. Lutolf   6,7 ✉
+Despite its importance, understanding the early phases of human development has been limited by availability of human sam-
+ples. The recent emergence of stem-cell-derived embryo models, a new field aiming to use stem cells to construct in vitro 
+models to recapitulate snapshots of the development of the mammalian conceptus, opens up exciting opportunities to promote 
+fundamental understanding of human development and advance reproductive and regenerative medicine. This Review provides 
+a summary of the current knowledge of early mammalian development, using mouse and human conceptuses as models, and 
+emphasizes their similarities and critical differences. We then highlight existing embryo models that mimic different aspects 
+of mouse and human development. We further discuss bioengineering tools used for controlling multicellular interactions and 
+self-organization critical for the development of these models. We conclude with a discussion of the important next steps and 
+exciting future opportunities of stem-cell-derived embryo models for fundamental discovery and translation.
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+132
+Review Article
+NaTuRe MaTeRials
+Mammalian development as a reference framework
+The development of embryoids, like that of embryos, involves the 
+emergence of organized multicellular structures, through coor-
+dinated cellular processes including pattern formation, morpho-
+genesis, cell differentiation and growth. Here we first discuss the 
+principles of early mouse and human development before turning 
+to how these are manifested in embryoids.
+During early development, both mouse and human embryos 
+develop from a zygote and proceed through recognizable stages of 
+morula, blastula, gastrula, neurula and organogenesis (Fig. 1, Box 
+1, Box 4). The overall programme of pre-implantation development 
+from a zygote to a blastocyst is conserved between mice and 
+Box 2 | Classic developmental concepts and principles
+Developmental potency. Developmental potency describes the 
+ability of a cell in the embryo to differentiate into other cell types. 
+There is a continuum of developmental potency following pro-
+gressive development of the embryo, from totipotency, pluripo-
+tency, multipotency, oligopotency and finally unipotency.
+Pattern formation. Pattern formation is the process by which 
+initially equivalent cells in a developing tissue acquire identities 
+that lead to a well-ordered spatial pattern of cell activities. Pattern 
+formation can involve positional information or cell sorting (see 
+below).
+Positional information. The concept of positional information 
+proposes that cells in a developing tissue acquire positional 
+values as in a coordinate system, which they interpret by 
+developing in particular ways to give rise to spatial patterns. 
+Positional information often involves diffusion of morphogens, 
+leading to signalling gradients and differential gene expression 
+in a morphogen concentration-dependent manner. A key feature 
+of positional information being the basis for pattern formation is 
+that there is no pre-pattern in the developing tissue.
+Cell sorting. Pattern formation in a developing tissue can initiate 
+from the specification of different cell types in the tissue in a 
+salt-and-pepper fashion, which is followed by sorting of different 
+cell types into distinct domains from where different tissues are 
+formed. Cell sorting involves a morphogenetic process during 
+which individual cells exchange neighbours, increasing the 
+number of homotypic contacts and decreasing the number of 
+heterotypic contacts.
+Symmetry breaking. Symmetry breaking is the process by 
+which an initially homogeneous system acquires an asymmetry 
+along an axis. While external cues can induce or assist symmetry 
+breaking, asymmetries can emerge spontaneously without such 
+input, guided by self-organization (see below).
+Self-organization. Self-organization, as a non-equilibrium 
+process, can be defined as the formation of complex patterned 
+structures from units of less complexity by collective, nonlinear 
+interactions, without referring to an external blueprint or 
+template. These local internal interactions typically form 
+feedback loops, thereby conferring robustness to the system. 
+Other common features found in self-organizing systems are 
+nonlinearity, symmetry breaking, and the emergence of patterns 
+through amplifications of stochastic fluctuations.
+Embryonic induction. Embryonic induction is an interaction 
+between one (inducing) tissue and another (responding) tissue, 
+as a result of which the responding tissue undergoes a change in 
+its direction of differentiation.
+Signalling centre. A localized region of the embryo that exerts 
+a special influence on surrounding cells, usually by means of 
+secreted signalling molecules, and thus instructs how those cells 
+develop.
+Organizer. A signalling centre that directs the development of 
+the whole embryo or of part of the embryo.
+Community effect. Community effect describes cell–cell 
+communication among a group of nearby cells in a developing 
+tissue, which is necessary for them to maintain coordinated 
+behaviours.
+Morphogenetic 
+regulation. 
+Tissue-scale 
+morphogenetic 
+changes, including changes in cell shape, number, position and 
+force, can work in concert with classic developmental signalling 
+events mediated by diffusible signals to regulate gene expression 
+and cell fate specification.
+Box 1 | Glossary
+Conceptus. The products of conception at all stages of develop-
+ment from zygote to birth. These include the embryo proper, the 
+fetus, the placenta and all extraembryonic membranes. The term 
+‘embryo proper’ refers to those parts of the conceptus that will 
+form the new body and excludes extraembryonic tissues. Often, 
+the terms ‘embryo’ and ‘conceptus’ are used interchangeably.
+Pre-implantation development. The first few days of 
+development, from fertilization to implantation, during which 
+the conceptus travels down the oviduct toward the uterus. It 
+encompasses the first 7–9 days after fertilization in humans.
+Morula. The very early stage in a conceptus when cleavage has 
+resulted in a solid ball of cells.
+Implantation. The process of attachment and invasion of the 
+conceptus to the uterine tissues that occurs around day 7–9 
+after fertilization in humans. Implantation establishes the fetal–
+maternal interface leading to later placental development.
+Blastula and blastocyst. The stage of the conceptus prior to 
+implantation is termed blastula. At this stage, the conceptus is 
+called a blastocyst.
+Peri-implantation development. The development of the 
+conceptus in the uterine tissues prior to gastrulation.
+Gastrula and gastrulation. Gastrulation describes the process 
+by which the three definitive germ layers of the embryonic 
+compartment of the conceptus are formed. Gastrulation begins 
+around day 14 in humans. The gastrulation stage conceptus is 
+termed gastrula.
+Primitive streak. The embryonic structure that breaks radial 
+symmetry by establishing the anterior–posterior axis and 
+establishes bilateral symmetry (alignment of equivalent 
+structures on both sides of the anterior–posterior axis), the site 
+of gastrulation, and the formation of the germ layers. In the 
+human embryo, the primitive streak appears around day 14 after 
+fertilization.
+Neurula and neurulation. Neurulation describes the process 
+by which the neural tube is formed from the ectodermal neural 
+plate. The neural tube will give rise to the brain and spinal cord. 
+The neurulation stage conceptus is termed neurula.
+Organogenesis. The development of specific organs in the 
+embryo such as the brain and heart. Organogenesis starts soon 
+after gastrulation. In humans, organogenesis commences during 
+the fourth week after fertilization.
+Embryonic and fetal stages. The embryonic stage begins with 
+the division of the zygote and encompasses the development of 
+the body plan and formation of the organs. This is followed by 
+the fetal stage, during which growth and maturation of tissues 
+and organs occurs. In humans, the fetal stage begins during the 
+ninth week after fertilization and continues to birth.
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+133
+Review Article
+NaTuRe MaTeRials
+humans, leading to the formation of the blastocyst, containing an 
+outer trophectoderm (TE) layer surrounding a cavity (blastocoel) 
+and an inner cell mass (ICM) on one side of the cavity31,32 (Fig. 1, 
+Box 4). As the blastocyst develops, the ICM becomes further segre-
+gated into two cell populations: the pluripotent epiblast (EPI) and 
+primitive endoderm (PE; or hypoblast in human)31,32.
+The timing of blastocyst implantation differs between mice and 
+humans (E5.0 in mouse and E7.0 in human). Furthermore, morpho-
+genesis and lineage developments during early post-implantation 
+mouse and human development show distinct features2,33 (Fig. 1, 
+Box 4). Mouse development from E5.0–E6.5 leads to the formation 
+of a cup-shaped EPI juxtaposed with TE-derived extraembryonic 
+ectoderm (ExE), enclosing the pro-amniotic cavity. Concurrently, 
+the PE forms the visceral endoderm (VE) that envelops both 
+EPI and ExE. In contrast, soon after human blastocyst implanta-
+tion, while the EPI undergoes epithelization and lumenogenesis 
+to form the pro-amniotic cavity5–7, EPI cells closer to invading TE 
+cells become specified into the amniotic ectoderm (AM)34, with 
+remaining pluripotent EPI cells forming the embryonic disc. Thus, 
+in pre-gastrulation human embryo, the pro-amniotic cavity is sur-
+rounded by a continuous epithelium with AM cells on one side and 
+EPI cells on the other.
+Studies of mouse gastrulation support the importance of extra-
+embryonic tissues35,36 (Fig. 1, Box 4). In particular, regional pattern-
+ing of VE in pre-gastrulation mouse embryo leads to a gradient of 
+WNT and NODAL signalling and the establishment of the anterior–
+posterior (A–P) axis of the embryo37,38. Importantly, developmental 
+signals involving WNT, NODAL and BMP at the proximal, poste-
+rior end of the EPI instruct EPI cells to form the PS by E6.5 and 
+ingress through the PS to acquire mesoderm and endoderm fates39–
+41. Human gastrulation initiates around E14.0. However, given 
+limited access to post-implantation human tissues, gastrulation 
+remains one of the most mysterious phases of human development.
+During mouse gastrulation, primordial germ cells (PGCs), pre-
+cursors of sperm and egg, emerge at the boundary between pos-
+terior EPI and ExE42,43. Data on human PGC specification remain 
+sparse44. Existing data from NHP monkey embryos45 suggest that 
+primate PGCs may emerge in the nascent AM prior to the gastrula-
+Box 3 | Clinical benefits of human embryology
+Advancing fundamental understanding of human embryogen-
+esis can provide a scientific foundation for improving assisted 
+human reproduction and prevention of pregnancy loss, birth de-
+fects and teratogenesis. It will also advance the biology of germ 
+cells and treatment of infertility. Advancing understanding of 
+human implantation will help develop effective contraception 
+technologies and treatments of recurrent implantation failure. 
+Detailed understanding of the widespread epigenetic program-
+ming during human embryonic development can provide im-
+portant insights for disease progression in later life. Studying 
+human development is critical for improving stem cell differen-
+tiation protocols to mimic embryogenesis, to achieve desired cell 
+functions for research and therapy.
+E3.0
+E4.5
+E5.5
+E6.5
+E3.5
+E7.0
+E10.0
+E14.0
+E6.0
+Mouse
+Human
+Zygote
+Morula
+Early
+blastocyst 
+Mature
+blastocyst
+Post-implantation
+embryo
+Gastrulation
+Fig. 1 | Overview of mouse and human development from pre-implantation to the onset of gastrulation. Prior to implantation, both mouse and human 
+embryos undergo cell divisions culminating in the development of a blastocyst, comprising an outer trophectoderm (TE) layer and an inner cell mass (ICM) 
+that further segregates into epiblast (EPI, light blue) and primitive endoderm (PE, yellow; hypoblast in humans). The timing of blastocyst implantation 
+differs between mice and humans (E5.0 in mouse and E7.0 in human). Furthermore, morphogenesis and lineage developments during peri-implantation 
+mouse and human development show distinct features. Mouse development from E5.0–E6.5 leads to the formation of a cup-shaped EPI juxtaposed with 
+TE-derived extraembryonic ectoderm (ExE), enclosing the pro-amniotic cavity. Concurrently, the PE forms the visceral endoderm (VE) that envelops 
+both EPI and ExE. In contrast, soon after human blastocyst implantation, while the EPI undergoes lumenogenesis to form the pro-amniotic cavity, EPI cells 
+adjacent to polar TE cells become specified into the amniotic ectoderm (AM, dark blue), with remaining pluripotent EPI cells forming the embryonic disc. 
+By E6.5 for mice and E14.0 for humans, gastrulation is initiated in the posterior EPI compartment (gastrulating cells in red). Mouse primordial germ cells 
+(PGCs) emerge at the boundary between posterior EPI and ExE at the onset of gastrulation (not shown). Data on primate PGC specification remain sparse. 
+Existing data suggest that human PGCs may emerge in the nascent AM prior to the gastrulation (not shown). Human PGC specification requires additional 
+studies for clarification.
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+134
+Review Article
+NaTuRe MaTeRials
+Box 4 | Early mouse and human development
+Pre-implantation development. Pre-implantation mouse and 
+human development displays intricate self-organization and au-
+tonomy. After fertilization, the one-cell zygote undergoes cleavage 
+cell divisions to form a solid ball of cells resembling a mulberry 
+(and hence the name morula). Cells of the morula begin to differ-
+entiate, leading to blastocyst formation. In the blastocyst, the tro-
+phectoderm (TE) surrounds a fluid-filled cavity (blastocoel) with 
+an inner cell mass (ICM) on one side. The TE is an extraembryonic 
+tissue and will give rise to the placenta. As the blastocyst develops, 
+the ICM becomes segregated into two distinct cell populations: 
+the embryonic epiblast (EPI), which will give rise to the embryo 
+proper, and a second extraembryonic tissue known as the primi-
+tive endoderm (PE; or hypoblast in human). Pre-implantation de-
+velopment has been extensively studied using the mouse embryo, 
+revealing important cellular and morphogenetic events including 
+position-dependent TE/ICM patterning, the blastocoelic cavity 
+formation, and lineage segregation and sorting of EPI and PE in 
+the ICM. The readers are referred to some excellent reviews on the 
+mouse blastocyst development31,32. Human blastocyst formation 
+remains incompletely understood3,111. Existing data suggests that 
+there are differences in timing, in gene expression and potential-
+ly in mechanisms of lineage development and function between 
+mice and humans during pre-implantation development2.
+Peri-implantation development. Successful implantation involves 
+a bilateral interaction between a competent blastocyst and a 
+receptive uterus. Implantation of the blastocyst (E5.0 in mouse and 
+E7.0 in human) triggers major morphological reorganization and 
+lineage developments. Upon implantation of the mouse blastocyst, 
+the TE adjacent to the EPI (polar TE) forms the extraembryonic 
+ectoderm (ExE) and ectoplacental cone. Concomitantly, the EPI 
+and ExE each undergo lumenogenesis so that separate apical 
+lumens are formed in each compartment84,105. The two lumenal 
+cavities soon fuse to establish the pro-amniotic cavity, leading to 
+the formation of a cup-shaped EPI juxtaposed with the ExE at E6.0 
+(the egg cylinder). From E5.0 to E6.0, the PE forms the parietal 
+endoderm and visceral endoderm (VE). By E6.0, the VE envelops 
+both the EPI and ExE, setting the stage for gastrulation.
+Morphogenesis and lineage development in the peri- 
+implantation human embryo show distinct features compared 
+with mice34. Upon implantation, the EPI undergoes lumenogenesis 
+to form the pro-amniotic cavity5–7, similar to the mouse EPI. 
+Distinctly, the lumenal EPI soon breaks symmetry and resolves 
+into the bipolar patterned EPI-amnion sac7,33. Specifically, EPI 
+cells adjacent to invading polar TE cells differentiate into the 
+amniotic ectoderm (AM)7,33, an extraembryonic tissue involved in 
+future fetal membrane development. The EPI cells at the opposite 
+pole adjacent to the hypoblast remain pluripotent and become 
+thickened and more columnar, forming the embryonic disc. Thus, 
+the pre-gastrulation EPI displays distinct topologies between 
+humans and mice: discoid in human and cup-shaped in mouse. 
+The mouse embryo does not develop the bipolar EPI-amnion 
+structure. In mice, the AM emerges as amniotic folds at the 
+junction of the EPI and ExE during gastrulation112,113.
+Gastrulation. Prior to mouse gastrulation, reciprocal 
+interactions between EPI, ExE and VE lead to regionalized 
+patterning in these tissues35,36. Regionalization of VE is particularly 
+important, leading to the formation of the anterior VE or AVE at 
+the prospective anterior side of the embryo37,38. The AVE secrets 
+antagonists to shield overlying EPI cells from differentiation. 
+Development of the AVE thus breaks radial symmetry and marks 
+anterior–posterior (A–P) axis formation in the mouse embryo. 
+Soon after, gastrulation is initiated at the proximal, posterior end 
+of the EPI by a convergence of BMP-WNT-NODAL signalling 
+interactions between EPI, ExE and VE39–41. The antagonists 
+secreted by the AVE block signalling and impart neuroectoderm 
+characters at the anterior pole of the EPI38, whereas signals at the 
+proximal, posterior end of the EPI instruct cells to undergo the 
+epithelial–mesenchymal transition (EMT) and ingress through the 
+PS to acquire mesendodermal fates39. During mouse gastrulation, 
+primordial germ cells (PGCs) emerge at the proximal, posterior 
+end of the EPI42,43. Experimental evidence supports that 
+prospective PGCs are selected from somatic, gastrulating EPI cells 
+by dose-dependent BMP signals that originate from the ExE114.
+Gastrulation remains one of the most mysterious phases of 
+human development. Recent studies of NHP monkey embryos 
+suggest conserved mechanisms are likely to be in play for A–P 
+patterning during human gastrulation12,45. Limited data from NHP 
+monkey45 and in vitro cultured human embryos44 suggest that PGCs 
+may emerge in the dorsal nascent AM soon after implantation. 
+This unexpected finding will require additional confirmation.
+After gastrulation, the EPI in mouse and human embryos 
+transforms into a trilaminar structure consisting of ectoderm, 
+mesoderm and endoderm. As gastrulation proceeds, it brings 
+subpopulations of cells in the three germ layer linages into 
+proximity so that they can undergo inductive interactions to 
+pattern layers and specify new cell types, driving the development 
+of organ rudiments.
+Neurulation. Gastrulation is followed by neurulation. During 
+neurulation, the ectoderm is first patterned into the neuroectoderm 
+(neural plate) in the medial portion of the embryo flanked by 
+future epidermis. At the border between these regions, the neural 
+crest and placodes form in response to BMP and WNT signals 
+emanated from surrounding tissues115,116. The neural plate soon 
+folds into the neural tube (NT)46,47, with its anterior and posterior 
+regions giving rise to the brain and spinal cord, respectively. Cells 
+in the NT continue to differentiate under the influence of inductive 
+factors emanating from surrounding tissues. Sonic hedgehog 
+(Shh)-mediated transcriptional networks that control ventral 
+patterning of the mouse spinal cord have been well elucidated48,49.
+Human neurulation remains challenging to study, even 
+though NT closure defects remain one of the most common 
+birth defects46,47. Recent studies suggest that late-manifesting 
+neurodegenerative disorders, such as Huntington’s disease, may 
+have a neurodevelopmental component25,117. The role of early 
+nervous system development in late-onset neurodegenerative 
+disorders remains a debated topic.
+While the ectoderm undergoes neurulation, the mesoderm and 
+endoderm also become further specified. Specifically, mesodermal 
+cells are organized into cardiogenic mesoderm, axial mesoderm 
+of the prechordal plate and notochord, paraxial mesoderm, 
+intermediate mesoderm and lateral plate mesoderm. Each of these 
+mesodermal regions undergoes some form of segmentation. The 
+most evident and complete segmentation occurs in the paraxial 
+trunk mesoderm, where each segment becomes an entirely 
+separate somite. Much of the other mesodermal regions develop 
+into embryonic connective tissues, cardiovascular and lymphatic 
+systems, skeletal muscle cells, most of the urogenital system, 
+and the lining of the pericardial, pleural and peritoneal cavities. 
+Following gastrulation, the endoderm folds to form the primitive 
+gut tube consisting of three subdivisions: foregut, midgut and 
+hindgut, which subsequently give rise to the epithelial lining of 
+the digestive and respiratory systems.
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+135
+Review Article
+NaTuRe MaTeRials
+tion. Additional studies are required to determine whether the same 
+is true for human PGCs.
+In mouse and human embryos, gastrulation transforms the 
+EPI into a trilaminar structure consisting of definitive ectoderm, 
+mesoderm and endoderm. The three germ layers undergo induc-
+tive interactions to pattern layers and specify new cell types, driving 
+organ rudiment development (Box 4). Following gastrulation, the 
+ectoderm undergoes neurulation, in which the neural plate is first 
+patterned in the dorsal ectoderm before folding into the neural tube 
+(NT)46,47 (Box 4). Cells in the NT continue to differentiate into dif-
+ferent classes of neuronal progenitors48,49. Concomitantly, mesoder-
+mal cells are organized into different regions to from the primordia 
+of major organ systems including cardiovascular and lymphatic sys-
+tems and skeletal muscle cells. Simultaneously, the endoderm will 
+fold to form the primitive gut tube, which will produce the digestive 
+and respiratory systems.
+Embryonic and extraembryonic stem cells as building 
+blocks
+As a bottom-up approach, the development of embryoids uses 
+embryonic and extraembryonic stem cells, including those derived 
+from embryos, as building blocks to construct models to recapitu-
+late embryonic development (Fig. 2).
+Mouse stem cells. The EPI cells of the mouse blastocyst are plu-
+ripotent, and their functional, epigenetic and signalling properties 
+have been extensively characterized. These studies reveal that plu-
+ripotency is dynamic and progressive. As the mouse embryo devel-
+ops from blastula to gastrula, EPI cells transit from a naive state, in 
+which they do not respond to inductive signals, to a primed state in 
+which they readily differentiate50. The transition between naive and 
+primed states has been referred to as formative pluripotency during 
+which EPI cells gain the capacity to make lineage decisions51.
+Mouse pluripotent stem cells (mPSCs) in culture display a simi-
+lar continuum of states. Mouse embryonic stem cells (mESCs) with 
+naive pluripotency can be isolated directly from the ICM of the 
+mouse blastocyst and maintained in culture52,53. In contrast, mouse 
+stem cells corresponding to the primed state, known as mouse epi-
+blast stem cells (mEpiSCs), are derived from the post-implantation 
+mouse EPI54,55. mEpiSCs exhibit more advanced developmental fea-
+tures consistent with the early-gastrulation EPI56. Mouse EPI-like 
+cells (mEpiLCs) with formative pluripotency have been generated 
+from mESCs in vitro, with a transcriptional profile consistent with 
+early post-implantation mouse EPI57.
+Stem cell lines representative of extraembryonic lineages in 
+the mouse blastocyst have also been established, including mouse 
+trophoblast stem cells (mTSCs)58 and extraembryonic endoderm 
+(XEN) cells representing the stem cell population of the PE59.
+Human stem cells. Human ESCs (hESCs) have also been success-
+fully derived from human blastocysts60. However, hESCs have a 
+transcriptome and methylome different from the EPI of the human 
+blastocyst61,62, suggesting that the conditions in which hESCs are 
+cultured fail to capture the pre-implantation developmental pro-
+gramme of the human embryo. Instead, hESCs are developmentally 
+similar to the post-implantation, pre-gastrulation EPI in cynomol-
+gus monkey embryos12. Consistently, hESCs more closely resemble 
+mEpiSCs than mESCs in terms of molecular properties, lineage 
+potency and culture conditions50,54,55. However, there are still some 
+notable differences in gene expression63 and in the propensity for 
+E2.0
+E5.0
+E4.5
+E5.75
+E7.0ÐE8.0
+E12.0ÐE13.0
+E7.0
+Mouse
+Human
+EPSCs
+EPSCs
+Induced embryonic 
+and extraembryonic 
+stem cells 
+Induced embryonic 
+and extraembryonic 
+stem cells 
+Naive ESCs
+EpiLCs
+EpiSCs
+Primed ESCs
+Naive ESCs
+XEN cells
+HypoSCs
+TSCs
+TSCs
+Adult
+Fig. 2 | Mouse and human embryonic and extraembryonic stem cells and their corresponding developmental potencies. Expanded potential stem cells 
+(EPSCs) are established by isolating individual cells (or blastomeres) from eight-cell stage mouse and human embryos (or morula). By isolating cells from 
+mouse blastocysts, mouse embryonic stem cells (mESCs) with naive pluripotency, trophoblast stem cells (mTSCs), and extraembryonic endoderm (mXEN) 
+cells representing the stem cell population of the primitive endoderm (PE) have been established. Similarly, human trophoblast stem cells (hTSCs) have 
+been derived from human blastocyst. Primed mouse ESCs, known as mouse epiblast stem cells (mEpiSCs), are derived from the late post-implantation, 
+pre-gastrulation mouse EPI. Mouse EPI-like cells (EpiLCs) with an intermediate or formative state between naive and primed pluripotency have been 
+generated from mESCs in vitro, with a transcriptional profile similar to the early post-implantation mouse EPI. Human ESCs (hESCs) with primed 
+pluripotency have also been derived from pre-implantation human blastocysts. Using strategies such as reprogramming, differentiated somatic mouse and 
+human cells can be converted to induced embryonic and extraembryonic stem cells, including induced pluripotent stem cells, or iPSCs. Using chemical 
+cocktails, primed hESCs can be reverted into a naive-like pluripotent state. Human hypoblast stem cells (hypoSCs) can be generated using these chemically 
+reset naive hESC lines.
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+136
+Review Article
+NaTuRe MaTeRials
+PGC formation between hESCs and mEpiSCs, as hESCs can initi-
+ate PGC formation whereas mEpiSCs cannot64,65. There are recent 
+reports showing derivations of hESC lines from human blasto-
+cysts with naive pluripotency features66,67, and of chemical repro-
+gramming cocktails capable of converting hESCs from primed to 
+naive pluripotency68,69. However, functional validations of naive 
+pluripotency including chimera formation and germline transmis-
+sion as well as tetraploid complementation, which have been used 
+for mESCs, cannot be implemented with human cells for ethical 
+reasons. To address this issue, there are ongoing discussions of a 
+testable functional framework to assess naive pluripotency in 
+human cells33.
+Somatic human cells can also be converted to a pluripotent 
+state by cell fusion, somatic cell nuclear transfer, transcription 
+factor-based reprogramming, and chemical reprogramming70. 
+Pluripotent stem cells generated by these reprogramming strategies 
+are called induced pluripotent stem cells, or iPSCs. Human iPSCs 
+(hiPSCs) are considered molecularly and functionally equivalent 
+to hESCs71.
+Recently, through chemical screening, individual blastomeres 
+isolated from eight-cell stage mouse morula were successfully cul-
+tured to establish mouse expanded potential stem cells (mEPSCs) 
+that appear to possess developmental potency for all embryonic and 
+extraembryonic lineages in blastocyst chimaera assays72,73. Using 
+similar approaches, human EPSCs (hEPSCs) were also derived 
+from primed hESCs and hiPSCs, and hEPSCs are shown to have the 
+potency to form trophoblast stem cells74.
+In contrast to mouse extraembryonic stem cells, human extra-
+embryonic stem cells have only emerged recently. Using chemical 
+screening, human trophoblast stem cells (hTSCs) were first derived 
+from human blastocysts and first-trimester placental tissues75. 
+Human hypoblast stem cells (hypoSCs) were also recently reported 
+using chemically reset naive hESC lines76. Recent work showed that 
+chemically reprogrammed naive hESCs could give rise to hTSCs 
+when cultured in appropriate conditions77, and that both chemi-
+cally reset and embryo-derived naive hESCs could be used to derive 
+hTSC lines78. With the emergence of these human extraembryonic 
+cell lines as well as hEPSCs, it becomes imperative for additional 
+molecular and functional characterizations for authentication 
+and establishing their developmental identities compared to their 
+in vivo counterparts78,79.
+A rapidly growing toolbox of embryoids
+Stem cells serve as building blocks for the development of embry-
+oids that recapitulate different stages of mammalian development, 
+from blastula through gastrula or early neurula and organogenesis 
+(Fig. 3). Development of embryoids use the same developmental 
+principles that manifest in mammalian development. Importantly, 
+embryoids have already generated new insights into early mamma-
+lian development.
+Embryoid to model blastocyst development. The first embry-
+oid to model blastocyst formation (or blastoid) was successfully 
+developed by mixing mESCs with mTSCs at a defined ratio under 
+appropriate culture conditions, leading to their self-assembly into 
+a tissue organization reminiscent of the mouse blastocyst22. As 
+in vivo, mouse blastoids possess an outer TE layer surrounding a 
+compact ICM-like compartment, and their transcriptome is more 
+similar to mouse blastocyst than is achieved by simply combining 
+mESC and mTSC transcriptomes. Mouse blastoids have been used 
+to dissect interactions between embryonic and extraembryonic 
+compartments, revealing that NODAL and BMP signals from the 
+ICM-like compartment are important for growth and morphogen-
+esis of TE cells22. This insight has proven useful for improving cul-
+ture conditions of mTSCs80. In the initial blastoid protocol, further 
+cell segregation and sorting of ICM-like cells into PE-like cells was 
+inefficient. Optimization studies yielded improved conditions in 
+which the relative proportions of the three cell lineages (EPI-, TE- 
+and PE-like cells) more closely resemble that of mouse blastocyst81. 
+Remarkably, culture of mEPSCs in appropriate conditions yields 
+self-organized blastoids consisting of EPI-, TE- and PE-like cells30. 
+Another recent work mixing mEPSCs with mTSCs also led to the 
+formation of blastoids that showed developmental progression from 
+the pre- to post-implantation egg cylinder morphology in vitro82, 
+similar to the mouse ETX embryoid described below. Although 
+capable of implanting in the mouse uterus, all of the mouse blas-
+toids fail to develop much further than the blastocyst stage either 
+in vitro or in vivo. The reasons for this are not currently under-
+stood and may point to a requirement for greater organization than 
+currently achieved in mouse blastoids. It remains to be determined 
+whether human blastoids can be generated by using either naive 
+hPSCs or hEPSCs with or without hTSCs or hypoSCs under suitable 
+culture environments.
+Human amniotic sac embryoid. During early post-implantation 
+human development, a patterned bipolar EPI-AM structure arises 
+from the EPI. It was recently shown that culturing primed hPSCs 
+on a soft culture surface together with native extracellular matrix 
+(ECM) proteins (that is, Geltrex) diluted in culture medium leads to 
+the formation of a spherical lumenal hPSC colony20. This observa-
+tion is consistent with the intrinsic lumenogenic property associ-
+ated with primed but not naive hPSCs83,84. Interestingly, hPSCs in 
+the colony lose pluripotency and differentiate into amniotic cells, 
+even without exogenous inductive factors in the culture medium20. 
+If only one of these culture elements is present, either a soft substrate 
+or diluted gel in the culture medium, primed hPSCs form lumenal 
+sacs but retain pluripotency, suggesting that amniotic differentia-
+tion of hPSCs is mechanosensitive20. Amniotic differentiation of 
+hPSCs requires endogenous BMP signalling, and its inhibition 
+under amnion-differentiation conditions is sufficient for rescuing 
+hPSC pluripotency20.
+A small fraction of lumenal sacs, rather than differentiating 
+entirely into amniotic tissues, spontaneously break symmetry and 
+form a bipolar structure with columnar pluripotent cells on one 
+side and amniotic cells on the other, mimicking EPI-AM pattern-
+ing in the pre-gastrulation human embryo20. This model is termed 
+the post-implantation amniotic sac embryoid (PASE). Symmetry 
+breaking in the PASE also depends on BMP activity, and active 
+BMP signalling is only evident at the prospective AM-like pole20. 
+Progressive development of the PASE results in EPI-like cells fur-
+ther differentiating into PS-like cells. This spontaneous symmetry 
+breaking occurs in only 5–10% of lumenal hPSC sacs. To increase 
+efficiency of PASE formation, a microfluidic PASE model has 
+recently been developed27. This microfluidic device allows small 
+clusters of primed hPSCs to be grown in small indentations with 
+separate channels supplying culture medium to each side27. Flowing 
+BMP4 in only one of these channels leads to reproducible pat-
+terning of amniotic cells only on the side exposed to BMP427. The 
+opposite side remains pluripotent but soon goes on to differentiate 
+into PS-like cells27. The identity of PS derivatives can be modulated 
+by stimulating this side of the cell clusters with additional ligands: 
+WNT stimulation together with either BMP4 or ACTIVIN-A leads 
+to posterior and anterior PS derivatives, respectively27. Importantly, 
+human PGC-like cells (hPGCLCs) emerge in the microfluidic PASE 
+before it initiates gastrulation-like events27, suggesting applications 
+of the microfluidic PASE model for studying the origin and specifi-
+cation of hPGCs.
+The PASE represents the first embryoid to model early 
+post-implantation development of the EPI and AM compartments 
+of the human embryo. It also suggests the inductive role of AM in 
+triggering human gastrulation. Although the microfluidic PASE 
+model considerably improves the controllability of EPI-AM pat-
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+137
+Review Article
+NaTuRe MaTeRials
+terning, further asymmetries are not demonstrated and the EPI-like 
+compartment is either entirely anterior or posterior in character. 
+Prolonged culture of the PASE is also limited by the confined space 
+in the microfluidic device. Furthermore, disseminating cells from 
+the PASE mimicking gastrulation would lead to its disassembly. 
+Future efforts should be devoted to identifying a strategy to prolong 
+the culture of the PASE and promote self-organization of gastrulat-
+ing cells. It is possible that adding human extraembryonic stem cells 
+including hypoSCs to the PASE will be helpful for these efforts.
+Two-dimensional models of gastrulation. Treatment of primed 
+hPSCs confined to micropatterned colonies with BMP4 reproducibly 
+leads to organized differentiation with putative TE-like cells on the 
+colony outer edge, ectodermal cells in the colony centre, and meso-
+dermal and endodermal cells forming two layers in between18,85,86. 
+This multicellular pattern is consistent as in the gastrulating mam-
+malian embryo. However, the fate territories in the two-dimensional 
+(2D) gastrulation model are adjacent on a 2D surface rather than lay-
+ered one on top of the other as in in vivo. Although the 2D geometry 
+is artificial and distinct from the three-dimensional (3D) topology 
+of mammalian embryos, the reproducibility and compatibility with 
+live imaging of the 2D gastrulation model has allowed quantifica-
+tion of the self-organized signalling dynamics that drive these pat-
+terning events87–90. These studies have revealed that rather than 
+creating stable gradients, cells generate dynamic expanding fronts 
+of endogenous WNT and NODAL signalling that are interpreted 
+combinatorially to pattern different germ layers. These studies can 
+serve as a template for investigating the mechanisms of patterning 
+through signalling dynamics in other embryoids. Interestingly, in 
+colonies treated with WNT rather than BMP4, similar cell fate pat-
+terns are observed but with a different mechanism, which involves 
+a wave of epithelial–mesenchymal transition (EMT) that sensi-
+tizes cells to the exogenous WNT signal91. Mouse gastrulation has 
+also been successfully modelled using the 2D gastrulation embry-
+oid with mouse EpiLCs92. Importantly, findings from this mouse 
+embryoid have been compared to the mouse embryo, providing a 
+more direct validation, which for obvious reasons is not possible 
+for human gastrulation embryoids. Micropatterning can be read-
+ily combined with other bioengineering approaches. For example, 
+recent work has shown that overlaying gradients of exogenous 
+ligands on micropatterned 2D gastrulation embryoids can bias the 
+resulting fate pattern in a reproducible way93. Specifically, a gradi-
+E4.5
+E5.5
+E6.5
+Implantation
+Gastrulation
+E7.0
+E10.0
+E14.0
+Implantation
+Gastrulation
+2D gastrulation model
+3D blastoid
+3D gastruloid
+3D ETX embryoid
+3D trunk-like structure
+3D PASE
+3D epiblast patterning model
+2D gastrulation model
+3D gastruloid
+2D neurulation model
+Fig. 3 | Existing embryoids that recapitulate different stages of mouse and human development. 3D blastoids are embryoids for modelling 
+pre-implantation blastocyst development. 3D ETX embryoids model post-implantation embryo development up to early gastrulation. 3D gastruloid 
+and trunk-like structure are embryoids to model post-gastrulation development of the posterior portion of the embryo. The 2D gastrulation model is an 
+embryoid for modelling germ layer patterning during gastrulation. The 3D epiblast patterning model is an embryoid for modelling epiblast morphogenesis 
+and patterning during early post-implantation development. 3D post-implantation amniotic sac embryoid (PASE) models post-implantation human 
+development up to early gastrulation. 2D neurulation models are embryoids for modelling the neurulation process, leading to neural tube development and 
+patterning.
+Nature Materials | VOL 20 | February 2021 | 132–144 | www.nature.com/naturematerials
+138
+Review Article
+NaTuRe MaTeRials
+ent of BMP4 (and in some cases a counteracting gradient of BMP 
+antagonist NOGGIN) generated in a microfluidic device induced 
+axially organized patterning of the germ layers along the gradient, 
+breaking the radial symmetry of 2D circular colonies93.
+3D models of gastrulation. In addition to blastoids, mESCs and 
+mTSCs can be cultured together in conditions that promote their 
+self-organization to model post-implantation mouse development. 
+In such models, rather than forming structures that morphologically 
+resemble the mouse blastocyst, mESCs and mTSCs form separate 
+compartments before fusing together. Each compartment under-
+goes lumenogenesis, with the resulting lumens merging together, 
+resulting in a structure resembling the egg cylinder stage mouse 
+embryo (referred to as the ETS embryoid)19. Remarkably, the ETS 
+embryoid initiates developmental events mimicking both germ cell 
+formation and PS development in an asymmetric manner19. This 
+is surprising as VE, which is critical for A–P symmetry breaking 
+in vivo, is not present in the ETS embryoid, although further studies 
+show that adding XEN cells into the ETS embryoid improves this 
+model (called the ETX embryoid)23.
+A 3D embryoid for modelling symmetry breaking of the EPI has 
+also been developed starting from primed hPSCs26. In this model, 
+hPSCs grown in 3D and treated with a low dose of BMP4 form 
+lumenal sacs before polarizing into two opposing regions displaying 
+gene expression patterns associated with ectoderm and mesoderm 
+induction26. This observation is similar to cell fate patterning that 
+emerges from the 2D human gastrulation embryoid18. However, as 
+the initial degree of symmetry is higher in 3D (sphere versus disc), 
+the development of the 3D human gastrulation embryoid involves 
+spontaneous symmetry breaking while in 2D it does not.
+Finally, an embryoid model beginning from only mESCs 
+or primed hPSCs has been shown to be able to model the 
+post-gastrulation development of the posterior portion of the 
+mouse and human embryos, respectively17,21,28,94. Growing these 
+cells in aggregates of defined size and exposing them to a prop-
+erly timed pulse of WNT activation leads to the formation of a 
+tail-bud-like structure on one end of the aggregate that continues 
+with axial organization, somitogenesis, PGC specification and 
+even NT formation17,21,28,94. These structures, known as gastruloids, 
+recapitulate some essential features of A–P axial patterning of the 
+post-gastrulation mouse and human embryos as revealed by HOX 
+gene expression and somite formation21,28,94. The mouse gastruloid 
+can even be coaxed to generate a primitive beating heart following 
+pathways similar to those of the mouse embryo95. These mouse and 
+human gastruloids all lack anterior structures, such as the forebrain, 
+likely to be due to the posteriorizing effect of WNT signalling.
+While the 3D embryoid models of gastrulation show remark-
+able emergence of patterning and morphogenesis, they lack the 
+controllability and reproducibility of the 2D gastrulation models. 
+Bioengineering approaches, which can control cell–cell interactions 
+and modulate symmetry breaking and patterning, as in the micro-
+fluidic PASE27, will be useful for improving the controllability and 
+reproducibility of the 3D gastrulation models.
+Models of neurulation. The nervous system acquires its form 
+and pattern during the neurulation stage. Several stem-cell-based 
+neurulation models have been developed, which focus on the ecto-
+dermal germ layer, the source of the nervous system. One of the 
+earliest studies showed that 3D spherical lumenal sacs composed of 
+neuroepithelial (NE) cells, reminiscent of the NT, could be grown 
+from single mESCs under appropriate neural differentiation condi-
+tions15. These neural sacs were entirely dorsal in character but could 
+be patterned by exogenous ventralizing or posteriorizing signals. 
+Optimizing the gel matrix in which neural sacs were embedded also 
+improved their dorsal–ventral (D–V) patterning, showing the power 
+of bioengineering approaches to optimize conditions for embryoid 
+self-organization96. D–V patterned neural sacs mimicking human 
+NT development were recently demonstrated using primed hPSCs 
+under a culture condition similar to that used for mESCs29.
+Recently, several 2D models have been reported to recapitulate 
+patterning of a considerable portion of the ectodermal germ layer. 
+One study with primed hPSCs showed that regional patterning 
+of neural crest and NE cells could be created on micropatterned 
+surfaces, mimicking neural induction as the first step of the neu-
+rulation process, and that this emergent regional patterning was 
+regulated by mechanical control of BMP-SMAD signalling24. Other 
+recent studies have recapitulated patterning of all four major fates 
+within the ectoderm during neural induction—neural, neural crest, 
+placode and epidermis25,97. Modulating both BMP and WNT sig-
+nalling enabled control over the fates that emerged at the border 
+between neural and non-neural ectoderm97, and one of these mod-
+els was shown to be useful for modelling developmental effects 
+of the mutations that cause Huntington’s disease25. In the future, 
+models that recapitulate not only regional fate patterning, but also 
+morphogenesis involved in neural plate folding and neural fold clo-
+sure, could both lead to new fundamental knowledge of this stage of 
+human development and provide essential systems for research into 
+human NT closure defects.
+Bioengineering tools to control embryoid development
+Mammalian embryogenesis is a context-dependent process, involv-
+ing interactions between multiple, co-emerging embryonic and 
+extraembryonic cell lineages that ar

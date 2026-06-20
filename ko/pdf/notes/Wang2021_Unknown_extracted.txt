@@ -1,0 +1,827 @@
+communications biology
+Article
+A Nature Portfolio journal
+https://doi.org/10.1038/s42003-025-08044-5
+Label-free evaluation of mouse embryo
+quality using time-lapse bright ﬁeld and
+optical coherence microscopy
+Check for updates
+Fei Wang
+1, Senyue Hao
+2, Kibeom Park1, Ali Ahmady3 & Chao Zhou
+1,2
+The selection of high-quality embryos is essential to enhance the implantation rate for in vitro fertilization
+(IVF). Optical coherence microscopy (OCM) can noninvasively provide three-dimensional (3D) high-
+resolutionimagingofdevelopingembryos. Therevealedmicrostructurescanbeusedforaccurateembryo
+evaluation.Here,weacquiretime-lapse3D OCMimageswithco-registeredbright-ﬁeldimagingonmouse
+embryo development from the one-cell stage to the fully hatched blastocyst inside an incubator. Our
+results demonstrate the capability of OCM to detect structural features of the developing embryos. The
+second and third embryonic cell cycles are indicated to be associated with blastocyst formation and the
+hatching capability. OCM-based time-lapse technology holds the potential to enrich early embryo
+development insights and streamline embryo selection within IVF clinics.
+Infertility affects about 17.5% of people worldwide in their lifetime, with
+variations based on region and methodology1,2. Since 1978, in vitro fertili-
+zation (IVF) has been the primary method used in Assisted Reproductive
+Technology (ART), which accounted for 2.3% of all births in the United
+States in 20213–5. However, ART cycles yieldeda live birth rate of only 37.3%
+in 2021 nationwide4. Optimizing IVF procedures improves success rates
+amidst uncontrollable patient-related complexities. A typical procedure
+involves egg retrieval, fertilization, embryo culture, and embryo transfer6,7.
+Initially, embryos were transferred between day 1 and day 3, with some not
+progressing further8. Therefore, multiple embryo transfer is often required
+to enhance the success rate at a high risk of multiple pregnancies4, which
+negatively affects mothers and fetuses9. Advancements in culture protocol
+and embryo evaluation have led to the proposal of single embryo transfer as
+an ideal solution10,11. Extended culture until blastocyst and pre-transfer
+embryo selection are widely used nowadays to select embryos with optimal
+reproductive potential12,13. Alongside the efforts to improve the protocols,
+there is a growing focus on developing effective evaluation methods to
+enhance the IVF success rate.
+The standard methods for selecting embryos include morphological
+evaluation, preimplantation genetic testing (PGT), and time-lapse
+imaging14,15. Assessing embryo morphology has been the traditional
+method for evaluating development and selecting embryos based on
+microscopic images on static time points13,14,16,17. Several concerns were
+raised regarding the subjective evaluation by embryologists and the
+potential impact of suboptimal culture conditions caused by the need to
+remove embryos from the incubator for imaging. Furthermore, their basis
+on a morphology snapshot does not fully capture the dynamic events of
+embryos during the preimplantation period, which makes it challenging to
+correlate with viability18. As a supplement, PGT methods directly link
+genetic abnormalities to embryo quality by biopsy of the trophectoderm or
+cells from earlier stages19–21. The signiﬁcant limitations of PGT include the
+invasiveness that may affect the IVF outcome22.
+On the other hand, time-lapse imaging allows for continuous mon-
+itoring of embryo development at frequent intervals, ranging from minutes
+to hours23–26. Most of the time-lapse imaging acquired two-dimensional
+(2D) bright-ﬁeld (BF) or dark ﬁeld images at multiple depths under
+environmental control14. Various predictive parameters and models based
+on developmental kinetics have been established over ten years. However,
+the effectiveness of this technology in improving live birth rates and pro-
+vidingclinicalbeneﬁtsisstillto be determined27.Onepotentialdevelopment
+direction is to employ a three-dimensional (3D) noninvasive imaging
+modality for time-lapse imaging to provide comprehensive information on
+the developing embryos.
+Opticalcoherencemicroscopy(OCM)isahigh-resolution,volumetric,
+noninvasive imaging technique that combines the principles of optical
+coherence tomography (OCT) and confocal microscopy28,29. With a high
+numerical aperture objective lens, OCM provides micron-level resolutions
+that can resolve the embryos’ cellular or even subcellular features. Previous
+studies have shown that OCM is capable of 4D live imaging of early
+mammalian embryos30, and OCT-captured structural data of bovine
+embryos of the trophectoderm and zona pellucida showed the potential to
+predict their hatchability and quality after IVF31. Recently, researchers used
+1Department of Biomedical Engineering, Washington University in St. Louis, Saint Louis, MO, USA. 2Department of Electrical & Systems Engineering, Washington
+University in St. Louis, Saint Louis, MO, USA. 3Department of Obstetrics & Gynecology, Washington University in St. Louis, Saint Louis, MO, USA.
+e-mail: chaozhou@wustl.edu
+Communications Biology |  (2025) 8:612 
+1
+1234567890():,;
+1234567890():,;
+OCM to visualize the number of cells in compacted mouse embryos at
+embryonic Day 3 (E3.0), indicating its strong correlation with embryo
+quality and developmental potential32. As a label-free, noninvasive, and
+high-resolution imaging modality, OCM has been recognized as a powerful
+tool for the 3D structural assessment of mammalian embryos.
+In this study, we aimed to establish time-lapse 3D OCM imaging as a
+unique platform for noninvasive embryo evaluation. We used mouse
+embryos sincethey serve as an appropriate model for exhibiting genetic and
+developmental similarity with humans33–35. To ensure appropriate envir-
+onmental control, where factors such as temperature36, oxygen level37,38, and
+relative humidity39,40 are crucial for embryo development, we developed a
+compact and integrated OCM and BF imaging system that ﬁts within a
+commercial incubator. Time-lapse dual-modality images of the mouse
+embryos were acquired about every ten minutes for over 150 h. These
+revealed 3D morphological features from the early to the blastocyst stages
+and allowed accurate grading of blastocysts. The time-lapse approach
+provided insights into morphokinetic properties throughout the embryo
+development process, establishing a correlation between early cell events
+and the formation and quality of blastocysts. Assessing blastocyst formation
+and quality can improve success rates in IVF by selecting high-quality
+embryos for transfer, potentially leading to higher pregnancy rates41. We
+observed that the timing of the second and the third embryonic cycles
+correlate with the blastocyst formation.
+Results
+Development of the dual-modality imaging system and experi-
+mental procedures
+We designed and constructed a dual-modality imaging system that com-
+bines a BF and an OCM system to provide high-resolution and high-
+throughput imaging capabilities. To perform longitudinal time-lapse
+imagingonliveembryos,wecustomizedthesamplearmoftheOCMsystem
+and the BF imaging system to have a compact phototype that ﬁts inside an
+incubator (Heracell™VIOS 160i), as shown in Fig. 1A, to ensure an
+appropriate culture condition with 5% O2 and 6% CO2. OCM can provide
+not only comparable information to BF but also additional 3D insights.
+Using a broadband superluminescent diode and a 20X objective lens, we
+achieved axial and lateral resolutions at ~2.1 μm and ~1.0 μm in tissue,
+respectively. A commercial embryo imaging dish (Fig. 1B, IVF store
+V005001)extendedthecapabilitytocultureandimageupto25embryosper
+dish. To enable efﬁcient and precise sample movement, a 3-axis motorized
+sample stage was incorporated.
+To study the dynamic events during embryo development, we aimed
+to monitor the embryos from the one-cell stage to fully hatched blas-
+tocysts for over 150 h every ten minutes (Fig. 1C). Due to the dense data
+points, we implemented an automated acquisition pipeline, illustrated in
+Fig. 1D. For each sample, we automatically moved the well to the imaging
+location using two steps: prior knowledge of the sample index and
+location of the well, followed by image-guided auto-tracking and auto-
+focusing to center the embryo samples. Co-registered BF and 3D OCM
+images were then acquired. Typically, we cultured and monitored 8–12
+embryos per dish. The data were transferred to a storage server for
+further analysis.
+Time-lapse OCM reveals three-dimensional embryo micro-
+structures at different developmental stages
+We demonstrate the capability of monitoring mouse embryos during the
+preimplantation stages. During the development of the embryos, a series of
+dynamic processes occur, including cleavage divisions, compaction, blas-
+tocyst formation, and hatching from the zona pellucida. Figures 2, 3 and
+Supplementary Movie 1 illustrate developmental events in the same mouse
+Fig. 1 | System Scheme and Workﬂow. A Simpliﬁed
+OCM + BF system schematic demonstration. M1-
+M3: mirrors, L1-6: lenses, DM: dichromic mirror,
+DC: dispersion compensation, C: collimators, GM:
+Galvo mirrors, OL: objective lens, EF: Emission ﬁl-
+ter, CM: camera, LED: light emitting diode.
+B Schematic representation of imaging dish.
+C Imaging protocol. The imaging timeline starts
+from the 1-cell stage and ends when the embryos
+stop developing or are fully hatched, which covers
+the most crucial events in the early embryo stages.
+D Pipeline of imaging acquisition on one sample.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+2
+embryo,whereOCMcomplementsBFimagesbyproviding3Dinformation
+for visualizing and characterizing morphological features.
+At the early stages, before the blastocyst formation, OCM imaging
+demonstrated the presence of individual cells exhibiting distinct morphol-
+ogy and organization, as shown in Fig. 2. BF images (Fig. 2A) provided a
+clear visualization of the cell count and zona pellucida but did not distinctly
+show the nuclei. The projected OCM images through the entire depth
+(Fig. 2B) exhibit features comparable to those of BF. In addition, OCM
+providesclearvisualizationof the nuclei, includingtheirsizeand location,as
+showcased in the selected en face slices (Fig. 2C), cross-sectional views
+(Fig. 2D), and 3D rendering (Fig. 2E). From the 1-cell to 8-cell stage, the
+nuclei showed strong contrast against the cytoplasm in the OCM images,
+allowing accurate identiﬁcation of cleavage and quantifying symmetry.
+Starting from the compaction process, the cells developed less distinct
+boundaries with increaseddensity,makingit hard to differentiate individual
+cells. Additionally, the thickness and uniformity of the zona pellucida can be
+visualized by 3D OCM.
+During the blastocyst stage, the embryos start to differentiate and form
+a blastocoel. The inner cell mass (ICM) and trophectoderm (TE) were
+derived into distinct cell lineages as the embryo expanded at the blastocyst
+stage, as demonstrated in Fig. 3. According to the established Garnder
+grading system42, the blastocysts were assigned stages 1–6 based on their
+expansion state. In expansion grade 1, the embryos initiate the cavitation,
+and the blastocoel remains less than half the total volume. In this stage, ICM
+and TE are not visible in BF (Fig. 3A) and OCM (Fig. 3B–E) images due to
+their immaturity (Supplementary Movie 2). The OCM projections
+(Fig. 3C, D) reveal the initiation of cavities that will eventually develop into
+the blastocoel. These cavities are depicted as three separate chambers, as
+indicated by the green arrows, which are not easily identiﬁable in BF
+(Fig. 3A). Expansion grade 2 is the intermediate state where the blastocoel
+exceeds half of the embryo. The cavitation propagates from the bottom of
+the embryo and pushes clusters of ICM-like cells together toward the top, as
+showninthe OCMimages(Fig.3C–E). Embryos witha ﬁlledblastocoeland
+ahalf-thinnedzonapellucida areclassiﬁedasexpansiongrade3.Duringthis
+period, the early indications of the ICM and TE became apparent. Starting
+fromexpansiongrade 4, the blastocoel expands to be larger than the original
+embryo with the thinnest zona pellucida. In the BF images (Fig. 3A), the
+ICM was not clearly distinguishable, while in the OCM images (Fig. 3C–E),
+a dense and compact cluster of cells could be observed. Expansion grade 5
+corresponds to a hatching blastocyst with visible ICM and TE as hatching
+from the zona pellucida begins. By utilizing OCM images (Supplementary
+Movies 2–7), we can effectively characterize the blastocoel cavity, ICM, and
+the hatching site. Expansion grade 6 represents the hatched blastocyst when
+TE ultimately bursts through the zona pellucida.
+Time-lapse OCM tracks the localization of pronuclei, nuclei, and
+hatching sites
+All mouse embryos exhibited two pronuclei during the ﬁrst occurrence of
+OCM imaging after thawing. Figure 4A displays the OCM imaging at the
+ﬁrst recording. It allows quantiﬁcation of the pronuclei size and separation
+distance. Additionally, OCM allows for tracking pronuclei movement over
+time and capturing their fusion, which is essential for quality control. In
+Fig. 4B, male and female pronuclei fusion was observed within 53 min. Two
+intermediate stages at 75 and 85 min indicated the division initiation as
+spindle pole elongation occurred. Prior to the reformation of nuclei in each
+daughter blastomere, the OCM imaging displayed low contrast, as depicted
+in Fig. 4B, at 106 min. Once nuclei formed, their locations were observed
+toward the edge of the blastomere, with the most signiﬁcant separation
+noted at 127 min. Two imagesat different depths were presented to account
+for the embryo’s self-rotation, which causes the nuclei to not align in the
+same z-plane. Other dynamic events, such as compaction, expansion, and
+re-expansion of the blastocysts, canbe visualized in the time-lapse videos.In
+addition to Supplementary Movie 1, Supplementary Movie 8 gives another
+example of a hatching blastocyst,revealing that two blastomeres at the 8-cell
+stage did not contribute to the blastocyst formation. In contrast, Supple-
+mentary Movie 9 illustrates an example where the embryo collapses before
+forming a blastocyst. When carefully observed, these events enable
+embryologists to detect abnormalities in earlier developmental stages.
+To further explore the capabilities of OCM, we investigated the 8-cell
+stage, aiming to visualize not only the nuclei but also the cell polarity.
+Fig. 2 | Time-lapse 3D OCM and bright-ﬁeld
+imaging of a developing mouse embryo during the
+pre-blastocyst stages. The top row (A) features
+standard bright-ﬁeld images, while the second (B),
+third (C), fourth (D), and bottom (E) rows display
+the en face full-depth projection, en face slice pro-
+jection, cross-sectional view, and 3D rendering,
+respectively, derived from OCM images. Each col-
+umn of images corresponds to the same imaging
+time point, providing a comprehensive view of the
+embryo’s development. Red arrows point to the cell
+nuclei, highlighting the individual cells within the
+developing embryo. Lavender arrows denote the
+zona pellucida, a glycoprotein layer surrounding the
+embryo, which plays a crucial role in fertilization
+and early development. Red spots denote nuclei in
+the 3D rendering. Scale bar: 20 μm.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+3
+Figure 4C shows the OCM images at different depths, with nuclei and
+blastomeres labeled in numbers. To infer the polarity, we segmented the
+nuclei and visualized the positioning and orientation of the nuclei at
+the 8-cell stage. By analyzing the relative positions of the nuclei within the
+blastomeres, we can identify patterns that indicate the presence of polarity.
+For instance, nuclei 5 and 7 were biased toward the outer side of the blas-
+tomeres,whichsuggeststheexistenceofpolaritywithinthecells.Incontrast,
+nuclei 1, 2, and 6 laif in the center of their blastomeres and did not exhibit
+preferential alignment. Supplementary Movie 10 presents a visualization of
+individual blastomeres with their nuclei segmented in 3D. This approach
+provides a simple and accessible method to assess cell polarity during the
+8-cell stage by detecting nuclei’s spatial distribution and arrangement.
+The concept of the hatching site, deﬁned as the initial trophectoderm
+(TE)cellrelativetothelocationoftheinnercellmass(ICM)cluster,hasbeen
+proposed as a signiﬁcant factor in mice pregnancy outcomes43. Figure 4D
+presents a visual representation of the deﬁned hatching sites (A-site: 1–2
+o’clock,B-site:3–4o’clock,C-site:4–5o’clock,andD-site:5–6o’clock)using
+OCM projection and 3D segmentation of hatching blastocysts. The A-site
+examples were more prevalent than the C- and D-sites, with limited
+examples indicating a preference for hatching at the A-site. Additionally,
+abnormal cases were observed where two hatching sites were present,
+suggesting variations in hatching patterns. While there are few examples of
+blastocysts with well-formed ICM, the study demonstrates the capability to
+determine the location of the hatching site precisely.
+The timing between the cell events indicates the blastocyst
+quality
+To investigate the factors contributing to blastocyst formation, we
+hypothesized that the timing of key developmental events is vital to the
+process. Figure 5A deﬁnes the morphokinetic parameters and calculated
+variables.
+In addition to the blastocyst quality, we conducted a similar analysis to
+examine the capacity for blastocyst formation and the correlation between
+timing. In our experiments, the embryos failed to develop into blastocysts as
+theyceasedprogressing before reaching the eight-cell stage,despite showing
+some signs of compaction in speciﬁc embryos. Supplementary Movie 9
+showcasesanexample of anembryo displaying atypicalbehavior,ultimately
+failing to reach the blastocyst stage. Hence, we investigated the early embryo
+cell cycle variables ECC2 and cc2a, as well as the synchronization of cell
+division denoted by S2.
+ECC2 measured the second embryo cycle by subtracting the time of
+the ﬁrst occurrence of four cells from that of two cells. In Fig. 5C, the
+average duration of ECC2 in the blastocyst group was observed to be
+signiﬁcantly longer compared to the group that did not form blastocysts.
+Likewise, Fig. 5D illustrates a correlation between the longer duration of
+cc2a and the formation of blastocysts. The term cc2a refers to the ﬁrst
+blastomere ‘a’ cell cycle, which is determined by the time it takes for one
+of the two blastomeres in the 2-cell stage to divide. As the subtraction of
+cc2a from ECC2, S2 does not show signiﬁcant differences between
+blastocysts and non-blastocysts groups (Fig. 5E). Our results suggested
+that providing sufﬁcient time for the competence of the second cell cycle,
+particularly in the ﬁrst blastomere ‘a’, may be associated with the suc-
+cessful development of blastocysts.
+Using BF and OCM images, we performed morphological grading on
+the embryos that developed into blastocysts based on the Gardner grading
+system42. The embryos were sorted into the ‘Good’ and ‘Poor’ categories for
+maximum expansion grade, ICM, and TE quality, respectively. We con-
+solidated the three categories (A, B, and C) in the Gardner system into two
+based on the fact that only the well-looking embryos were transferred for
+implantation in clinics44.
+We determined whether the timing of the early cell cycles and syn-
+chronization correlates to the blastocyst quality. Figure 5F demonstrates
+Fig. 3 | Time-lapse 3D OCM and bright-ﬁeld
+imaging of a developing mouse embryo during the
+blastocyst stages. The top row (A) features standard
+bright-ﬁeld images, while the second (B), third (C),
+fourth (D), and bottom (E) rows display the en face
+full-depth projection, en face slice projection, cross-
+sectional view, and 3D rendering, respectively,
+derived from OCM images. Each column of images
+corresponds to the same imaging time point, pro-
+viding a comprehensive view of the embryo’s
+development. Green arrows indicate the formation
+of cavities. Yellow arrows indicate the formation of
+the inner cell mass (ICM), a critical structure that
+gives rise to the embryo’s tissues and organs, whose
+morphology matters in development. Blue arrows
+represent the hatching site, indicating the embryo
+has reached a crucial developmental milestone and
+is ready to implant. In the 3D rendering, dark purple
+shading indicates the location of cavities, and red
+parts stand for the ICM. Scale bar: 20 μm.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+4
+that the duration of ECC2 is signiﬁcantly longer in hatched embryos
+compared to the embryos that collapsed before hatching. In addition, the
+duration of ECC2 does not affect the grades of ICM and TE. Similar to
+ECC2, only the hatched embryos exhibit a longer cc2a compared to the
+embryos that did not hatch, while cc2a duration does not have an effect on
+the grades of ICM and TE, as shown in Fig. 5G. The third embryo cell cycle
+was deﬁned as ECC3, which measures the timing between the initial
+occurrence of the eight cells and the ﬁrst evidence of four-cell appearance.
+Figure 5H shows the difference in ECC3 between hatched and unhatched
+embryos, with no signiﬁcant difference observed in the ICM or TE grades.
+However, contrary to ECC2, the timing of ECC3 is shorter in hatched
+embryos. S2 and S3 denote the synchronization of cell divisions (t4-t3) and
+cleavage patterns (t8-t5), respectively. No signiﬁcant differences are
+observed in groups withdifferent grades, as depicted in Fig. 5I. Note that the
+number of samples used to calculate ECC2, cc2a, ECC3, and S2 varies for
+different measurements due to some embryos not exhibiting clear evidence
+of certain events. Overall, our result suggests that the timing of early
+embryonic cell cycles primarily inﬂuences hatching capabilities, while the
+grades of ICM or TE are not signiﬁcantly affected.
+Time-lapse OCM allows quantitative analysis of cell nuclei sym-
+metry and polarity
+Furthermore, we assessed nuclei symmetry at the 2-cell stage and explored
+the polarity at the 8-cell stage to gain deeper insights into early embryo
+development. To quantify the nuclei symmetry, we deﬁned the volume
+symmetry ratio as the absolute difference between two nuclei divided by the
+volume of the larger nucleus (Fig. 6A). In this analysis, a higher level of
+symmetry is indicated by a ratio closer to one. Most embryos show a con-
+siderable status of symmetry.
+With that, we aimed to investigate any potential relationship between
+cell symmetry at the 2-cell stage and the formation or quality of blastocysts.
+Initially,wecategorizedthevolumesymmetryratiosintotheblastocystsand
+embryos that could not form blastocysts. However, our analysis revealed no
+statistically signiﬁcant differences between the symmetry of the two groups,
+Fig. 4 | Localization of pronuclei, nuclei, and
+hatching sites with OCM. A OCM images showing
+two pronuclei at one-cell stage at different depths: 0,
+7, 14, 21 μm. B Time-lapse OCM showing the
+behavior during the ﬁrst cleavage. C Demonstration
+of cell polarity visualization at 8-cell stage, nuclei
+1–8 were labeled in the OCM images at different
+depths: 0, 7, 14, 21 μm. D Hatching sites observed in
+relation to the location of ICM: A-site (1–2 o’clock),
+C-site (4–5 o’clock), and D-site (5–6 o’clock). The
+right panel displays two hatching sites. Purple seg-
+ments in 3D OCM stand for ICM. All scale
+bars: 20 μm.
+A
+BF image
+Sum slice
+0 μm
+7 μm
+14 μm
+21 μm
+3D OCM
+PN1
+PN2
+PN2
+PN1
+BF image
+Sum slice
+0 μm
+7 μm
+14 μm
+21 μm
+3D OCM
+1
+2
+3
+4
+5
+6
+7
+8
+1
+2
+5
+6
+7
+3
+4
+8
+C
+B
+0 min
+53 min
+75 min
+85 min
+106 min
+127 min
+Depth1
+Depth2
+D
+Scale bar: 20 μm
+A-site
+C-site
+D-site
+Abnormal
+BF image
+BF image
+BF image
+BF image
+OCM en face
+OCM en face
+OCM en face
+OCM en face
+3D OCM
+3D OCM
+3D OCM
+3D OCM
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+5
+Fig. 5 | Correlation between blastocyst formation and morphological grading
+and morphokinetic parameters. A Deﬁnition of morphokinetic parameter42,75.
+t2-t8: ﬁrst occurrence of two to eight discrete cells, respectively; tSC: the ﬁrst
+evidence of compaction; tSB: Initiation of blastulation; Herniation; end of expansion
+phase and initiation of hatching. B Deﬁnition of blastocyst grades. C–E Timing
+of early embryo developments in all groups. C ECC2 (p = 0.024), D cc2a
+(p = 0.00013), E S2 (p = 0.10). Unit: hour. Student’s t-test: *: p < 0.05, ***: p < 0.001,
+NS: nosigniﬁcance. F–I Timing of early embryo developments in different blastocyst
+groups. F ECC2 (Expansion grade: p = 0.0019; ICM grade: p = 0.87; TE grade:
+p = 0.051), G cc2a (Expansion grade: p = 0.0069; ICM grade: p = 0.42; TE grade:
+p = 0.37), H ECC3 (Expansion grade: p = 0.0063; ICM grade: p = 0.90; TE grade:
+p = 0.076), I S2 (Expansion grade: p = 0.79; ICM grade: p = 0.17; TE grade: p = 0.36).
+Unit: hour. Error bars indicate ± SD. Student’s t-test: **: p < 0.01, NS no signiﬁcance.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+6
+as indicated in Fig. 6B. We then explored the volume symmetry ratios of the
+groups with good and poor performance in maximumexpansion,ICM,and
+TEgradesdeﬁnedintheprevioussection.Similarly,nosigniﬁcantdifference
+was noticed between the groups, as depicted in Fig. 6C.
+Discussion
+In this study, we developed and deployed a dual-modality imaging system
+and an automatic pipeline. This system allowed us to simultaneously cap-
+ture OCM and BF images for ten embryos at ten-minute intervals. By doing
+so, we were able to obtain a comprehensive understanding of both the
+structure and dynamic changes occurring in developing embryos. Over a
+period of ﬁve days, we conducted longitudinal studies to examine the
+process of embryo development starting from the 1-cell stage. We identiﬁed
+factors that impact blastocyst formation and quality. It suggested that the
+timing of early embryonic cell cycles played a primary role in hatching
+capabilities.Conversely,we did not observe signiﬁcant effects onthe ICM or
+TE grades.
+Time-lapseOCMimagingsigniﬁcantlyenhancesourunderstandingof
+embryonic morphological features from the 1-cell stage to fully hatched
+blastocysts by capturing 3D microstructures. This imaging technique allows
+for the precise detection of nuclei, compaction process, ICM distribution
+evaluation, and hatching site identiﬁcation. Detecting nuclei shown as the
+black inner signal against cytoplasm aids in accurate developmental stage
+classiﬁcation45, even when overlapping cells are not visibly distinct in 2D BF
+images. The label-free time-lapse OCM enables capturing nuclei events
+during the ﬁrst cleavage, distinguishing it from confocal images that require
+labeling46. Furthermore, the 3D ICM and TE morphology observed from
+OCMfacilitatesgradingbasedontheGardnergradingsystem.Additionally,
+OCM can characterize the hatching site (Supplementary Movie 1), which
+signiﬁcantly impacts the successful outcome of pregnancy in mice43. 3D
+OCM imaging provides an added beneﬁt for embryologists. It addresses the
+challengeofobservingspeciﬁcfeaturesbyphysicallyrotatingtheembryosas
+needed. In traditional time-lapse imaging, embryos naturally rotate during
+development, potentially obstructing the visibility of regions of interest.
+With 3D datasets, we can accurately register the orientation of the embryo
+and obtain a comprehensive view that includesthe rotational movements to
+facilitatethecomprehensionofthestructures.Toillustratethis,weshowcase
+the quantitative assessment of symmetry during the 2-cell stage, as well as
+the analysis of polarity during the 8-cell stage. These aspects are challenging
+to distinguish using conventional bright-ﬁeld imaging but carry potential
+medical signiﬁcance if abnormalities exist. Symmetry has been widely
+recognized as a crucial factor in mammalian embryos during their initial
+development. Recent studies have provided evidence suggesting a correla-
+tion between symmetry at the 4-cell stage in human embryos and embryo
+aneuploidy47. Additionally, ﬁndings indicate that porcine embryos with
+symmetrical cleavage at the 2-cell stage exhibit higher rates of successful
+development compared to the asymmetrical groups48. Although our results
+did not include asymmetrical examples at the 2-cell stage, we have suc-
+cessfully developed a pipeline for conducting symmetrical analysis during
+the early development. Following that, the polarization process, which
+typically initiates during the 8- to 16-cell stage, is regarded as an essential
+event involved in determining the fate of cells, leading them to develop into
+either the TE or the ICM49–51. Live cell staining and biomarker expression
+analysishavebeenutilizedtounderstandthepolarizationprocess.However,
+time-lapse OCM offers a label-free alternative for visualizing nuclei,
+allowing embryos to develop without damage.
+Morphokinetic parameters, primarily supported by BF imaging, also
+contribute to the evaluation, suggesting that timing can serve as an indicator
+of bothblastocystformationandquality.Concurrenttime-lapseOCM plays
+a complementary role; for example, when two or more blastomeres overlap,
+Fig. 6 | Segmentation of nuclei reveals the capability of cell symmetry and polarity
+measurements. A Volume symmetry ratio is deﬁned in the 2-cell stage, with nuclei 1
+and 2 segmented and indicated in the OCM images using red numbers. Pink in the
+3D OCM rendering stands for nuclei. Scale bar: 20 μm. B, C Volume symmetry ratio
+between blastocysts and non-blastocysts (p = 0.45) (B), and different grades of
+blastocysts (C) (Expansion grade: p = 0.40; ICM grade: p = 0.25; TE grade: p = 0.72).
+Error bars indicate ± SD. Student’s t-test: NS no signiﬁcance.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+7
+the cleavage is difﬁcult to identify in 2D BF. It is also more accurate to
+determine the stage by visualizing the nuclei or blastocoel expansion in
+OCM rather than in BF, especially at or beyond the 8-cell stage. The results
+indicate that maintaining an appropriate duration for the second and third
+embryo cycles may be related to the hatching capability of the mouse
+embryos. Conversely, a reduced duration of ECC2 and cc2a may be asso-
+ciated with the failure of blastocyst formation. While much of the char-
+acterization regarding timing has been focused on human embryos, there is
+limited comparable literature on the timing of the second embryonic cell
+cycle. Our results demonstrated the consistency with mouse embryos.
+Unlike humans, where the synchronization of divisions and cleavage pat-
+terns (S2 and S3) can be employed as a biomarker52, neighboring cells in the
+mouse embryo do not divide simultaneously. Instead, a dividing cell typi-
+cally completesits division minutestohours before neighboring cells divide.
+This explains why no signiﬁcant variation was observed in S2 and S3 among
+embryos of different qualities.
+Despite demonstrating its beneﬁts, this study still has areas for
+improvement. The current experiments employed a smaller scale of ﬁfty
+embryos in contrast to time-lapse imaging studies that typically involve a
+larger sample size in the thousands. There are few examples of different
+behaviors due to the limited number of samples. Nonetheless, this sample
+size is adequate for showcasing the capability of time-lapse OCM and for
+indicating the observed trend. By successfully implementing the platform,
+the study can be further expanded to include a larger dataset for extensive
+applications.
+Another limitation is the resolution and image quality for ﬁner details,
+such as subcellular features during the ﬁrst embryo cycle. Full-ﬁeld OCM,
+a variant of OCT based on plane detection from full-ﬁeld illumination,
+has demonstrated excellent capabilities in resolving intracellular structures,
+such as nuclear envelope ﬂuctuations53 and cytoplasmic aggregation54.
+Though promising, it is challenging to ﬁt a full-ﬁeld OCM system inside
+a commercial incubator for long-term time-lapse monitoring of the
+developing embryos. For 3D OCM, there is room to improve the quality
+by reducing the effect of the speckle noise inherent in OCM images.
+Our current OCM images suffered from speckle noise, which impaired
+the imaging quality. Researchers have used averaging protocols to eliminate
+the speckle noise in the embryos30,55. However, it may sacriﬁce the imaging
+speed and reduce the temporal resolution. Other strategies for speckle
+noise reduction include hardware modiﬁcation, e.g., speckle-modulation56,
+and software processing, e.g., SM-GAN network57. With denoising meth-
+ods, we can facilitate the visualization of microstructures with enhanced
+image quality. Additionally, unwanted strong reﬂections in OCM from the
+bottom of the dish (as seen in Supplementary Movies 1, 8, and 9 for the
+cross-sectional view) have posed a challenge for visualization and imaging
+processing. It is due to the mismatch of refractive indices between the
+two materials. A previous study addressed this by coating imaging
+glass dishes with a thin layer of agarose (which has a similar refractive
+index to embryos)30. However, this method may introduce concerns
+regarding the inﬂuence of agarose on embryos and increase complexity.
+To make the approach more practical, we could use coated plates with
+biocompatible materials that do not dissolve in the media or materials with
+refractive indices similar to embryos (ranging from 1.3 to 1.4)58, such as
+polydimethylsiloxane (PDMS, approximately 1.4)59. Ultimately, there is a
+tradeoff between imaging resolution, 3D capabilities, imaging speed, post-
+processing, and sample preparation complexity to achieve the optimal
+imaging solution.
+Unlike procedures that require physical intervention with the sample,
+such as taking a biopsy of a few cells for PGT, this dual-modal live cell
+imagingis notconsidered invasive.The concerns,however,aremore related
+to phototoxicity and photobleaching, especially in time-lapse systems,
+which, conversely, emphasize the advantages of using OCM. Previous
+studies30,32,55 demonstrated that the use of low-intensity near-infrared light
+in OCM does not compromise the well-being of embryos. In contrast, some
+other optical modalities, such as BF and ﬂuorescence microscopy, pose a
+concern for repeated imaging of embryo health, speciﬁcally in terms of
+exposure to short-wavelength light60. To reduce phototoxicity, we ensured
+the OCM laser and BF LED were only active during imaging and kept the
+setup in an incubator to prevent room light exposure. The OCM beam
+continuously scans the sample, further limiting light exposure to the same
+location. For OCM, our reported optical power (1.68 mW) remains well
+within the safe limit. According to the American National Standards
+Institute (ANSI)61, the maximum permissible exposure for the retina is
+~2.00 mW at 800 nm, which is higher than the optical power used in our
+OCM imaging system. The BF LED remains on during auto-tracking and
+lasts ~576 s per day, longer than some commercial time-lapse systems, such
+as EmbryoScope62. In the next iteration of our system, the white light LED
+can be replaced with a red LED (e.g., 635 nm), and the optical power can be
+further reduced. Additionally, we will update the software to minimize the
+time needed for auto-tracking. We will assess the phototoxicity and inﬂu-
+ence of time-lapse dual-modal imaging experimentally after upgrading our
+system.
+Other challenges lie in improving the throughput of the system. The
+currently available time-lapse system can culture 10–16 embryos per dish
+and accommodate several dishes (ranging from 1 to 15) for different
+patients27. Our current throughput (10–25 embryos) is comparable but
+not yet fully optimized. The imaging of each embryo takes about 1 min,
+with stage movement and data transfer accounting for two-thirds of the
+time. We are developing software to parallelize these processes, poten-
+tially saving 30 s per embryo and improving efﬁciency. Parallel imaging,
+such as space-division multiplexing OCT63, also offers the potential to
+signiﬁcantly enhance imaging speed by simultaneously monitoring
+multiple samples. Additionally, 3D-printed holders may be designed to
+support at least four imaging dishes to further increase the imaging
+throughput.
+Afterimageacquisition,annotatingandanalyzingtheextensivedataset
+remains labor-intensive. These tasks include identifying cell and nuclei
+locations in early stages, labeling ICM and TE at the blastocyst stage, and
+grading embryo quality during different developmental stages. Machine
+learning64,65 and deep learning66,67 methods are commonly employed to aid
+in IVF processes. However, these models require a signiﬁcant number of
+datasets for training and validation, which rely on the 2D BF image in the
+majority. Our high-throughput system enables the accumulation of crucial
+datasets, especially the novel time-lapse 3D OCM images, supporting the
+development of automated segmentation and classiﬁcation learning-based
+algorithms. Previous publications have demonstrated the use of learning-
+based models on 3D OCM, such as organoids68,69. This existing knowledge
+and experience can provide a smoothfoundation for transferring the idea to
+3D time-lapse OCM segmentation and classiﬁcation on mammalian
+embryos.
+Beyond what we have demonstrated in this paper, the dual-modal
+imaging system has the potential to facilitate the evaluation of embryo
+quality by extracting critical parameters. For example, time-lapse BF ima-
+ging can more effectively identify atypical human embryo cleavage features
+than traditional daily embryo morphology assessments, capturing para-
+meters with signiﬁcant biological and clinical relevance70. On the other
+hand, time-lapse OCM provides detailed 3D morphology visualization,
+especially with high contrast for nuclei, enabling the quantiﬁcation of cell
+symmetry and polarization. Together, these modalities can address several
+technical challenges in imaging. For instance, while BF is well-suited to
+visualize TE cell distribution, OCM is better at quantifying their evenness
+andsize.Additionally,embryosmaynotalwaysbeorientedoptimallyfor2D
+imaging, but these features can be observed using 3D OCM. These two
+modalities complement each other effectively. A generalized workﬂow
+could involve embryologists quickly reviewing BF videos to identify devel-
+opmental defects such as early compaction71,72 and prolonged blastomere
+movement73. They can further examine the corresponding OCM images for
+suspicious time points to check for morphological abnormalities such as
+multinucleation and perform morphological grading of blastocysts42. 3D
+time-lapse OCM videos can also be reviewed to identify rotational move-
+ments and other dynamic features.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+8
+The dual-modality imaging system effectively overcomes various
+challenges. Firstly, the miniaturized design of the system ensures compat-
+ibility with commercial incubators, enabling proper control of gas, tem-
+perature, and humidity with accessibility for laboratories and clinics.
+Second, integrating two modalities in the system provides a comprehensive
+view of the samples, as discussed above. This platform also presents an
+elegant solution by enabling fully automated acquisition. Equipped with
+3-axisstagesanddevelopedauto-trackingandauto-focusingalgorithms,the
+system also enables the simultaneous imaging of up to 25 embryos with
+intervals of 10–15 min. With all these beneﬁts, the system excels in long-
+itudinally monitoring embryos over extended periods with high spatio-
+temporal resolution.
+The promising outlook of the noninvasive automatic time-lapse OCM
+and BF imaging system extends beyond research settings, as it also offers
+valuable applications in clinical practice. For research purposes, this plat-
+form allows high-throughput screening to optimize culture conditions,
+including media and oxygen concentration74, to improve embryo health
+during extended culture. This study also highlights the potential to inves-
+tigate the mechanisms and behaviors during early embryonic development
+with the beneﬁt of noninvasiveness. For clinical implications, it provides
+more precise and accurate evaluations, making it a promising tool for
+developingmorphokineticmarkersthat correlatewithblastocystformation.
+It materializes in the futureof IVF applicationinclinicsasa reference for the
+evaluation and selection of the most viable embryos.
+In conclusion, our study demonstrates the potential of automatic time-
+lapse OCM and BF imaging as a noninvasive and informative tool for
+evaluating embryo development. We performed longitudinal monitoring
+on mouse embryos for over ﬁve days. Our ﬁndings indicate the importance
+of early embryonic cell cycle timing in hatching capabilities, while the ICM
+or TE grades show limited association. Continued reﬁnement of this ima-
+ging method can enhance embryo assessment and deepen our under-
+standingofearlyembryonicdevelopment.Thenoninvasiveautomatictime-
+lapse OCM and BF imaging system enables high-throughput screening and
+developmental studies, paving the way for evaluating and selecting the most
+viable embryos for IVF practice.
+Materials and methods
+Embryo culture procedure
+The mouse embryos were sourced commercially and no live mice were
+involved in this study, and development was terminated immediately post-
+hatching. This situation does not require Institutional Animal Care and Use
+Committee (IACUC) approval. Cryopreserved mouse embryos at the one-
+cell stage (B1–10, IVF store) were thawed by removing them from liquid
+nitrogen storage and allowing them to reach room temperature over a
+period of 2 min gradually. The straw containing the embryos was cleaned
+with 70% ethanol and transferred into a sterile hood for further handling.
+Following this, the embryos were immediately dispensed onto a sterile peri-
+dish and underwent a washing process. Four rounds of washing were per-
+formed using micropipettes, with each round in a different drop of 250 μL
+Multipurpose Handling Medium-Complete (MHM-C) media (90166,
+FUJIFILM) on the same peri-dish. The embryos were then left in the ﬁnal
+drop for a total of ten minutes to rehydrate. After rehydration, the embryos
+were transferred from the peri-dish to a Well-of-the-Well (WOW) culture
+dish(V005001,IVFstore),witheachembryo placed inaseparatemicrowell.
+The culture dish was preloaded with 50–100 μL of MHM-C media and
+coveredwith 2–3 mL of mineral oilbefore the transfer of the embryos.From
+this point forward, the culture dish was placed inside a controlled incubator
+at 37 °C with precise levels of 6% CO2 and 5% O2, ensuring proper condi-
+tions for embryo development until the end of imaging.
+Dual-modality (OCM and BF) imaging system
+To image the development of mouse embryos longitudinally without
+interruptions, we built a customized dual-modality imaging platform inside
+a commercial incubator (Heracell™VIOS 160i CO2 Incubator), shown in
+Fig. 1A. Our system consists of standard bright-ﬁeld (BF) microscopy and
+spectral-domain optical coherence microscopy (SD-OCM) inside the
+incubator. The light source for SD-OCM is a broadband superluminescent
+diode laser with a center wavelength of 850 nm and a spectral bandwidth of
+168 nm (cBLMD-T-850-HP, Superlum). The spectrometer (Cobra-S 800,
+Wasatch Photonics) captured the SD-OCM interferogram between the
+sample and reference arms. The axial resolution of our SD-OCM was
+~2.1 μm in tissue, and the lateral resolution was ~1.0 μm measured using a
+USAF1951resolutiontargetwitha20×objectivelens(MPLANNIR20/NA
+0.40, MITUTOYO). The measured power of the OCM imaging beam was
+~1.68 mW at 850 nm. The integrated BF system has a white LED and a 2D
+monochrome camera (DMM 42BUC03-ML, The Imaging Source) while
+sharingthesameobjectiveastheSD-OCMsystem.TheBFmoduleachieved
+a resolution at ~1.7 μm with L6 (AC254-075-B-ML, Thorlabs), measured
+based on the USAF 1951 resolution target. The measured BF optical power
+was ~1.0 mW. A dichroic mirror (FF757-Di01-25 × 36, Semrock) separates
+the OCM light from the BF imaging path. To mitigate the impact of
+humidity on the opticaland electronic equipment, we used dielectric-coated
+mirrors instead of silver-coated ones, stainless steel screws, and safeguarded
+all electronic connections with waterproof cable jackets. The scan protocol
+of each mouse embryo includes 500 axial scans (A-scans) per frame
+with 500 frames per volumetric dataset for OCM and one 2D BF image.
+The transverse ﬁeld of view of BF and OCM is ~628 μm × 470 μm and
+~360 μm × 360 μm, respectively. The A-scan rate of the OCM system is set
+at 80 kHz, with a B-scan rate of ~115 Hz for all recordings. Each OCM
+image acquisition requires approximately 4 s, and no temporal averaging
+was employed. 8–12 embryos were imaged per experiment every ten min-
+utes with OCM and BF images. The total acquisition time for BF and OCT
+images was approximately 4.5 s. Stage movement and auto-tracking took
+about 20 s (4 s per iteration for auto-tracking and auto-focusing). Data
+transfer and saving required an additional 20 s, with the system remaining
+idle for the remainder of the time.
+Auto-tracking and auto-focusing algorithm
+To enable high-throughput time-lapse imaging, our imaging platform
+integrated a 3-axis motorized stage for locating each embryo, with an auto-
+tracking algorithm based on a BF image and an auto-focusing algorithm
+based on an OCM cross-sectional image. Supplementary Fig. 1A shows a
+captured2DBFimageofamouseembryo.Thepreciseboundaryoftheplate
+well is located using a simple threshold method. Then, the auto-tracking
+algorithm calculates the center of the plate indicated by the green cross in
+Supplementary Fig. 1A. The commands are sent to the motorized stage to
+align the center of the plate and the image at a restricted distance. Iteratively,
+theplatewillreachthecenteroftheﬁeldofview(FOV).Auto-focusingstarts
+after auto-tracking. Supplementary Fig. 1B shows a captured OCM cross-
+sectional image. Auto-focusing algorithm searches along the depth across
+the frame. The boundary of the plate was found by intensity difference
+against the background, plotted by the green dots in Supplementary Fig. 1B.
+The algorithm uses a quadratic polynomial curve ﬁtting (red line) to seg-
+ment the boundary. Similarly, the commands sent to the stage will move the
+vertex of the ﬁtted curve (blue crossing) to a preset focus location. After
+auto-tracking and auto-focusing, the software saves the last positions and
+moves to the recorded coordinates the next time.
+Image processing
+The customized acquisition software based on GPU acceleration (GeForce
+RTX 3090, Nvidia Corporation) helps efﬁcient OCM signal and image
+processing. OCM imageswere resized to have isotropic voxels using custom
+MATLABscriptsforthefollowinganalysis.TheprojectionsofOCMimages
+visualized in Figs. 3C, D, 4C, D were a spatial average of 5 frames. The
+visualization and segmentation of our images were obtained using Amira
+(Thermo Fisher Scientiﬁc), using resized images without averaging. The
+time-lapse videos of each embryo were generated through MATLAB
+(MathWorks, R2023b). Similarly, the OCM projections were spatially
+averaged over 5 frames, and auto-contrast enhancement was performed for
+video visualization. 3D visualization was provided with ImageJ and Amira.
+https://doi.org/10.1038/s42003-025-08044-5
+Article
+Communications Biology |  (2025) 8:612 
+9
+Morphokinetic parameters and morphological grading
+This study included 51 embryos with a mix of normal and abnormal
+behaviors. The critical events were determined manually based on the BF
+and OCM images. As denoted in Fig. 5A, multiple morphokinetic variables
+were observed and selected for analysis according to the published
+guidelines42,75. For each timing, the ﬁrst occurrence of the expected phe-
+nomenon is deﬁned by the corresponding time-lapse frame. The mor-
+phokinetic parameters were characterized as follows: t2-t8 represented the
+ﬁrst occurrence of two to eight discrete cells, tSC indicated the ﬁrst evidence
+of compaction, tSB denoted the initiation of blastulation, tHNyz referred to
+herniation or the end of the expansion phase and initiation of hatching.
+From there, we selected the calculated variables to reﬂect the embryo cycle
+and synchronization features in the early stages. ECC2 (t4-t2) represented
+the duration of the second embryo cell cycle, cc2a (t3-t2) indicated the cell
+cycle of the ﬁrst blastomere ‘a’, ECC3 (t8-t4) represented the duration of the
+third embryo cell cycle, and S2 (t4-t3) and S3 (t8-t5) represented the syn-
+chronization of cell divisions and cleavage patterns, respectively. Embryos
+with difﬁcult-to-identify or missing stage assignments were excluded from
+the analysis of related parameters.
+In our analysis, we incorporated the Gardner grading system to eval-
+uate the quality of blastocysts. Gardner scores of each blastocyst were
+provided based on established guidelines42. The Gardner embryo grading
+system assesses embryo quality in expansion, TE, and ICM quality. In brief,
+the expansion grade assigns a numerical value from 1 to 6, with higher
+numbers indicating greater blastocyst expansion. The ICM or TE grade
+assessesthe quality of the ICM and TE based on criteria suchas cellnumber,
+density,andothermorphologicalcharacteristics,usinggradesA,B,and Cto
+indicate the quality from good to poor. In this study, we deﬁned three
+criteria: maximum expansion grade, ICM grade,and TE grade derived from
+the Gardner grading system, as shown in Fig. 5B. The maximum expansion
+gradeservesasameasureoftheblastocyst’sabilitytocontinuedeveloping.A
+higher expansion grade suggests the embryo’s potential to progress in
+development, possibly implying improved quality. In this study, we deﬁned
+the ‘Good’ expansion grade as embryos capable of hatch

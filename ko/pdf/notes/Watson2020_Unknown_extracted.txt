@@ -1,0 +1,1314 @@
+Report
+Phenomics-Based Quantiﬁcation of CRISPR-
+Induced Mosaicism in Zebraﬁsh
+Graphical Abstract
+Highlights
+d Clonal clusters arising from CRISPR editing follow a universal
+size distribution
+d Distinct phenotypic patterns arise from mosaic gene loss
+d Large-scale phenotyping heightens sensitivity in detecting
+somatic mutant populations
+Authors
+Claire J. Watson,
+Adrian T. Monstad-Rios,
+Rehaan M. Bhimani, ..., Paul Coucke,
+Yi-Hsiang Hsu, Ronald Y. Kwon
+Correspondence
+cwalk1@uw.edu
+In Brief
+Genetic mosaicism manifests as spatially
+variable phenotypes, whose detection
+and interpretation remain challenging.
+Watson et al. identify biological factors
+inﬂuencing phenotypic patterns in the
+skeletons of CRISPR-edited mosaic
+zebraﬁsh and establish methods for their
+detection using large-scale phenotyping.
+Watson et al., 2020, Cell Systems 10, 275–286
+March 25, 2020 ª 2020 Elsevier Inc.
+https://doi.org/10.1016/j.cels.2020.02.007
+Cell Systems
+Report
+Phenomics-Based Quantiﬁcation
+of CRISPR-Induced Mosaicism in Zebraﬁsh
+Claire J. Watson,1,2,7,* Adrian T. Monstad-Rios,1,2 Rehaan M. Bhimani,1,2 Charlotte Gistelinck,1,4 Andy Willaert,4
+Paul Coucke,4 Yi-Hsiang Hsu,5,6 and Ronald Y. Kwon1,2,3
+1Department of Orthopaedics and Sports Medicine, University of Washington, Seattle, WA, USA
+2Institute for Stem Cell and Regenerative Medicine, University of Washington, Seattle, WA, USA
+3Department of Mechanical Engineering, University of Washington, Seattle, WA, USA
+4Center for Medical Genetics Ghent, Ghent University, Ghent, Belgium
+5Hebrew SeniorLife Institute for Aging Research, Boston, MA, USA
+6Harvard Medical School, Boston, MA, USA
+7Lead Contact
+*Correspondence: cwalk1@uw.edu
+https://doi.org/10.1016/j.cels.2020.02.007
+SUMMARY
+Genetic mosaicism can manifest as spatially variable
+phenotypes that vary from site to site within an organ-
+ism. Here, we use imaging-based phenomics to
+quantitate phenotypes at many sites within the axial
+skeleton of CRISPR-edited G0 zebraﬁsh. Through
+characterization of loss-of-function cell clusters in
+the developing skeleton, we identify a distinctive
+size distribution shown to arise from clonal fragmen-
+tation and merger events. We quantitate the pheno-
+typic mosaicism produced by somatic mutations of
+two genes, plod2 and bmp1a, implicated in human
+osteogenesis imperfecta. Comparison of somatic,
+CRISPR-generated
+G0
+mutants
+to
+homozygous
+germline mutants reveals phenotypic convergence,
+suggesting that CRISPR screens of G0 animals can
+faithfully recapitulate the biology of inbred disease
+models. We describe statistical frameworks for phe-
+nomic analysis of spatial phenotypic variation pre-
+sent in somatic G0 mutants. In sum, this study deﬁnes
+an approach for decoding spatially variable pheno-
+types generated during CRISPR-based screens.
+INTRODUCTION
+Phenomics is the utilization of large-scale phenotyping to system-
+atically infer genotype to phenotype relationships (Houle et al.,
+2010). As such, phenotypic proﬁling at a large number of anatom-
+ical sites can advance our understanding of biology that involves
+relationships between phenotypes across the whole organism
+(Hur et al., 2017). One example of such biology is genetic mosa-
+icism: the presence of cells with multiple distinct genotypes
+constituting the organism on the whole. Mosaicism can arise
+naturally through errors in DNA replication, or intentionally through
+genetic manipulation. This genetic heterogeneity results in a hall-
+mark of mosaicism—site-to-site phenotypic variability—which
+makes identifying gene-to-phenotype relationships challenging.
+In animal models, somatic mutations form the basis for rapid-
+throughput G0 screens, prototypes for which are rapidly
+increasing following the advent of clustered regularly interspaced
+short palindromic repeats (CRISPR)-based gene editing (Cong
+et al., 2013; Jinek et al., 2012). In humans, chromosomal mosai-
+cism in embryos is quite common (McCoy, 2017; Vanneste
+et al., 2009), its role in disease may be prevalent and underappre-
+ciated (Gottlieb et al., 2010; Iourov et al., 2010), and at the most
+fundamental level, it is suggested that every complex, multi-
+cellular organism is likely to harbor at least some somatic mosa-
+icism (Campbell et al., 2015; Forsberg et al., 2017). In the context
+of disease, mosaic phenotypic patterns can inform the timing of
+mutagenesis, which may help predict the likelihood of mutations
+in germ cells that can be passed on to progeny (Campbell et al.,
+2015). Phenotypic proﬁling at a number of anatomical sites may
+help decode somatic mutant phenotypes, which are important
+in both experimental and clinical settings.
+Extracting biological information from somatic mutant pheno-
+types remains challenging for several reasons. One source of dif-
+ﬁculty is our lack of understanding of quantitative phenotypic
+variation arising from mosaicism, and how best to analyze it.
+For spatially distributed organs (e.g., bone, skin, nerves, blood
+vessels), mosaicism can manifest as relatively uniform pheno-
+types reminiscent of a generalized condition, or alternating pat-
+terns of affected and unaffected body segments (Bernards and
+Gusella, 1994). Much of our knowledge of the phenotypic conse-
+quences of mosaicism has been derived from easily observable
+traits where spatial variations are readily discernible (Biesecker
+and Spinner, 2013). As such, our ability to discern phenotypic
+manifestations of mosaicism for complex traits remains relatively
+limited (Biesecker and Spinner, 2013). Large-scale phenotyping
+workﬂows have mostly been deﬁned in germline mutants (Giste-
+linck et al., 2018; Hur et al., 2017; Thyme et al., 2019) or animals
+subjected to systemic drug exposure (Pardo-Martin et al., 2013).
+Different analytical methods may be needed for somatic mu-
+tants, where the speciﬁc set of altered measures, acquired
+from different anatomical locations, may be different from animal
+to animal.
+Another source of difﬁculty is our limited understanding of bio-
+logical factors that inﬂuence phenotypic expressivity in mosaic
+individuals. It is broadly accepted that spatial phenotypic pat-
+terns are dependent on the proliferation of mutant cells and
+their translocation to different sites. Lineage tracing of clonal
+Cell Systems 10, 275–286, March 25, 2020 ª 2020 Elsevier Inc.
+275
+populations from embryonic to adult zebraﬁsh has provided a
+wealth of knowledge on clonal abundance in a variety of tissues,
+and suggests that in most cases, a few clonal progenitors ac-
+count for a majority of cells comprising the resulting tissue
+type (McKenna et al., 2016). Yet, how these clones distribute
+spatially within and across tissues remains unknown and is a crit-
+ical piece of information needed to interpret somatic mutant
+phenotypes.
+A prime instance of experimental biology that necessitates
+decoding somatic mutant phenotypes is in a rapid-throughput
+genetic screen. Several prototypes for rapid CRISPR-based
+reverse genetic screens have been developed in which pheno-
+typing is performed directly in G0 founders (Shah et al., 2015;
+Wu et al., 2018). This increases throughput by alleviating the
+time and resources needed to breed mutant alleles to homozy-
+gosity. Such approaches may also be useful for animal models
+that require longer durations to reach sexual maturity or have
+long gestational intervals, making breeding to homozygosity
+impractical. However, creating an equivalent loss of function
+on an organism-wide scale (i.e., every individual cell) is chal-
+lenging. When complexed with a targeting guide RNA (gRNA),
+the bacterial Cas9 enzyme will create a double strand break at
+a genome-speciﬁc location determined by complementary
+sequence in the gRNA. Errors in endogenous repair lead to inser-
+tions and deletions (indels) at the cut site, and potential loss of
+gene product function. Yet, when administered a single gRNA,
+one-third of indels are expected to be in-frame. Thus, less than
+half ([2/3]2 = 4/9) of cells are expected to have bi-allelic out-of-
+frame mutations, even with peak editing efﬁciency (Shah et al.,
+2015). Although the use of multiple gRNAs to redundantly target
+the same gene can increase the proportion of bi-allelic out-of-
+frame mutations, this may also increase toxicity, and variable
+penetrance of null phenotypes is still prevalent (Wu et al.,
+2018). Microhomology-mediated end joining (MMEJ) is a prom-
+ising direction to enrich somatic mutations for a predictable out-
+of-frame allele (Ata et al., 2018). However, imperfect editing
+efﬁciencies and some degree of mutated allelic mosaicism are
+still expected following MMEJ. These problems are confounded
+when multiple genes are knocked down, for example, when
+studying epistatic interactions of genes that are tightly linked,
+or knockdown of clusters of genes with functional redundancy
+(Sanjana, 2017; Shah et al., 2015; Shalem et al., 2014). Yet, mu-
+tation efﬁciency often decreases with the number of genes that
+are multiplexed, due to a reduction in Cas9:gRNAs per gene.
+Due to the lower ﬁdelity in detecting somatic mutant phenotypes,
+prototypical screens have mostly focused on severely dysmor-
+phic phenotypes (Wu et al., 2018), or phenotypes whose spatial
+variations are easily observable (Shah et al., 2015).
+In this study, our aims were 3-fold: (1) to characterize how
+CRISPR-induced mutations distribute—within individual bones,
+and groups of bones—in the skeletons of G0 zebraﬁsh, and to
+better understand the etiology of such mosaic patterns; (2) to
+assess how such mosaic patterns are phenotypically manifested
+by characterizing somatic mutant phenotypes for plod2 and
+bmp1a; and (3) to identify statistical methods effective at
+discerning somatic mutant phenotypes. Our studies identify
+strategies for decoding spatially variable phenotypes, i.e., those
+that have the potential for high site-to-site variability within a sin-
+gle organ system, in G0 zebraﬁsh. When paired with CRISPR-
+based screens, these methods can identify genes contributing
+to skeletal disease.
+RESULTS
+CRISPR-Based Gene Editing Results in Clusters of Cells
+with Loss of Function
+Our ﬁrst aim was to characterize how CRISPR-induced muta-
+tions distribute in the skeletons of G0 zebraﬁsh, and to better un-
+derstand the etiology of such mosaic patterns. To examine this,
+sp7:EGFP (DeLaurier et al., 2010) embryos were injected with
+Cas9:gRNA ribonucleoprotein complexes (RNPs) targeting the
+ﬂuorescent transgene. This enabled loss-of-function mutations
+in EGFP to be visualized as loss of ﬂuorescence (LOF) in sp7+
+(osterix+) osteoblasts. Injected ﬁsh were examined for functional
+EGFP loss at 10–12 days post-fertilization (dpf), a stage when the
+larvae are still transparent, and most skeletal elements have
+formed. Regions of LOF were observed in virtually all formed
+skeletal elements (Figure 1A). This included bones of the cranio-
+facial skeleton, median ﬁn rays, hypurals, and the spine. Pene-
+trance of LOF was high, whereas expressivity was variable in
+regard to which bony elements in each animal exhibited ﬂuores-
+cence loss, as well as the size and number of such regions within
+each bony element. Quantiﬁcation of mean centrum ﬂuores-
+cence in sp7:EGFP somatic mutants revealed that when aver-
+aged across the sample, ﬂuorescence was uniformly decreased
+across the spine (Figure 1B). However, we observed jagged
+traces in some individual mutants, demonstrating variability in
+LOF within individuals (Figure 1C). As expected, centra in adult
+sp7:EGFP somatic mutants were well mineralized and did not
+exhibit gross defects (Figure S1), indicating that LOF was attrib-
+utable to loss of the transgene and not to loss of osteoblasts.
+LOF regions are composed of clusters of cells with loss-of-
+function mutations: cells comprising each cluster represent a
+single clone, or multiple clones that merged at an earlier point
+in development (we are unable to distinguish these two possibil-
+ities). Within individual vertebrae, we often observed multiple,
+contiguous centra with complete or partial LOF, and which
+were ﬂanked by at least one centra with no LOF. This resulted
+in two distinguishable types of cell clusters: ‘‘microscale’’ clus-
+ters conﬁned within single vertebrae, and ‘‘macroscale’’ clusters
+spanning contiguous vertebrae (Figure 1D). Inspection at higher
+magniﬁcation revealed that some centra exhibited LOF in
+ventral, but not dorsal, regions (or vice versa). This dorsoventral
+stratiﬁcation could at times be seen across contiguous centra
+(Figure 1E), potentially due to these bodies’ shared clonal part-
+ners. In the neural arches, LOF often appeared to be associated
+with LOF in the centrum of the same vertebral body (Figure 1F).
+Because many bones retained partial or complete expression of
+the transgene, this suggested that individual bony elements are
+not explicitly derived from single clonal populations and cannot
+be evaluated as independent functional or non-functional units.
+A Common Distribution Underlies the Sizes of Loss-of-
+Function Clusters in Bones of Distinct Developmental
+Lineages and in Animals with Different Mutation
+Efﬁciencies
+We next sought to understand the etiology of such mosaic pat-
+terns. Although some aspects of patterns of ﬂuorescence loss
+276
+Cell Systems 10, 275–286, March 25, 2020
+A
+B
+C
+D
+E
+F
+G
+H
+I
+L
+K
+J
+Figure 1. A Common Distribution Underlies Loss-of-Function Cluster Size in Bones of Distinct Developmental Lineages and in Animals with
+Different Mutation Efﬁciencies
+(A) Larval sp7:EGFP transgenic ﬁsh show relatively uniform EGFP expression in the skeleton of control ﬁsh (top). Somatic mutants with either moderate (middle) or
+high (bottom) LOF display a wide and varied range of LOF clusters, including in the craniofacial skeleton, the axial skeleton, and in the caudal ﬁn rays. Fish shown
+are 10 dpf clutchmates. Scale bar, 500 mm.
+(B) Somatic mutants have a mean reduction in sp7:EGFP ﬂuorescence in the developing axial skeleton of 10 dpf zebraﬁsh compared with that in non-injected
+clutchmates (controls). Error bars represent SEM.
+(C) Traces of ﬂuorescence intensity for each developing centrum along the spine for individual somatic mutants (purple, green, and gray lines) show jagged
+topology, indicating clusters of loss of transgene expression compared with those in control (black line) and averaged expression (B).
+(legend continued on next page)
+Cell Systems 10, 275–286, March 25, 2020
+277
+appeared to be non-random, patterns from ﬁsh to ﬁsh were un-
+predictable, suggesting that stochastic forces were an important
+etiological factor. Models of clonal population dynamics in ﬂuo-
+rescence-based cell lineage tracing studies have demonstrated
+that while different factors can contribute to cluster size distribu-
+tions during tissue growth, over time, contributions from random
+clonal merger and fragmentation (Figure 1G) become dominant
+over those from cell behaviors speciﬁed by developmental pro-
+grams (e.g., cell division or loss) (Rulands et al., 2018). As a
+consequence, cluster size distributions across diverse develop-
+mental processes often exhibit the same characteristic distribu-
+tion once cluster sizes in each individual are normalized by the
+average cluster size in that individual (Rulands et al., 2018).
+This distribution has the form:
+y = e(–x/<x>),
+(Equation 1)
+where x is cluster size, and <x> is the mean of x (Rulands
+et al., 2018).
+Fluorescently labeled cell clusters in lineage tracing studies and
+LOF cell clusters in somatic mutants share commonalities in their
+physical origins (postzygotic mutations) and interpretation (clus-
+ters may be composed of a single clonal population, or multiple
+clones that merged earlier in development). As such, we hypoth-
+esized that LOF clusters in somatic animals would also exhibit uni-
+versality in their size distributions as described by Equation 1. To
+test this, we manually traced regions of LOF on the dorsal and
+ventral aspects in the centra in each animal (Figure 1H). Individual
+ﬁsh exhibited variable numbers and sizes of LOF clusters (Fig-
+ure 1I), as well as different compositions of microscale versus
+macroscale clusters. This variability manifested as distinct distri-
+butions of cluster sizes in each ﬁsh (Figure 1J). However, when
+normalized by average cluster size in each animal, the cluster
+size distributions collapsed to the distribution in Equation 1 for
+both microscale and macroscale clusters (Figure 1K). When
+microscale and macroscale clusters were analyzed separately,
+the curve ﬁt was noticeably weaker (Figures S2A and S2B), pre-
+sumably from the incomplete sampling of cluster sizes. Note
+that the results in Figure 1K were obtained by manual tracing of
+LOF regions. Similar results were obtained when regions were
+traced by a different individual (Figure S2C), suggesting that re-
+sults were not strongly sensitive to individual differences in
+thresholding.
+We hypothesized that this distribution would also describe LOF
+cluster sizes in bones of a different developmental lineage. We
+quantiﬁed LOF cluster size distributions within the branchiostegal
+rays of the craniofacial skeleton, which unlike the somite-derived
+vertebral column, derives from neural crest (Kague et al., 2012).
+Consistent with our hypothesis, a similar data collapse was
+observed as shown in Figure 1L. These studies demonstrate
+that loss-of-function cluster sizes in bones of distinct develop-
+mental lineages, and in animals with different loss-of-function ef-
+ﬁciencies, can be described by a single distribution (Equation 1),
+the origin of which derives from numerical convergence behaviors
+associated with clonal fragmentation and merger events.
+Quantifying the Mosaic Phenotypes Associated with
+Loss-of-Function Mutants in Two Models of
+Osteogenesis Imperfecta
+In humans, mutations in PLOD2 and BMP1 are associated with
+osteogenesis imperfecta (OI). The enzyme encoded by PLOD2,
+lysyl hydroxylase 2, localizes to the endoplasmic reticulum,
+and catalyzes lysine residue hydroxylation in ﬁbrillar collagen te-
+lopeptides (Gistelinck et al., 2016). BMP1 is a secreted enzyme
+that functions in the cleavage of C-propeptides from procollagen
+precursors (Muir et al., 2014). We and others previously showed
+that zebraﬁsh germline loss-of-function mutants for plod2 and
+bmp1a exhibit severe skeletal abnormalities as adults, reminis-
+cent of OI phenotypes (Asharani et al., 2012; Charles et al.,
+2017; Gistelinck et al., 2016; Hur et al., 2017).
+Somatic mutants for plod2 and bmp1a were generated by in-
+jection of RNP complexes into embryos, and a subset of larvae
+was individually screened for indels at 12 dpf. Sanger sequencing
+and tracking of indels by decomposition (TIDE) analysis (Brink-
+man et al., 2018) estimated mutation efﬁciencies of 82.7%–
+88.1% and 71.0%–87.5% for plod2 and bmp1a, respectively.
+At 90 dpf, somatic mutants for both genes exhibited clear skeletal
+abnormalities similar to their adult germline mutant counterparts
+(Figures S3A and S3B). Somatic mutants for plod2 exhibited se-
+vere vertebral malformations including compression of the verte-
+brae along the anteroposterior axis, kyphosis, and increased
+bone formation. Somatic mutants for bmp1a exhibited increased
+vertebral radiopacity and bone thickening. Standard length (SL)
+was signiﬁcantly reduced compared with that in sham controls
+for both plod2 (Figure S3C; n = 11/group) and bmp1a (Figure S3D;
+n = 10 controls, n = 14 bmp1a somatic mutants). The presence of
+adult phenotypes adds to recent reports (D’Agati et al., 2017; Wu
+et al., 2018) examining the durability of crispant zebraﬁsh pheno-
+types through the larval-to-adult transition.
+Variability in phenotypic expressivity across animals was
+clearly evident. For plod2, such variability was perceptible by
+(D) LOF occurs on both the ^macroscale (spanning multiple vertebral bodies) and the *microscale (contained within a vertebral body) compared with that of
+controls. Note the distinction between opacity due to developing pigmentation in the controls (top) compared with LOF in somatic mutants (bottom). asc, anterior
+spinal column; psc, posterior spinal column.
+(E) In multiple instances, LOF in somatic mutants was stratiﬁed along the dorsoventral axis of the centrum, with loss occurring preferentially on the dorsal side
+(top) or ventral side (bottom).
+(F) EGFP expression on the dorsal side of the centrum in somatic mutants often corresponded to expression in the neural arch and spine. Scale bar for (D)–(F)
+represents 100 mm.
+(G) Schematic demonstrating clonal fragmentation and merger events.
+(H) Example tracing of microscale (white) and macroscale (orange) LOF clusters on dorsal and ventral centrum surfaces.
+(I) Cluster sizes in vertebrae of individual ﬁsh. Note the differences in the number and sizes of clusters, indicative of differences in functional loss in each ﬁsh.
+(J) Vertebral cluster size distributions in individual ﬁsh, using data from (I).
+(K) Vertebral cluster size distributions in individual ﬁsh, when normalized by the mean length in each ﬁsh. Color mapping is same as that for (I and J). The data
+collapse onto a common distribution, which overlaps with Equation 1. See Figure S2 for distributions of only micro- or macroscale clusters.
+(L) Cluster size distributions for LOF clusters in the branchiostegal rays. Color mapping is same as that for (I and J).
+278
+Cell Systems 10, 275–286, March 25, 2020
+the number of dysmorphic vertebrae in each animal; in the 24
+anterior-most precaudal and caudal vertebrae, plod2 somatic
+mutants exhibited 12 [6–20] (median [range]) obviously thick
+or malformed vertebrae per ﬁsh. Furthermore, 100% (11 out
+of 11) of animals were penetrant, as all individuals exhibited
+at least one severely malformed vertebra per animal. For
+bmp1a somatic mutants, many animals exhibited a qualitative
+increase in vertebral radiopacity along the spine, which was
+variable among individuals, ranging from mild to severe. Vari-
+ability in phenotypic expressivity within each animal was also
+evident in some cases. Certain plod2 somatic mutants ex-
+hibited ‘‘patchy’’ expressivity characterized by contiguous
+spans of dysmorphic vertebrae surrounded by vertebrae that
+appeared qualitatively normal. In plod2 germline mutants,
+vertebrae are uniformly dysmorphic (Gistelinck et al., 2016),
+suggesting that patchy expressivity is not an inherent property
+of plod2 loss in adult ﬁsh. In contrast, for bmp1a somatic mu-
+tants, intra-animal variability in phenotypic expressivity was
+less obvious; while radiopacity and thickening was variable
+from ﬁsh to ﬁsh, within each animal, these characteristics ap-
+peared relatively uniform.
+We hypothesized that although plod2 and bmp1a somatic mu-
+tants exhibit inter- and intra-animal variability, the traits affected
+in somatic mutants might be indicative of those affected in germ-
+line mutants when averaged across a large sample. Our rationale
+was partly based on LOF in sp7:EGFP somatic mutants, which,
+as described earlier, was highly variable in each individual, yet
+when averaged across the group, resulted in a uniform decrease
+in ﬂuorescence across the spine (see Figures 1B and 1C).
+To test our hypothesis, we performed microCT-based spinal
+phenomics (Hur et al., 2017). We previously developed a mi-
+croCT-based workﬂow and segmentation software, FishCuT,
+which enables rapid quantiﬁcation of hundreds of measures in
+the axial skeleton of adult zebraﬁsh (Gistelinck et al., 2018; Hur
+et al., 2017, 2018). In this workﬂow, 25 different quantities are
+computed for each vertebra (Hur et al., 2017); see STAR
+Methods for description. Once calculated, these quantities are
+plotted as a function of vertebra number along the axial skeleton
+for each ﬁsh; we have termed such entities ‘‘vertebral traces.’’
+For each combination of outcome and element, a standard score
+is computed, and these data are arranged into matrix constructs
+that we have termed ‘‘skeletal bar codes.’’ In our studies, 16
+vertebrae (16 3 25 = 400 measures/animal) in 52 animals were
+analyzed, resulting in 52 3 400 = 20,800 data points that pro-
+vided a comprehensive characterization of bone morphology
+and microarchitecture across the majority of the axial skeleton
+for our zebraﬁsh cohort. To facilitate comparisons with prior
+studies (Hur et al., 2017), we present data on ten combinatorial
+quantities (the nine possible combinations of three vertebral ele-
+ments (centrum, Cent; neural arch, Neur; and haemal arch,
+Haem) 3 three characteristics (tissue mineral density, TMD;
+thickness, Th; and volume, Vol) plus centrum length (Cent.Le)
+in the 16 anterior-most vertebrae in the main text and have
+included all 25 quantities in the Supplemental Information.
+We assessed which FishCuT measures exhibited differ-
+ences in the global test. Analysis for plod2 somatic mutants
+(n
+=
+11
+ﬁsh/group)
+indicated
+signiﬁcant
+differences
+in
+Cent.TMD (p = 0.000005), Haem.TMD (p = 0.00008), Neur.TMD
+(p = 0.00005), Cent.Vol (p = 0.004), Cent.Th (p = 0.04), Cent.Le
+(p = 0.00009), and Neur.Th (p = 0.00007) (Figures 2A–2L).
+Somatic mutants for bmp1a (n = 15 ﬁsh/group) exhibited signif-
+icant differences in Cent.TMD (p = 0.000004), Haem.TMD
+(p = 0.00002), Neur.TMD (p = 0.00005), Cent.Vol (p = 0.004),
+Cent.Th (p = 0.02), Cent.Le (p = 0.01), and Haem.Th (p = 0.008)
+(Figures 2A0–2L0). Data for all 25 combinatorial measures for
+plod2 and bmp1a are provided in Figures S4 and S5, respec-
+tively. For both plod2 and bmp1a, most signiﬁcantly different
+features were associated with vertebral traces that were
+elevated or depressed across all vertebrae; an exception was
+neural arch thickness in plod2 somatic mutants, which was lower
+in anterior vertebrae, but higher in posterior vertebrae. Notably,
+for plod2 somatic mutants, mean vertebral traces appeared
+smooth—despite intra-individual variability in phenotypic ex-
+pressivity in some measures (Figure S6A; compare with bmp1a
+somatic mutants, Figure S6B)—due to averaging across the
+sample.
+Individualcellsinthe G0somatic mutantzebraﬁshgenerated for
+both genes have a wide-ranging spectrum of allelic variation,
+conferring different levels of functional loss for plod2 or bmp1a be-
+tween chromosomes, cells, tissues, and individuals. In contrast,
+germline mutants for each gene have a single, stably inherited
+loss-of-function allele for which they were bred to homozygosity.
+Assuch,wewantedtoassesstheextenttowhichsomaticmutants
+for plod2 and bmp1a could act as faithful models of their germline
+mutantcounterparts.Fortheseanalyses,wecompared globaltest
+results with measurements and FishCuT outputs for plod2 and
+bmp1a germline mutants (n=3 for both germline groups) previ-
+ously generated in Hur et al. (2017) (Figure 3). Characteristic effect
+sizes in plod2 and bmp1a somatic mutants were, on average,
+25.6% and 24.4%, respectively, of those in their germline mutant
+counterparts (plod2 somatic: 0.95; plod2 germline: 3.71; bmp1a
+somatic: 0.80; bmp1a germline: 3.23).
+Because the reduced SL in plod2 somatic mutants was more
+muted than in plod2 germline mutants (4 times less), we
+compared somatic mutant results with plod2 germline mutant
+phenotypes that had been subjected to allometric normalization.
+We previously showed that transforming wild-type (WT) sibling
+data to virtual phenome (scaled to the mean SL of age-matched
+mutants) allometric models enables length-matched compari-
+sons from an age-matched control group (Hur et al., 2017).
+Across the 10 primary measures, somatic mutants for plod2 ex-
+hibited signiﬁcant differences for 80% (4 out of 5) of the mea-
+sures signiﬁcantly altered in plod2 germline mutants (Figures
+3A and 3A0). Moreover, 60% (3 out of 5) of the combinatorial
+measures not signiﬁcantly different in plod2 germline mutants
+were also not different in plod2 somatic mutants. Correspon-
+dence of affected traits was noticeably lower when plod2
+somatic mutants were compared with plod2 germline mutants
+that had not been allometrically normalized (3 of 6 corresponding
+measures with statistical signiﬁcance, 50%; and 1 of 4
+corresponding measures without statistical signiﬁcance, 25%).
+Comparisons of results with those of the other 15 measures in
+FishCuT were not possible because allometric models are yet
+to be developed for them.
+We also observed similarity in affected traits in bmp1a somatic
+and germline mutants (Figures 3B and 3B’). Speciﬁcally, across
+the 10 primary measures, bmp1a somatic mutants exhibited sig-
+niﬁcant differences for 86% (6 out of 7) of the measures
+Cell Systems 10, 275–286, March 25, 2020
+279
+A
+B
+C
+D
+E
+F
+G
+H
+L
+I
+J
+K
+A’
+B’
+C’
+D’
+E’
+F’
+G’
+H’
+L’
+I’
+J’
+K’
+Figure 2. FishCuT Analysis of Somatic Mutants
+(A and A0) Skeletal barcodes visually depict individual phenomes for control and plod2 (A) or bmp1a (A0) somatic mutant ﬁsh (3 ﬁsh/group shown). See STAR
+Methods for barcode quantiﬁcation.
+(B–K and B0–K0) Phenotypic features, indicated by the graph title (with units for y axis), are plotted as a function of vertebra along the axial skeleton.
+Plots associated with p < 0.05 in the global test are in a lighter coloring scheme and are indicated by an asterisk (mean ± SE, see text for p values). For plod2 (B–K),
+n = 11/group, and for bmp1a (B0–K0), n = 15/group. Data for all 25 combinatorial measures are presented in Figures S4 and S5. Cent, centrum; Haem, haemal arch;
+Neur, neural arch; Vol, volume; TMD, tissue mineral density; Th, thickness; Le, length.
+(L and L0) Representative maximum intensity projections of microCT scans for plod2 (L) and bmp1a (L0) somatic mutant ﬁsh and controls.
+280
+Cell Systems 10, 275–286, March 25, 2020
+signiﬁcantly different in bmp1a germline mutants. Furthermore,
+67% (2 out of 3) of the measures not signiﬁcantly different in
+bmp1a germline mutants were also not signiﬁcantly different in
+bmp1a somatic mutants. Correspondence was not improved
+when comparing bmp1a somatic mutants to bmp1a germline
+mutants that had been subjected to allometric normalization.
+As an alternate method to assess similarity in somatic and
+germline mutant phenotypes, we computed correlations in
+mean barcode values in each group (Figures 3C and 3D). We
+chose to perform correlations on barcode values because (1)
+germline mutants were larger than their somatic mutant counter-
+parts (mean [SD]; 23.67 [1.01] mm versus 27.90 [0.72] mm for
+2e+07
+3e+07
+4e+07
+5e+07
+6e+07
+0
+5
+10
+15
+20
+Vertebra
+Cent.Vol (μm3)*
+0e+00
+2e+07
+4e+07
+6e+07
+0
+5
+10
+15
+20
+Vertebra
+Haem.Vol (μm3)
+3e+06
+5e+06
+7e+06
+0
+5
+10
+15
+20
+Vertebra
+Neur.Vol (μm3)
+350
+400
+450
+0
+5
+10
+15
+20
+Vertebra
+Cent.TMD (mgHA/cm3)*
+300
+350
+400
+450
+0
+5
+10
+15
+20
+Vertebra
+Haem.TMD (mgHA/cm3)*
+300
+350
+0
+5
+10
+15
+20
+Vertebra
+Neur.TMD (mgHA/cm3)*
+70
+80
+90
+0
+5
+10
+15
+20
+Vertebra
+Cent.Th (μm)*
+50
+60
+70
+80
+0
+5
+10
+15
+20
+Vertebra
+Haem.Th (μm)*
+50
+55
+60
+65
+70
+0
+5
+10
+15
+20
+Vertebra
+Neur.Th (μm)
+500
+600
+700
+0
+5
+10
+15
+20
+Vertebra
+Cent.Le (μm)*
+control
+bmp1a somatic
+2e+07
+3e+07
+4e+07
+5e+07
+6e+07
+7e+07
+0
+5
+10
+15
+20
+Vertebra
+Cent.Vol (μm3)*
+0e+00
+2e+07
+4e+07
+6e+07
+8e+07
+0
+5
+10
+15
+20
+Vertebra
+Haem.Vol (μm3)
+5e+06
+7e+06
+9e+06
+0
+5
+10
+15
+20
+Vertebra
+Neur.Vol (μm3)
+350
+400
+450
+0
+5
+10
+15
+20
+Vertebra
+Cent.TMD (mgHA/cm3)*
+300
+350
+400
+450
+0
+5
+10
+15
+20
+Vertebra
+Haem.TMD (mgHA/cm3)*
+320
+360
+400
+0
+5
+10
+15
+20
+Vertebra
+Neur.TMD (mgHA/cm3)*
+70
+80
+90
+100
+110
+0
+5
+10
+15
+20
+Vertebra
+Cent.Th (μm)
+60
+70
+80
+0
+5
+10
+15
+20
+Vertebra
+Haem.Th (μm)
+55
+60
+65
+70
+0
+5
+10
+15
+20
+Vertebra
+Neur.Th (μm)*
+control
+plod2 somatic
+control
+plod2 somatic
+450
+500
+550
+600
+650
+700
+0
+5
+10
+15
+20
+Vertebra
+Cent.Le (μm)*
+control
+bmp1a -/-
+4e+07
+6e+07
+8e+07
+1e+08
+4
+8
+12
+16
+Vertebra
+Cent.Vol (μm3)*
+0e+00
+5e+07
+1e+08
+4
+8
+12
+16
+Vertebra
+Haem.Vol (μm3)
+6.0e+06
+9.0e+06
+1.2e+07
+4
+8
+12
+16
+Vertebra
+Neur.Vol (μm3)
+450
+500
+550
+600
+650
+4
+8
+12
+16
+Vertebra
+Cent.TMD (mgHA/cm3)*
+400
+450
+500
+550
+600
+4
+8
+12
+16
+Vertebra
+Haem.TMD (mgHA/cm3)*
+400
+450
+500
+550
+4
+8
+12
+16
+Vertebra
+Neur.TMD (mgHA/cm3)*
+80
+90
+100
+110
+120
+4
+8
+12
+16
+Vertebra
+Cent.Th (μm)*
+60
+80
+100
+4
+8
+12
+16
+Vertebra
+Haem.Th (μm)*
+50
+60
+70
+80
+90
+100
+4
+8
+12
+16
+Vertebra
+Neur.Th (μm)*
+500
+600
+700
+4
+8
+12
+16
+Vertebra
+Cent.Le (μm)
+control
+plod2 -/-
+2e+07
+4e+07
+6e+07
+8e+07
+4
+8
+12
+16
+Vertebra
+Cent.Vol (μm3)*
+0e+00
+2e+07
+4e+07
+4
+8
+12
+16
+Vertebra
+Haem.Vol (μm3)
+2.5e+06
+5.0e+06
+7.5e+06
+1.0e+07
+4
+8
+12
+16
+Vertebra
+Neur.Vol (μm3)
+300
+400
+500
+600
+700
+4
+8
+12
+16
+Vertebra
+Cent.TMD (mgHA/cm3)*
+200
+300
+400
+500
+600
+4
+8
+12
+16
+Vertebra
+Haem.TMD (mgHA/cm3)*
+200
+300
+400
+500
+600
+4
+8
+12
+16
+Vertebra
+Neur.TMD (mgHA/cm3)*
+80
+100
+120
+4
+8
+12
+16
+Vertebra
+Cent.Th (μm)*
+50
+60
+70
+80
+4
+8
+12
+16
+Vertebra
+Haem.Th (μm)
+50
+60
+70
+4
+8
+12
+16
+Vertebra
+Neur.Th (μm)
+400
+500
+600
+4
+8
+12
+16
+Vertebra
+Cent.Le (μm)
+plod2 somatic mutant
+bmp1a somatic mutant
+A
+B
+A'
+B'
+plod2 germline mutant
+bmp1a germline mutant
+C
+D
+E
+-10
+-5
+0
+5
+10
+-10
+-5
+0
+5
+10
+Somatic Mutant
+Germline Mutant
+Correlation in Mean
+Barcode Values for plod2
+R2=0.67
+-10
+-5
+0
+5
+10
+-10
+-5
+0
+5
+10
+Somatic Mutant
+Germline Mutant
+Correlation in Mean
+Barcode Values for bmp1a
+R2=0.61
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Somatic Mutant Sample Size
+R2
+Correlation in Somatic and
+Germline Mutant Mean Barcodes
+bmp1a
+plod2
+0
+2
+4
+6
+8
+10
+12
+14
+16
+Figure 3. Correspondence between Somatic and Germline Mutant Phenotypes for plod2 and bmp1a
+Phenotypic features are plotted as a function of vertebra (mean ± SE). Plots associated with p < 0.05 in the global test are in a lighter coloring scheme (see text for
+p values) and indicated by an asterisk. (A and A0) Comparison of plod2 somatic (A) and germline (A0) mutants. Data in (A0) were subjected to allometric
+normalization, due to the severe reduction in body length in plod2 germline mutants.
+(B and B0) Comparison of bmp1a somatic (B) and germline (B0) mutants. A majority of statistically different traits in germline mutants for both genes are also
+affected in somatic mutants. For (A0) and (B0), n = 3/group. Cent, centrum; Haem, haemal arch; Neur, neural arch; Vol, volume; TMD, tissue mineral density;
+Th, thickness; Le, length.
+(C and D) Correlations between mean somatic mutant barcodes for entire plod2 (C, n = 11) and bmp1a (D, n = 15) cohorts, plotted against respective mean
+germline mutant barcodes (n = 3/group).
+(E) Correlation in mean somatic and germline mutant barcodes as a function of somatic mutant barcode sample size. As sample size (the number of barcodes
+included in the analysis) increases, phenome-wide correlation increases in an asymptotic manner.
+Cell Systems 10, 275–286, March 25, 2020
+281
+plod2 somatic and germline controls, respectively; 23.11 [0.89]
+mm versus 25.77 [1.19] mm for bmp1a somatic and germline
+controls, respectively), and (2) barcode values are computed
+by normalizing to controls, facilitating comparisons across
+different cohorts in which there are differences in body size.
+We computed R2 values of 0.67 and 0.61 for plod2 and
+bmp1a, respectively. Correlations between mean skeletal barc-
+odes for germline (always n = 3) and somatic mutants generally
+improved as the number of somatic barcodes included in the
+analysis increased (Figure 3E). Note that for Figure 3, because
+all p values were calculated based on comparisons of mutants
+with their clutchmate controls, this also accounts for differences
+between control groups. Despite their greater inter- and intra-
+animal variability, these data indicate that somatic mutants can
+predict germline mutant phenotypes with high ﬁdelity if averaged
+across a sufﬁciently large sample.
+The Global Test and Moran’s I Are Effective at
+Discerning Somatic Mutant Phenotypes
+The third aim of this study was to identify statistical methods
+effective at discerning somatic mutant phenotypes, which are
+distinct from germline mutant phenotypes in regard to their inter-
+and intra-animal variability. Previously, we showed that the
+global test (Goeman et al., 2004), a multivariate statistical test
+designed for datasets in which many features have been
+measured for the same subjects, was effective in detecting dif-
+ferences in collections of vertebral traces in germline mutants
+(Hur et al., 2017). Statistical power in multivariate tests is depen-
+dent on underlying distributions—e.g., whether there are small
+changes in a large number of measures, or large changes in a
+few measures. In somatic mutants, only a subset of vertebrae
+may be affected, and these vertebrae can be different from
+animal to animal. Thus, the performance of the global test in
+discriminating somatic mutant populations, and how it com-
+pares with univariate approaches, is unknown. We tested the hy-
+pothesis that assessing vertebral patterns with the global test
+would provide greater sensitivity in distinguishing somatic mu-
+tants with variable phenotypic expressivity compared with (1)
+Mann-Whitney (M.-W.) of individual vertebrae, and (2) M.-W.
+tests of quantities averaged across all vertebrae. We chose the
+M.-W. test as a reference univariate test because, similar to
+the global test, the M. W. test is non-parametric.
+To test this, we performed Monte Carlo simulations (see STAR
+Methods). The universal scaling distribution deﬁned in sp7:EGFP
+somatic mutants (Equation 1) was used to simulate different pat-
+terns of mosaicism and levels of phenotypic variability (1,000
+simulations per analysis). For microscale loss-of-function clus-
+ters (Figure 4A), analyzing vertebrae 1:16 using the global test re-
+sulted in up to a 1.41-fold increase in sensitivity (fraction of times
+in which p < 0.05 when comparing simulated mutant ﬁsh with WT
+ﬁsh) compared with using the M.-W. test using vertebra 2, and a
+1.15-fold increase compared with the M.-W. test using quantities
+averaged across vertebrae 1:16 (Figure 4A’). Differences in
+testing procedure were dependent on how loss-of-function re-
+gions were spatially clustered. For instance, for macroscale
+loss-of-function clusters (Figure 4B), analyzing Cent.Vol in verte-
+brae 1:16 with the global test conferred up to a 3.65- and 1.21-
+fold increase in sensitivity compared with analyzing vertebra 2
+and the mean of vertebrae 1:16 with the M. W. test, respectively
+(Figure 4B’), which were noticeably higher compared with simu-
+lations using microscale clusters. We found that the relative ben-
+eﬁts of the global test, compared with those of the univariate
+tests, became heightened as mutants become increasingly
+mosaic (i.e., less similar to germline mutants). Speciﬁcally, the
+sensitivity of the global test increased relative to the other tests
+with decreased values of lambda, the model parameter that
+parameterizes intra-animal variation (Figure 4C).
+Simulated mutants generally underestimate phenotypic vari-
+ability in the real world, as the characteristic effect size is
+assumed to be identical across all vertebrae. Thus, we examined
+the performance of the global test with experimental phenotypic
+data. We performed non-parametric simulations using experi-
+mental data derived from plod2 somatic mutants (Figure 4D).
+Generally, sensitivity differences between the global test and
+univariate tests were exacerbated when analyzing experimen-
+tally derived phenotypes from plod2 somatic mutants compared
+with simulated mutant phenotypes. This was particularly evident
+when examining sensitivity differences between the global test
+and the M.-W. test using averaged quantities, which were some-
+what modest using simulated mutant phenotypes (1.15- to 1.21-
+fold increase in sensitivity) but more pronounced using experi-
+mentally derived phenotypes from plod2 somatic mutants. For
+instance, across the seven measures in Figure 4D, the global
+test resulted in, on average, a 1.82-fold increase in sensitivity
+compared with that in the M.-W. test using averaged quantities.
+Taken together, our studies show that the global test is an effec-
+tive test for detecting differences in collections of spatially
+varying phenotypes in somatic mutants. Furthermore, they pro-
+vide evidence that spinal phenomics increases sensitivity, with
+similar speciﬁcity, in discriminating somatic mutant populations,
+compared with analyzing single readouts.
+Next, we explored statistical methods to discern the extent to
+which phenotypic expressivity in somatic mutants tended to
+be uniformly or focally dispersed throughout the skeleton
+because such spatial phenotypic variation has the potential to
+encode biological information. For instance, phenotypic vari-
+ability resembling a dosage curve has been previously hypothe-
+sized to occur when mutating a gene encoding a secreted factor,
+with different numbers of cells carrying the relevant mutation
+(Teboul et al., 2017). On the other hand, for genes that function
+cell autonomously, phenotypic expressivity may be less uniform,
+and more closely resembles patterns of mosaicism at the cellular
+level. However, consensus approaches to discern spatial vari-
+ability within phenomic data are lacking.
+We explored the utility of Moran’s I, a measure of global spatial
+autocorrelation commonly used for geostatistical analysis, for
+this purpose. Moran’s I usually ranges from approximately 1
+to 1 and can be interpreted as the extent to which values are
+spatially clustered (positive), dispersed (negative), or random
+(zero) (Figure 4E). In Monte Carlo simulations, we found that
+microscale clusters resulted in Moran’s I tending to decrease,
+whereas macroscale clusters resulted in Moran’s I tending to in-
+crease (Figure 4E’).
+We computed Moran’s I for 10 combinatorial measures in
+plod2 (Figure 4F) and bmp1a (Figure 4F’) somatic mutants.
+When the distribution of Moran’s I was calculated across all 10
+combinatorial measures, there was a marked shift in the center
+of the distribution toward I = 0 for plod2 somatic mutants
+282
+Cell Systems 10, 275–286, March 25, 2020
+compared withthat for controls (Figure 4G). In contrast, no
+obvious shift in distribution center was observed for Moran’s I
+in somatic mutants for bmp1a (Figure 4G’). The global test re-
+vealed a signiﬁcant difference (p = 0.008) in the values of Moran’s
+I in plod2 somatic mutants compared with that in controls, but no
+signiﬁcant difference (p = 0.53) in bmp1a somatic mutants
+compared with that in controls. Note that distributions for
+plod2 and bmp1a control groups also appeared different, pre-
+sumably due to normal clutch-to-clutch variability. Finally, we
+used Moran’s I to examine spatial variability of LOF in sp7:EGFP
+somatic mutant larvae (Figure S6C). Somatic sp7:EGFP mutants
+exhibited increased Moran’s I, with the M.-W. test revealing
+A
+A’
+B
+B’
+E
+F
+F’
+E’
+C
+D
+G
+G’
+Figure 4. Analyses of Vertebral Patterns Using the Global Test and Moran’s I Are Useful in Discriminating Somatic Mutant Phenotypes
+(A–C) Monte Carlo simulations of somatic vertebral patterns were analyzed for sensitivity in detecting differences in phenotypic measures. Representative mosaic
+patterns are shown for simulations of microscale (A) and macroscale (B) loss-of-function clusters. Values indicate extent of gene loss. Sensitivity of the global test
+is higher compared with that of univariate approaches for simulated mutants with microscale (A0) or macroscale (B0) loss-of-function clusters. (C) Sensitivity of the
+global test in detecting changes in centrum volume compared with that of univariate approaches for simulated mutants with microscale loss-of-function clusters
+and different degrees of intra-animal variability (parameterized by lambda). Improvement of the global test over univariate tests is heightened as mosaicism
+increases (i.e., as lambda goes to zero).
+(D) Bootstrap analysis using experimentally derived data from plod2 somatic mutants. The global test outperforms M.-W. tests for 6 of the 7 statistically signiﬁcant
+phenotypic measures detected for plod2 somatic mutants and is nearly as sensitive for the ﬁnal measure. For details on bootstrap analysis (e.g., use of n), see
+STAR Methods.
+(E and E0) (E) Schematic of Moran’s I for different simulated patterns of mosaicism. (E’) Moran’s I changes with characteristic effect size, d. Simulated microscale
+loss-of-function clusters decrease Moran’s I, whereas simulated macroscale clusters increase it.
+(F and F0) Moran’s I quantiﬁed for each of the 10 primary combinatorial measures in plod2 (F) and bmp1a (F0) somatic mutants.
+(G and G0) Combined distributions of all quantities calculated for Moran’s I shown in (F) and (F0). Moran’s I for plod2 mutants (G) shows a shift toward a random
+distribution compared with that for controls (p = 0.008 in the global test), while that of bmp1a mutants (G0) does not (p = 0.53 in the global test).
+Cell Systems 10, 275–286, March 25, 2020
+283
+a statistical (p = 0.0480) difference between groups. Thus,
+although the patchy phenotypic expressivity in plod2 somatic
+mutants superﬁcially resembles mosaicism in sp7:EGFP somatic
+mutants, we found differences in the speciﬁc nature of spatial
+variation in each group.
+DISCUSSION
+This study demonstrates how somatic mutations distribute in
+CRISPR-edited G0 zebraﬁsh, how this mosaicism phenotypi-
+cally manifests in the skeleton, and how to statistically discern
+such phenotypes within phenomic datasets.
+We found that Equation 1 described loss-of-function cluster
+sizes in the skeletal tissues studied. Because this relation arises
+via contributions from clonal fragmentation and merger events
+rather than cell fates speciﬁed by developmental programs, the
+data collapse in our study is unlikely to be unique to skeletal tis-
+sues, as clonal fragmentation and merger events initiate early in
+the developing embryo (Rulands et al., 2018). In lineage tracing
+studies, Equation 1 has been found to ﬁt clonal cluster size distri-
+butions in diverse contexts (e.g., development of zebraﬁsh heart,
+mouse liver, and mouse pancreas) but not when clonal fragmen-
+tation and merger events are actively suppressed (e.g., mouse
+acinar cells) (Rulands et al., 2018). We expect similar condition-
+ality to apply in regard to CRISPR-induced somatic mutations.
+Although our studies implicate clonal fragmentation and
+merger as an inﬂuential factor in mosaic pattern development,
+they do not imply that developmental programs are unimportant.
+In zebraﬁsh, the centrum ﬁrst ossiﬁes through direct mineraliza-
+tion of the notochord sheath, which is then encased by intra-
+membranous bone produced by somite-derived osteoblasts
+(Fleming et al., 2004). In the intervertebral growth center (IGC)
+model (Inohaya et al., 2007), osteoblasts on adjacent centra,
+as well as the arches they ﬂank, are all descendants of the
+same intervertebral cells. The IGC model predicts that LOF
+should be related in the centra of adjacent vertebra, as well as
+in the neural arches and centra of the same vertebral bodies—
+events we observed in individuals. In this context, develop-
+mental programs and clonal fragmentation and merger events
+may work in concert to inﬂuence mosaic patterns; while the latter
+primarily contributes to size distributions in loss-of-function clus-
+ters, both contribute to spatial distributions.
+A general relationship describing loss-of-function cluster sizes
+in somatic animals may facilitate the detection and interpretation
+of spatially varying phenotypes commonly observed in G0
+screens. In our own studies, Equation 1 enabled us to accurately
+model mosaicism in computer simulations and to make predic-
+tions on their phenotypic effects. These simulations enabled us
+to rigorously test the performance of the global test and univar-
+iate tests in discriminating somatic mutant populations, as well
+as estimate statistical power. They also enabled us to simulate
+how different patterns of mosaicism inﬂuence Moran’s I, and in
+turn, whether the nature of spatial phenotypic variation in
+plod2 and bmp1a somatic mutants (as characterized by Moran’s
+I) could be traced to the pattern of LOF in sp7:EGFP ﬁsh during
+early development. Equation 1 may also be useful in analyzing
+non-skeletal tissues and in instances where estimates of cluster
+size distributions are needed, such as in therapeutic applications
+of CRISPR editing.
+Finally, we identify statistical methods to discern variable phe-
+notypes in somatic mutants. In addition to ﬁnding that Moran’s I
+was useful to quantify spatial phenotypic variation, we also found
+that the global test was effective in discriminating collections of
+spatially variable phenotypes. The increased sensitivity of
+analyzing vertebral patterns with the global test, relative to uni-
+variate approaches, underscores the potential for phenomics
+to improve G0 screen productivity, and facilitates the study of
+genetic variants of smaller effect sizes. Notably, the global test
+can be used for multivariate phenotypes where spatial relation-
+ships are not speciﬁed (e.g., a panel of measures taken at
+the same anatomical site) and thus may be broadly useful for de-
+tecting differences in groups of measures between different
+populations.
+STAR+METHODS
+Detailed methods are provided in the online version of this paper
+and include the following:
+d KEY RESOURCES TABLE
+d LEAD CONTACT AND MATERIALS AVAILABILITY
+d EXPERIMENTAL MODEL AND SUBJECT DETAILS
+B Zebraﬁsh Rearing
+B CRISPR-Induced Generation of Somatic Mutants
+d METHOD DETAILS
+B Sequencing and Mutation Efﬁciency Analysis
+B MicroCT Scanning
+B Fluorescent Imaging
+B Monte Carlo Simulations
+B Moran’s I
+d QUANTIFICATION AND STATISTICAL ANALYSIS
+B Fluorescent Cluster Analysis
+B MicroCT Image Analysis
+B Statistical Approach
+d DATA AND CODE AVAILABILITY
+SUPPLEMENTAL INFORMATION
+Supplemental Information can be found online at https://doi.org/10.1016/j.
+cels.2020.02.007.
+ACKNOWLEDGMENTS
+Research reported in this publication was supported by NIH grants AR066061
+and AR072199, a Royalty Research Fund Award from UW, a John H. Tietze
+Stem Cell Scientist Award, and a Seed Grant from the University of Washing-
+ton Department of Orthopaedics and Sports Medicine. We gratefully thank
+Drs. Cecilia Moens and Peter Byers for helpful discussions.
+AUTHOR CONTRIBUTIONS
+Conceptualization, C.J.W., Y.-H.H., and R.Y.K.; Methodology, C.J.W. and
+R.Y.K.; Software, R.Y.K.; Validation, C.J.W. and R.Y.K.; Formal Analysis,
+C.J.W., A.T.M.-R., R.M.B., and R.Y.K.; Investigation, C.J.W., A.T.M.-R., and
+R.M.B.; Resources, R.Y.K.; Writing – Original Draft, C.J.

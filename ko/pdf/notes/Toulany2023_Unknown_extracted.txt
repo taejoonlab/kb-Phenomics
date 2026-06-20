@@ -1,0 +1,1354 @@
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2000
+nature methods
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+Uncovering developmental time and tempo 
+using deep learning
+Nikan Toulany 
+  1,2,3,5, Hernán Morales-Navarrete 
+  1,4,5, Daniel Čapek 
+  1, 
+Jannis Grathwohl1, Murat Ünalan 
+  1,2,6 
+ & Patrick Müller 
+  1,2,3,4,6 
+During animal development, embryos undergo complex morphological 
+changes over time. Differences in developmental tempo between species 
+are emerging as principal drivers of evolutionary novelty, but accurate 
+description of these processes is very challenging. To address this challenge, 
+we present here an automated and unbiased deep learning approach to 
+analyze the similarity between embryos of different timepoints. Calculation 
+of similarities across stages resulted in complex phenotypic fingerprints, 
+which carry characteristic information about developmental time and 
+tempo. Using this approach, we were able to accurately stage embryos, 
+quantitatively determine temperature-dependent developmental tempo, 
+detect naturally occurring and induced changes in the developmental 
+progression of individual embryos, and derive staging atlases for several 
+species de novo in an unsupervised manner. Our approach allows us 
+to quantify developmental time and tempo objectively and provides a 
+standardized way to analyze early embryogenesis.
+The development of an animal from a fertilized egg to a mature adult 
+is a complex and multifaceted process that stereotypically and almost 
+invariably produces body plans with species-specific features and 
+appearance. During early embryogenesis, animals pass through similar 
+and characteristic stages of development1–3. First, during cleavage and 
+blastula stages, embryos produce the building blocks of the future body 
+plan through a series of cell divisions. Second, during gastrula stage, 
+the cells are specified and arranged to set up the initial body axes of the 
+animal. Third, during organogenesis stages, cells are rearranged to form 
+specialized tissue systems. Fourth, during segmentation stages, the 
+tissue systems are subdivided into repeated parts along the anterior–
+posterior axis. Finally, during larval stages, the body is functionalized 
+to form an autonomous and integrated feeding, moving, sensing and 
+responding entity1,4–14.
+Our knowledge of these different developmental stages and the 
+transitions between them has been derived from careful—but tedious—
+manual microscopic observation (Supplementary Note 1)4–12. Idealized 
+images in the resulting species-specific atlases capture the essence of 
+characteristic stages and link them to absolute developmental time, 
+assuming that morphological traits are constant within a develop-
+mental stage and that stages can be correlated reliably with absolute 
+measured time. However, in reality embryos rarely look like the ideal-
+ized illustrations in staging atlases (Supplementary Fig. 1a), and tran-
+sitions between developmental stages usually do not occur abruptly 
+but smoothly (Supplementary Fig. 1b and Supplementary Video 1). The 
+appearance of different phenotypic traits during development and 
+the persistence of these traits over different lengths of time results in 
+overlapping morphologies (Supplementary Fig. 1c and Supplementary 
+Video 1), and it can therefore be difficult to strictly define sharp bounda-
+ries between subsequent developmental stages. Even when examining 
+a group of sibling embryos at the same nominal developmental stage, 
+the morphology among individuals rarely looks exactly the same due 
+to different imaging conditions and embryo rotations as well as idi-
+osyncratic features resulting from external and internal noise15–17. In 
+addition, numerous factors can influence the rate of embryogenesis, 
+thus separating developmental stage from absolute developmental 
+Received: 19 March 2023
+Accepted: 15 October 2023
+Published online: 23 November 2023
+ Check for updates
+1Systems Biology of Development, University of Konstanz, Konstanz, Germany. 2Friedrich Miescher Laboratory of the Max Planck Society, Tübingen, 
+Germany. 3University Hospital and Faculty of Medicine, University of Tübingen, Tübingen, Germany. 4Centre for the Advanced Study of Collective 
+Behaviour, Konstanz, Germany. 5These authors contributed equally: Nikan Toulany, Hernán Morales-Navarrete. 6These authors jointly supervised this 
+work: Murat Ünalan, Patrick Müller. 
+ e-mail: murat.uenalan@uni-konstanz.de; patrick.mueller@uni-konstanz.de
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2001
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+the calculation of similarities between embryo images would allow to 
+accurately account for complex morphological changes in silico in an 
+unbiased manner. Therefore, we considered this model architecture 
+to be ideally suited for the analysis of development.
+We first used high-content microscopy to generate a dataset 
+of more than 15,000 zebrafish embryos with high temporal resolu-
+tion, covering the first day of development from cleavage to early 
+larval stages (Extended Data Fig. 1a). A total of two million images was 
+acquired, where each image position comprised up to 30 zebrafish 
+embryos. We trained a ResNet101 deep learning model for image seg-
+mentation and zebrafish embryo detection with a positive predictive 
+value of 99%. Application of this model to our experimental dataset 
+combined with manual quality control facilitated segmentation into 
+more than three million embryo image segments sorted by embryo 
+and acquisition timepoint (Extended Data Fig. 1a). We then developed a 
+Twin Network architecture designed to learn phenotypic features from 
+triplets of image segments by training with triplet loss44 (Extended 
+Data Fig. 1b,c). This allowed us to calculate similarities between pairs 
+of images by creating image embeddings and calculating the cosine 
+similarity between them (Fig. 1a). By comparing two images of zebrafish 
+embryos with the Twin Network, we obtained a similarity score for the 
+compared individuals (Fig. 1a).
+We reasoned that, if a test image of an embryo was compared 
+with a set of other embryo images, the test image could be classified 
+into similar embryonic phenotypes based on the similarity scores 
+(Fig. 1b). We therefore used a timeseries of developing embryos as 
+a reference with which a single test image was compared (Fig. 1c). 
+The resulting graphs of similarities over time have two main char-
+acteristics relevant for our analysis. First, the peak of the curve, that 
+is, the maximum similarity of the test embryo to reference images, 
+reveals in which developmental stage the test image embryo is located 
+(Fig. 1b). Repeated calculations of predicted developmental stages 
+for a set of timeseries images of one embryo allow a trajectory based 
+on predicted developmental stages to be constructed (Fig. 1d,e). 
+Second, the nonpeak region of the curve contains additional informa-
+tion, such as the width of the peak (green box; Fig. 1b) and similarities 
+to distant embryonic stages. These features are distinct at different 
+timepoints and may resemble morphological similarity between 
+unrelated developmental phases (for example, similarity of cleavage 
+and blastula stages). Importantly, when comparing similarity curves of 
+two images of an embryo taken a few minutes apart, the Twin Network 
+attributes the successively acquired image to later stages by showing 
+increased similarity values of the nonpeak part of the similarity curve 
+to later developmental stages. Likewise, the difference between the 
+similarity plots of these images is positive following the peak of the 
+curve, indicating higher similarity to later developmental stages of 
+the image that was acquired later (Extended Data Fig. 2). Furthermore, 
+our Twin Network showed good precision in image ordering with-
+out a priori knowledge (Supplementary Note 2 and Supplementary 
+time18–26. As a consequence of structural and temporal variation, char-
+acterization of embryonic development and the transitions between 
+morphological states remains subjective. Computer-driven methods 
+have been proposed to tackle this problem and to enable standardi-
+zation by addressing structural or temporal variability27–35. However, 
+approaches based on supervised machine-learning techniques require 
+large databases, training resources and human-assisted annotation. 
+Moreover, they admit only a limited number of predefined classes 
+and therefore do not provide a generalizable method to characterize 
+the multitude of rapid time-dependent developmental features in 
+different phyla.
+To address these challenges, we present a new approach to analyze 
+developmental time by calculating the similarity between embryos 
+of different timepoints. Our approach is based on Twin Networks, 
+which can be used for the calculation of similarities between complex 
+input vectors36 with main previous applications in security verifica-
+tion tasks37,38 and object tracking39–41. Using a high-throughput imag-
+ing pipeline, we first created a dataset comprising more than three 
+million images with more than 15,000 zebrafish embryos. We then 
+trained a Twin Network based on image triplets of normally developing 
+embryos and applied the resulting model to accurately determine the 
+developmental age of zebrafish. We applied our developmental age 
+estimation approach to study how developmental tempo in zebrafish 
+and medaka is affected by temperature, and found that classical physi-
+cal biology theories42,43 captured temperature-dependent develop-
+ment within a species-specific thermally adapted range. Moreover, 
+we found that the Twin Network model can be used to characterize 
+natural variability of zebrafish development and to robustly identify 
+a small fraction of embryos that developed abnormally. Similarly, the 
+Twin Network was able to detect small-molecule-induced phenotypic 
+changes in embryonic development. Finally, we demonstrate that the 
+Twin Network can be used to highlight key points of development, to 
+describe transitions between stages and to automatically detect the 
+main epochs of embryogenesis from developmental trajectories in an 
+automated manner. Our method thus offers multimodal possibilities to 
+analyze developing embryos with minimal previous knowledge about 
+the process of interest and might also have widespread applications in 
+other fields where complex processes unfold over time.
+Results
+Using similarity profiles to automatically stage embryos
+Twin Networks consist of two identical parallel neural networks that 
+share both architecture and weights to learn hidden representations 
+of input data (Fig. 1a). These networks serve as the core for nonlinear 
+dimensionality reduction of complex two-dimensional input matrices—
+such as images—to feature embeddings consisting of a series of num-
+bers. Twin Networks compare images through similarity calculations 
+based on feature embeddings, in contrast to classification algorithms 
+that assign classes as two images are compared. We hypothesized that 
+Fig. 1 | Characterization of zebrafish development with Twin Networks. 
+ a, Architecture of the Twin Network pipeline. b, Schematic for embryonic age 
+prediction. A test image (top) is compared with a sequence of reference images 
+with known temporal order (middle). The age of the test image corresponds to 
+the age of embryo images with highest similarity (red dashed line); expectation 
+based on absolute (gray curve) or relative (blue curve) similarity of input data. 
+The width of the peak is indicated by green shading. c, Similarity plots between 
+test embryos (top) and reference images (bottom). Each test embryo was 
+compared with three reference image sets. The mean of cosine similarities to 
+these reference sets is plotted as a datapoint for each reference image timepoint. 
+Boxplots are based on the distribution of similarity values above 0.8. The center 
+represents the median, box limits represent upper and lower quartiles, whiskers 
+the 1.5× interquartile range and red points the curve maxima. Three images 
+from the acquisition of one embryo, representative for three independent 
+experiments, are shown. d, Schematic for prediction of embryonic trajectories. 
+Calculation of similarities between a test embryo (top) and a reference image 
+timeseries (bottom row) with the peak of the similarity curve corresponding 
+to the predicted embryonic age of the test image. Bottom row, left plot shows 
+similarity curves calculated for several test images with known temporal order 
+of one test embryo. For each image in the test image sequence, predicted 
+embryonic age can be calculated. The right plot shows predicted embryonic age 
+for each image in the test image sequence plotted based on the known temporal 
+order of the test images. e, Developmental trajectory reconstructed for one 
+representative test embryo (n = 126, see Extended Data Fig. 3e for median of full 
+dataset). The blue scattered datapoints show the Twin Network prediction and 
+the red line is the expected groundtruth trajectory. Test images are shown next to 
+the x axis, reference images are shown next to the y axis. Scale bars, 500 μm.
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2002
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+Figs. 2 and 3). These analyses show that the Twin Network can be used 
+to extract complex phenotypic fingerprints of embryos, which enables 
+accurate automatic staging (Fig. 1e).
+Developmental tempo as a function of temperature
+Temperature is a ubiquitous environmental factor that has a direct influ-
+ence on developmental rates, affecting various aspects of an organism’s 
+a
+b
+c
+e
+d
+Test embryo (query image)
+Reference sequences (each 360 frames)
+Similarity calculation
+Cosine similarity φ
+Reference stages γref
+0
+0.2
+0.4
+0.6
+0.8
+1.0
+Cosine similarity φ
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+0
+0.2
+0.4
+0.6
+0.8
+1.0
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+0
+0.2
+0.4
+0.6
+0.8
+1.0
+Blastula query image
+Gastrula query image
+Segmentation-stage query image
+Ideal match
+Ideal match
+Ideal match
+Query embryo stages γref
+Reference embryo
+stages γred
+Reference stages γref
+Cosine similarity φ
+φ1
+φ2
+φ3
+Cosine similarity φ
+Reference stages γref
+Preprocessing
+ConvNet
+Feature embedding 1
+Feature embedding 2
+Target
+Distance measure
+cosine similarity
+ConvNet
+Preprocessing
+Shared weights
+Three million
+images
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Query embryo time (min)
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Reference embryo time (min)
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2003
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+life cycle from reproduction to ecological distribution45–47. Under-
+standing the temperature dependence of embryogenesis can provide 
+valuable data for developmental biology, offering new insights into 
+the underlying molecular and physiological mechanisms that orches-
+trate the early stages of life21,48–52. This not only sheds light on the adap-
+tive strategies employed by different species in diverse environments 
+but also provides critical knowledge for predicting the impacts of cli-
+mate change on natural populations and ecosystems45,53.
+Previous efforts to quantify the temperature dependence of 
+embryonic development involved manual or semiautomated anno-
+tation of developmental time, limiting the number of experiments 
+that could be analyzed in a reasonable timespan51,54,55. Recent work 
+has shown that machine learning can be used to automate this process 
+and distinguish zebrafish embryos developing at 25.0 °C and at 28.5 °C 
+(ref. 33). To test whether our Twin Network could be used for automated 
+analysis of temperature-dependent shifts in developmental tempo, 
+we analyzed zebrafish embryos between 23.5 °C and 35.5 °C as well 
+as evolutionarily distant medaka embryos that can tolerate a wider 
+temperature range from 18 °C to 36 °C. The lower end of the tempera-
+ture range was chosen because medaka embryos arrest below 15 °C 
+(ref. 56), and zebrafish did not survive below 23 °C (Supplementary 
+Video 2)54,57. For each temperature condition, we analyzed between 100 
+1,600
+0
+200
+400
+600
+800
+1,000 1,200 1,400
+Experimental time (min)
+0
+4
+8
+12
+16
+20
+24
+Developmental age (hpf)
+26.5 °C
+28.5 °C
+31.5 °C
+b
+a
+c
+f
+26.0 °C
+28.0 °C
+31.0 °C
+0
+200
+400
+600
+800
+1,000 1,200 1,400 1,600
+Experimental time (min)
+0
+4
+8
+12
+16
+20
+24
+Developmental age (hpf)
+e
+Zebrafish
+Arrhenius range
+Ea = 65.2 kJ mol–1
+d
+0
+0.2
+1/17.0
+1/19.0
+1/21.0
+1/23.0
+1/25.0
+1/27.0
+1/29.0
+1/31.0
+1/33.0
+1/35.0
+1/temperature (1/°C)
+−1.2
+−1.0
+−0.8
+−0.6
+−0.4
+−0.2
+ln(growth rate)
+Medaka
+Arrhenius range
+Ea = 77.1 kJ mol–1
+1/17.0
+1/19.0
+1/21.0
+1/23.0
+1/25.0
+1/27.0
+1/29.0
+1/31.0
+1/33.0
+1/35.0
+−1.2
+−1.0
+−0.8
+−0.6
+−0.4
+−0.2
+0
+0.2
+ln(growth rate)
+1/temperature (1/°C)
+φ1
+φ2
+φ3
+Zebrafish test embryo
+x °C
+y hpf
+28.5 °C
+12 hpf
+28.5 °C
+24 hpf
+Zebrafish reference embryos
+28.5 °C
+18 hpf
+φ1
+φ2
+φ3
+Medaka test embryo
+x °C
+y hpf
+28.0 °C
+6.5 hpf
+28.0 °C
+21 hpf
+Medaka reference embryos
+28.0 °C
+14 hpf
+Fig. 2 | Automated analysis of fish developmental temperature dependence 
+using Twin Networks. a–f, Analysis of zebrafish and medaka embryo 
+development at various temperatures. a,d, Schematic for age estimation of 
+zebrafish (a) and medaka (d): image of an embryo at a given timepoint (y hpf), 
+raised at the temperature of interest (x °C), is compared with all timepoints  
+(three examples are shown) at the reference temperature. Developmental  
+age is assigned by the highest cosine similarity (φ). Scale bars, 500 μm.  
+b,e, Developmental age estimation for zebrafish (b) embryos at 26.5 °C, 28.5 °C 
+and 31.5 °C (n = 209, 126 and 130, respectively) and medaka (e) embryos at 
+26.0 °C, 28.0 °C and 31.0 °C (n = 47, 46 and 21), respectively. Error envelopes 
+represent two times the median absolute deviation (MAD) over the embryos 
+and are shown together with the corresponding linear fit (solid line). c,f, Natural 
+logarithm of the estimated growth rates for zebrafish (c) and medaka (f) at 
+various temperatures. Error bars represent 99.99% confidence intervals from 
+bootstrapping with 100 repetitions around the estimated slope of the linear fit to 
+the data shown in Extended Data Figs. 3 and 4. Blue shading shows the Arrhenius 
+range; the apparent activation energy is stated.
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2004
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+and 200 zebrafish embryos or between 20 and 100 medaka embryos, 
+ensuring robustness and reliability in our analysis (Fig. 2). We utilized 
+a Twin Network trained exclusively on embryos at a reference tempera-
+ture for each species (28.5 °C for zebrafish and 28.0 °C for medaka).
+Classical physical biology theories predict that reaction rates 
+scale with temperature42,43. Indeed, developmental tempo varied pro-
+foundly at different incubation temperatures for zebrafish and medaka 
+embryos: Whereas at lower temperatures embryonic development 
+proceeded at a slower pace, higher temperatures elicited a marked 
+acceleration in development compared with the reference tempera-
+ture (Fig. 2a,b,d,e, Extended Data Figs. 3 and 4 and Supplementary 
+Video 3). Strikingly, zebrafish and medaka adjusted their develop-
+mental tempo by a factor of approximately two when subjected to a 
+temperature change of 10 °C—in good agreement with the Q10 rule of 
+thumb for chemical reactions58. To analyze temperature-dependent 
+developmental tempo more quantitatively, we used the Twin Network 
+to estimate the growth rate for different temperatures and fitted the 
+data with the classical Arrhenius equation43. From the slope of the lin-
+ear fit within a species-specific range of temperatures, we estimated 
+apparent activation energies of 65 kJ mol–1 for zebrafish and 77 kJ mol−1 
+for medaka, comparable with other poikilotherm organisms like frogs, 
+flies or yeast—and notably different from homeotherms like mice 
+or humans55,59 (Fig. 2c,f). Interestingly, the temperature ranges cor-
+related with the temperatures that support normal development in 
+these fish species, in accordance with the notion of the Arrhenius range 
+that refers to the spectrum of temperatures in which regular growth 
+and biochemical reactions of specific organisms scale with tempera-
+ture59. However, at higher temperature regimes the developmental 
+rate no longer accelerated but instead stabilized, displaying intriguing 
+deviations from the idealized theories (Fig. 2c,f). A similar behavior has 
+been found in Drosophila and might reflect a reaction to heat stress51. 
+Interestingly, the two species that we analyzed reacted differently to 
+600
+800
+1,000
+1,200
+1,400
+Reference dataset time (min)
+a
+b
+c
+Predicted reference developmental time (min)
+Proportion of predictions (%)
+0
+200
+400
+600
+800
+1,000
+Test dataset time (min)
+0
+200
+400
+Divergence in developmental tempo
+or phenotypic features
+Twin Network detection
+Normally developing embryos
+Maldeveloping embryos
+Disintegrated embryo
+Dorsal–ventral
+patterning defects
+d
+Normal embryo
+Sibling embryos
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+0
+1
+2
+3
+4
+5
+Identification of variations in developmental tempo
+0 min
+400 min
+800 min
+0
+305
+610
+915
+1,220
+Time (min)
+−400
+−300
+−200
+−100
+0
+100
+Cumulative z-score
+Fig. 3 | Detecting morphological variability during zebrafish embryogenesis 
+and deviation from normal development. a, Siblings at the same nominal age 
+may display a wide variety of morphologies due to differences in developmental 
+tempo or differences in expression of features. b, Percentages of predicted 
+developmental stages when comparing 77 embryos at 0 min (green), 400 min 
+(blue) and 800 min (purple) after acquisition start with a reference embryo 
+set with images of embryos at the age of 0.2–24.2 hpf. c, A decrease in average 
+similarity values of a single embryo indicates phenotypic deviation, for example, 
+due to spontaneous maldevelopment. The sum of average similarity z-scores for 
+seven embryos is shown, each represented by a colored line. Images of a normal 
+(top) and a defectively (bottom) developing embryo are shown at corresponding 
+acquisition timepoints. d, Predicted stages of abnormally developing embryos 
+(red) frequently fall outside of the normal range of predicted stages for 14 
+reference embryos (underlying density plot). n (maldeveloping embryos) = 7, 
+n (normally developing embryos) = 14. On the right, a normal embryo at 17 hpf, 
+a dissociating embryo and an embryo with dorsal–ventral patterning defects, 
+each at 24.2 hpf, are shown with reference to the endpoints of the corresponding 
+analyzed developmental trajectories. Scale bars, 500 μm.
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2005
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+temperatures at the lower edge of their comfort zone. Zebrafish devel-
+opment slowed down linearly (Extended Data Fig. 3), and temperatures 
+below 23 °C were lethal. Medaka embryos, on the contrary, displayed 
+a nonlinear development—that is, initial linear development followed 
+by a partial arrest—at the two coldest temperatures analyzed, spending 
+a disproportionately long timespan in blastula stages (Extended Data 
+Fig. 4a,b). These findings underscore the importance of automated 
+techniques in comprehending intricate biological phenomena, open-
+ing new possibilities for further research and application in diverse 
+biological systems.
+Quantifying natural variability during embryogenesis
+Animal development is a remarkably reliable process that consist-
+ently results in a complete embryo despite genetic variation, external 
+perturbations and the noise and stochasticity associated with gene 
+expression60–63. However, even if embryos were laid at the same time and 
+incubated under the same conditions, growth rates may vary between 
+embryos and can lead to deviations in developmental stages over time6 
+(Fig. 3a and Supplementary Videos 4–6).
+To test whether this divergence of individual phenotypes in an 
+ensemble of similarly aged sibling embryos can be detected by our 
+Twin Network, we calculated similarities to reference images for sev-
+eral embryos of similar age. We found that, for several siblings laid at 
+the same time, the early stages of embryonic development predicted 
+with our Twin Network had a narrow distribution (green; Fig. 3b and 
+Extended Data Fig. 5a,b). Interestingly, and consistent with expert 
+human assessment6, the distribution width of predicted embryonic 
+stages increased after the beginning of the segmentation period (blue 
+and purple; Fig. 3b and Extended Data Fig. 5a,b), whereas average 
+similarities decreased during embryonic development (Extended Data 
+Fig. 5a,b). These results show that our Twin Network can be used to 
+quantify even small and fine-grained developmental changes as well 
+as natural variability during embryogenesis.
+In contrast to these small variations, developmental robustness 
+can fail in a fraction of abnormally developing embryos64,65. Indeed, in 
+our dataset of more than three million zebrafish embryo images, we 
+found that 1% of the embryos developed abnormally, frequently due 
+to spontaneous disintegration or dorsal–ventral patterning defects66,67 
+(Supplementary Videos 4–6). To test whether such naturally occur-
+ring phenotypes can also be detected by our Twin Network, we first 
+used trajectories of aphenotypic embryos to define a normal range 
+of predicted developmental stages for each acquisition timepoint 
+(Fig. 3c,d). Strikingly, embryos identified to be abnormal by a human 
+scientist frequently deviated from this normal range much earlier (Fig. 
+3c,d). Based on low average similarity values, abnormally developing 
+embryos could be detected in a batch of sibling embryos at early stages 
+(Fig. 3c). It will be interesting in the future to use this approach com-
+bined with genomics, transcriptomics and proteomics techniques as 
+a tool to reveal the molecular details of why robust development fails 
+in these deviating embryos.
+Identifying drug-induced embryonic phenotypes
+Embryonic development is coordinated by signaling molecules, 
+and modulating their activity can cause characteristic phenotypic 
+changes68. During zebrafish development, seven main signaling path-
+ways play a pivotal role in coordinating the establishment of the body 
+plan. While germlayer patterning and the formation of anterior–pos-
+terior and dorsal–ventral axes are regulated largely by bone mor-
+phogenetic protein (BMP), retinoic acid (RA), Wnt, fibroblast growth 
+factor (FGF) and Nodal signaling, the elongation and morphogenesis 
+of the body axis is under strong control of the sonic hedgehog (Shh) 
+and planar cell polarity (PCP) signaling pathways69. When the activity 
+of any of these pathways is modulated, distinct patterning defects 
+emerge. We recently developed a deep learning-based classification 
+algorithm—EmbryoNet—trained with manually annotated images to 
+detect such defects and link them to one of the main embryonic sign-
+aling pathways31. This classification approach used a finite number of 
+predetermined classes. We reasoned that Twin Networks could be used 
+to detect abnormally developing embryos without predefined classes, 
+and instead detect deviating embryos based solely on similarity scores. 
+This would enable unbiased automated analyses of large-scale drug 
+screens to discover compounds that potentially elicit new phenotypes 
+or intermediate phenotypes between previously defined classes.
+To test the utility of Twin Networks in the detection of abnormal 
+embryos, we compared the phenotypes of untreated embryos with 
+those of embryos treated with BMP, Nodal, FGF, Shh, PCP and Wnt 
+inhibitors as well as RA exposure (Fig. 4). We used the Twin Network to 
+compare groups of embryos of each condition with a reference group 
+of untreated embryos over time (Fig. 4a). Comparison of embryos in 
+the untreated group revealed high similarity values (Fig. 4b), indicat-
+ing coherence within a developmental cohort. In contrast, similarity 
+values between untreated and small-molecule drug-treated embryos 
+were consistently lower for most of the treatments (Fig. 4c–i and Sup-
+plementary Videos 7–13). Next, we analyzed the differences statistically 
+to identify the timepoints at which the group of embryos deviated 
+significantly from the reference. This allowed us to detect groups of 
+embryos with phenotypic defects without previous knowledge of the 
+specific alteration. The accuracy of detection depended on the number 
+of analyzed embryos and the type of perturbation (Fig. 4j).
+To determine how accurately our method can identify pheno-
+types with different levels of penetrance and severity, we used the 
+well-characterized phenotypic spectrum in zebrafish embryos with 
+different levels of BMP pathway inhibition, resulting in the previously 
+defined classes C2, C3, C4 and C5 with increasing degree of dorsaliza-
+tion70. bmp mutants and highly penetrant phenotypes resulting from 
+treatment with high doses of small-molecule BMP signaling inhibitors 
+required only a few embryos for accurate detection of developmental 
+deviations, and milder phenotypes could be detected with a larger 
+number of ~30 embryos (Extended Data Fig. 6 and Supplementary 
+Videos 14–18). These analyses show that the Twin Network—which 
+had previously been trained only with images of normally developing 
+embryos—can detect phenotypic changes in an unbiased manner.
+Automated derivation of developmental epochs
+Images of reference embryos can be used to assess the developmental 
+timing of a test embryo (Fig. 1b–e), but such reference images are not 
+always available, for example, for newly discovered or uncharacterized 
+species. Another way to characterize a developmental process with 
+minimal previous knowledge is to calculate the similarities of a test 
+image to other images of the same embryo at earlier timepoints (Fig. 5a).
+To test this idea, we calculated similarity profiles in this manner 
+for zebrafish embryos, which resulted in distinct similarity profiles at 
+different development times (Fig. 5b). We noted a common pattern, 
+where high similarity values were clustered locally; in contrast, similar-
+ity values at more distant timepoints were lower and formed plateaus 
+(Fig. 5b). Interestingly, the local and global statistical similarity of 
+image pairs measured by the network were coherent with the sequence 
+of key stages during development; embryos at timepoints that fell 
+into an extended plateau were characterized by stable morphologies 
+(Fig. 5b), highlighting principal developmental epochs such as the 
+classical cleavage, blastula, gastrula, organogenesis and segmenta-
+tion stages6. In contrast, embryos at timepoints that fell into a bound-
+ary between plateaus represented short-lived epochs with principal 
+changes in developmental morphologies (Extended Data Fig. 7 and 
+Supplementary Fig. 4). Thus, the Twin Network allows the automatic 
+generation of staging atlases akin to human assessment, but de novo, 
+without previous knowledge of the developmental stages and without 
+a model that was specifically trained for this purpose.
+We next asked whether this approach to generate species-specific 
+staging atlases in an automated manner could be generalized. We first 
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2006
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+b
+a
+0.5
+0.6
+0.7
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+−20
+−15
+−10
+−5
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+200
+400
+600
+800
+1,000
+1,200
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+−20
+−15
+−10
+−5
+ln(P value)
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+−20
+−15
+−10
+−5
+ln(P value)
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+–BMP
+–PCP
+–FGF
+–Shh
+–Nodal
++RA
+–Wnt
+0
+0.2
+0.4
+0.6
+0.8
+1.0
+Accuracy
+0
+5
+10
+15
+20
+25
+30
+35
+40
+Number of embryos per sample
+Cosine similarity φ
+Cosine similarity φ
+Untreated
+c
+d
+e
+f
+g
+h
+i
+j
+ln(P value)
+0.8
+0.9
+1.0
+Cosine similarity φ
+200
+400
+600
+800
+1,000
+1,200
+1,400
+200
+400
+600
+800
+1,000
+1,200
+1,400
+200
+400
+600
+800
+1,000
+1,200
+1,400
+200
+400
+600
+800
+1,000
+1,200
+1,400
+200
+400
+600
+800
+1,000
+1,200
+1,400
+200
+400
+600
+800
+1,000
+1,200
+1,400
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Other 
+signaling
+defects
+φ1
+φ2 φ3
+φn
+Reference embryos at time t1
+Untreated
+–BMP
+–PCP
+Reference embryos at time t2
+Other 
+signaling
+defects
+φ1
+φ2 φ3
+φn
+Untreated
+–BMP
+–PCP
+Reference embryos at time t3
+Other 
+signaling
+defects
+φ1
+φ2 φ3
+φn
+Untreated
+–BMP
+–PCP
+P = 0.01
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Cosine similarity φ
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Cosine similarity φ
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Cosine similarity φ
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Cosine similarity φ
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Cosine similarity φ
+−20
+−15
+−10
+−5
+ln(P value)
+−20
+−15
+−10
+−5
+ln(P value)
+−20
+−15
+−10
+−5
+ln(P value)
+−20
+−15
+−10
+−5
+ln(P value)
+0
+200
+400
+600
+800
+1,000
+1,200
+1,400
+Time (min)
+−20
+−15
+−10
+−5
+ln(P value)
+1,400
+Fig. 4 | Application of Twin Networks to identify drug-induced phenotypes. 
+a, Strategy of similarity calculation between embryos at the same developmental 
+stage under different drug treatments. An untreated embryo (top) serves as 
+reference to which drug-treated embryos (bottom) are compared. Examples 
+for untreated, BMP-inhibited and PCP-inhibited embryos are shown at 1.25, 10 
+and 26 hpf. The cosine similarity between a treated embryo and the reference 
+embryo is calculated for every timepoint. Scale bar, 500 μm. b–i, Upper panel, 
+mean similarities and s.d. of similarities for untreated (n = 44) (b) and –BMP 
+(n = 44) (c), –PCP (n = 14) (d), –FGF (n = 44) (e), –Shh (n = 44) (f), –Nodal (n = 44) 
+(g), +RA (n = 44) (h) and –Wnt (n = 18) (i) embryos relative to the reference group 
+of untreated embryos as a function of time. Lower panel, significance levels of the 
+difference from untreated embryos determined using a nonparametric one-sided 
+Mann–Whitney U test over each timepoint of the image series. No adjustments for 
+multiple comparisons were made. j, Dependency of the accuracy of abnormality 
+detection on the number of embryos used to analyze –BMP, –PCP, –FGF, –Shh, 
+–Nodal, +RA and –Wnt embryos. Mean and s.d. are shown for five repetitions with 
+randomly selected samples.
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2007
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+φ
+t
+t 
+t
+1
+0
+t1
+t2
+t3
+Query
+image
+Query
+image
+Query
+image
+φ
+t
+φ
+t
+φ
+a
+b
+Experimental time (min)
+Experimental time (min)
+1,400
+1,200
+1,000
+800
+600
+400
+200
+1,400
+1,200
+1,000
+800
+600
+400
+200
+0
+0
+1.0
+0
+Cosine similarity φ
+0.8
+0.6
+0.4
+0.2
+Cleavage
+Blastula
+Early gastrula
+Late gastrula
+Organogenesis and segmentation
+Automatic stage detection
+Fig. 5 | Automatic detection of developmental epochs. a, Strategy for the 
+calculation of similarities between a test embryo and images from previous 
+acquisition timepoints of the same embryo. Left, for each embryo image, the 
+cosine similarity with all the images from previous acquisition timepoints 
+is calculated. Given the symmetry of pairwise comparison, such similarity 
+profiles can be stored in a symmetric squared matrix (right) that describes the 
+self-similarity of an embryo during development over time. b, Representative 
+similarity matrix showing pairwise comparison of an image series of one 
+zebrafish embryo with itself. High similarity between neighboring timepoints 
+defines clusters that correspond to developmental epochs. The Twin Network 
+detects and partitions embryo development into phases that are in line with the 
+classical zebrafish staging atlas6. Imaging was started at 2 hpf (64-cell stage). Full 
+analysis shown in Extended Data Fig. 7a–c. Scale bar, 500 μm.
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2008
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+addressed this question with two other fish species—medaka (Oryzias 
+latipes) and three-spined stickleback (Gasterosteus aculeatus)—that 
+had diverged from zebrafish (Danio rerio) hundreds of millions of 
+years ago31. When applied to timeseries of these morphologically 
+diverse embryos, the Twin Network yielded an informative atlas for 
+each embryo (Extended Data Figs. 8 and 9). We then extended this 
+approach to an even more distant taxon represented by the nematode 
+Caenorhabditis elegans. We used open data available from different 
+independent sources such as published papers71 and YouTube videos 
+for training and evaluation, respectively. This allowed us to identify 
+the first cleavage cycles automatically, giving rise to the first four 
+blastomeres in C. elegans (Extended Data Fig. 10).
+These results show that the Twin Network approach can be used to 
+determine staging atlases de novo for different organisms and using a 
+broad range of size and quality of image datasets.
+Discussion
+Here we present a machine-learning-based approach to describe devel-
+oping processes in an automated and objective manner. The central ele-
+ment of our approach is the unsupervised computation of similarities 
+between states. Our model can be applied to multimodal tasks in the 
+analysis of animal development and compares favorably with classical 
+vector diffusion maps for image registration in terms of precision.
+Our Twin Network results have four main implications. First, 
+our approach provides a standardized way to stage and compare 
+embryos. Accurate estimation of an individual’s age is important for 
+any developmental biology study because research results may vary 
+at different embryo stages. However, phenotypic transitions can be 
+very fluid, and it is often difficult to relate an observed embryo to the 
+idealized description in staging atlases. Our Twin Network approach 
+takes into account the smooth transitions between developmental 
+stages, where phenotypic traits may appear at one point in develop-
+ment and persist or disappear at another timepoint. By performing 
+systematic similarity calculations of a test image with a reference 
+image sequence, we retrieve a similarity plot that can be used to accu-
+rately assign an embryo to a range of developmental steps within 
+the reference sequence. Depending on the length of the reference 
+sequence, this can be done within seconds on a GPU-based worksta-
+tion. It seems that our Twin Network learns to dynamically represent 
+phenotypic traits and combine them for similarity computations at 
+different developmental stages, instead of creating static sets of fea-
+tures for distinct classes of phenotypes. Furthermore, our Twin Net-
+work is able to point a theoretical arrow-of-time that represents the 
+developmental direction.
+Second, we found a tight connection between ambient tempera-
+ture and developmental tempo in agreement with predictions from 
+classical physical biology theories42,43. Apparent activation energies 
+of zebrafish and medaka are on the order of ~60–70 kJ mol−1, poten-
+tially making their enzymatic reactions highly efficient even at lower 
+temperatures59. It is tempting to speculate that this range of meta-
+bolic rates is optimal to adapt to a diverse array of temperatures. In 
+contrast, mammalian cells—being more specialized and sensitive 
+to environmental changes—have evolved with narrower Arrhenius 
+ranges. This trait enables them to function optimally within specific 
+temperature limits, but it also comes at the cost of higher apparent 
+activation energies of 120 kJ mol−1. This higher energy requirement 
+could be important for maintaining the intricacies of cellular pro-
+cesses at warmer temperatures59. Our findings provide support for 
+the notion of an inverse relationship between Arrhenius ranges and 
+apparent activation energies across different taxa. Interestingly, 
+in contrast to zebrafish embryos with a sharp lower temperature 
+limit, medaka embryos nonuniformly slowed down at colder tem-
+peratures. It is conceivable that this nonuniformity is the basis for the 
+medaka embryos’ ability to arrest development below 15 °C for up to 
+3 months56,72. These findings shed light on the evolutionary strategies 
+adopted by various organisms to cope with temperature fluctuations 
+and highlights the interplay between temperature adaptation and 
+biochemical kinetics59.
+Third, our approach enables the detection of phenotypic vari-
+ability within a population. We parametrized the divergence of features 
+using similarity scores as indicators of temporal and feature deviations. 
+Using our Twin Network, we found that variability increased over the 
+course of embryonic development. Even though our Twin Network 
+was trained only on images of normally developing embryos, it also 
+detected spontaneous as well as small-molecule-induced malforma-
+tions. This shows that the Twin Network is impartial to the specific 
+treatment and robustly identifies embryos that deviate from normal 
+developmental trajectories. The Twin Network approach might there-
+fore be ideally suited to study embryonic phenotypes associated not 
+only with one, but also with combined signaling defects, extending our 
+previous approach to investigate embryonic phenotypes associated 
+with signaling defects31.
+Fourth, Twin Networks can be used to automatically generate 
+atlases of the main epochs during development in diverse species. 
+Large areas of similarity correspond phenotypically to principal devel-
+opmental phases, and smaller areas correspond to a finer subdivi-
+sion of embryogenesis into developmental steps. Thus, development 
+is characterized by the stereotypic alternation of periods, in which 
+embryonic morphologies change, and phases, in which embryonic 
+morphologies undergo little change. Strikingly, this allows essential 
+developmental epochs in the course of embryogenesis to be identi-
+fied on the basis of a single individual in an unsupervised manner for 
+different specimens, amount of training data and quality of images. 
+We expect that this approach will be widely applicable and useful to 
+describe the development of uncharacterized species and to facilitate 
+their use in studies of development and evolution. A current limitation 
+is that a direct application of our models to different image data (for 
+example, different species, different imaging conditions) is not pos-
+sible. However, this could be achieved by fine-tuning or retraining 
+the models to adapt them to specific applications. Moreover, more 
+general and robust models could potentially be generated by future 
+methodological improvements such as taking advantage of Generative 
+Adversarial Networks to create expansive datasets when experimental 
+data is scarce.
+In summary, Twin Networks can capture complex systems and map 
+several facets of their development by computing similarities between 
+images. Developmental time can be accurately measured de novo, 
+allowing unbiased quantitative studies of robustness from limited 
+visual cues. In general, precise and objective assessment of phenotypic 
+traits in spite of several sources of variation is not only necessary for 
+the description of embryogenesis, but a principal problem in many 
+fields of biology and beyond where Twin Network applications can 
+provide new insights.
+Online content
+Any methods, additional references, Nature Portfolio reporting sum-
+maries, source data, extended data, supplementary information, 
+acknowledgements, peer review information; details of author contri-
+butions and competing interests; and statements of data and code avail-
+ability are available at https://doi.org/10.1038/s41592-023-02083-8.
+References
+1.	
+Gilbert, S. F. & Barresi, M. J. F. Developmental Biology 11th edn 
+(Sinauer Associates, 2016).
+2.	
+von Baer, K. E. Über Entwickelungsgeschichte der Thiere: 
+Beobachtung und Reflexion (Bei den Gebrüdern Bornträger, 1828).
+3.	
+Haeckel, E. Generelle Morphologie der Organismen: 
+Allgemeine Grundzüge der organischen Formen-Wissenschaft, 
+mechanisch begründet durch die von Charles Darwin reformirte 
+Descendenztheorie (De Gruyter, 1866).
+Nature Methods | Volume 20 | December 2023 | 2000–2010
+2009
+Article
+https://doi.org/10.1038/s41592-023-02083-8
+4.	
+Hamburger, V. & Hamilton, H. L. A series of normal stages in the 
+development of the chick embryo. 1951. Dev. Dyn. 195, 231–272 
+(1992).
+5.	
+Oppenheimer, S. B. & Chao, R. L. C. Atlas of Embryonic 
+Development (Allyn and Bacon, 1984).
+6.	
+Kimmel, C. B., Ballard, W. W., Kimmel, S. R., Ullmann, B. & 
+Schilling, T. F. Stages of embryonic development of the zebrafish. 
+Dev. Dyn. 203, 253–310 (1995).
+7.	
+Iwamatsu, T. Stages of normal development in the medaka 
+Oryzias latipes. Mech. Dev. 121, 605–618 (2004).
+8.	
+O'Rahilly, R. & Müller, F. Developmental stages in human embryos: 
+revised and new measurements. Cells Tissues Organs 192, 73–84 
+(2010).
+9.	
+Swarup, H. Stages in the development of the stickleback 
+Gasterosteus aculeatus (L.). J. Embryol. Exp. Morphol. 6, 373–383 
+(1958).
+10.	 Bard, J. L. et al. An internet-accessible database of mouse 
+developmental anatomy based on a systematic nomenclature. 
+Mech. Dev. 74, 111–120 (1998).
+11.	
+Campos-Ortega, J. A. & Hartenstein, V. The Embryonic 
+Development of Drosophila melanogaster 2nd edn (Springer, 
+1997).
+12.	 Martin, V. J., Littlefield, C. L., Archer, W. E. & Bode, H. R. 
+Embryogenesis in hydra. Biol. Bull. 192, 345–363 (1997).
+13.	 Moser, S. C. et al. Functional dissection of Caenorhabditis elegans 
+CLK-2/TEL2 cell cycle defects during embryogenesis  
+and germline development. PLoS Genet. 5, e1000451  
+(2009).
+14.	 Sulston, J. E., Schierenberg, E., White, J. G. & Thomson, J. N. The 
+embryonic cell lineage of the nematode Caenorhabditis elegans. 
+Dev. Biol. 100, 64–119 (1983).
+15.	 Elowitz, M. B., Levine, A. J., Siggia, E. D. & Swain, P. S. Stochastic 
+gene expression in a single cell. Science 297, 1183–1186 (2002).
+16.	 Raser, J. M. & O’Shea, E. K. Noise in gene expression: origins, 
+consequences, and control. Science 309, 2010–2013 (2005).
+17.	 Pedraza, J. M. & van Oudenaarden, A. Noise propagation in gene 
+networks. Science 307, 1965–1969 (2005).
+18.	 Mesquita, B. et al. Gold nanorods induce early embryonic 
+developmental delay and lethality in zebrafish (Danio rerio). J. 
+Toxicol. Environ. Health A 80, 672–687 (2017).
+19.	 de Campos-Baptista, M. I., Holtzman, N. G., Yelon, D. & Schier,  
+A. F. Nodal signaling promotes the speed and directional 
+movement of cardiomyocytes in zebrafish. Dev. Dyn. 237, 
+3624–3633 (2008).
+20.	 Singleman, C. & Holtzman, N. G. Growth and maturation in the 
+zebrafish, Danio rerio: a staging tool for teaching and research. 
+Zebrafish 11, 396–406 (2014).
+21.	 Urushibata, H. et al. Control of developmental speed in zebrafish 
+embryos using different incubation temperatures. Zebrafish 18, 
+316–325 (2021).
+22.	 Parichy, D. M., Elizondo, M. R., Mills, M. G., Gordon, T. N. & 
+Engeszer, R. E. Normal table of postembryonic zebrafish 
+development: staging by externally visible anatomy of the living 
+fish. Dev. Dyn. 238, 2975–3015 (2009).
+23.	 Falahati, H., Hur, W., Di Talia, S. & Wieschaus, E. 
+Temperature-induced uncoupling of cell cycle regulators. Dev. 
+Biol. 470, 147–153 (2021).
+24.	 Villamizar, N., Vera, L. M., Foulkes, N. S. & Sanchez-Vazquez, 
+F. J. Effect of lighting conditions on zebrafish growth and 
+development. Zebrafish 11, 173–181 (2014).
+25.	 Rayon, T. et al. Species-specific pace of development is 
+associated with differences in protein stability. Science 369, 
+eaba7667 (2020).
+26.	 Diaz-Cuadros, M. et al. Metabolic regulation of species-specific 
+developmental rates. Nature 613, 550–557 (2023).
+27.	 Baris Atakan, H., Alkanat, T., Cornaglia, M., Trouillon, R. & Gijs, 
+M. A. M. Automated phenotyping of Caenorhabditis elegans 
+embryos with a high-throughput-screening microfluidic platform. 
+Microsyst. Nanoeng. 6, 24 (2020).
+28.	 Naert, T. et al. Deep learning is widely applicable to phenotyping 
+embryonic development and disease. Development 148, 
+dev199664 (2021).
+29.	 Jeanray, N. et al. Phenotype classification of zebrafish embryos by 
+supervised learning. PLoS ONE 10, e0116989 (2015).
+30.	 Suryanto, M. E. et al. Using DeepLabCut as a real-time and 
+markerless tool for cardiac physiology assessment in zebrafish. 
+Biology (Basel) 11, 1243 (2022).
+31.	 Čapek, D. et al. EmbryoNet: using deep learning to link embryonic 
+phenotypes to signaling pathways. Nat. Methods 20, 815–823 
+(2023).
+32.	 Dsilva, C. J. et al. Temporal ordering and registration of images in 
+studies of developmental dynamics. Development 142, 1717–1724 
+(2015).
+33.	 Jones, R. A., Renshaw, M. J. & Barry, D. J. Automated staging 
+of zebrafish embryos with deep learning. Life Sci Alliance 7, 
+e202302351 (2023).
+34.	 Jones, R., Renshaw, M., Barry, D. & Smith, J. C. Automated staging 
+of zebrafish embryos using machine learning. Wellcome Open 
+Res. 7, 275 (2022).
+35.	 Traub, M. & Stegmaier, J. Towards automatic embryo staging in 
+3D+t microscopy images using convolutional neural networks 
+and PointNets. In Proc. Simulation and Synthesis in Medical 
+Imaging: 5th International Workshop, SASHIMI 2020, Held in 
+Conjunction with MICCAI 2020, Lima, Peru, October 4, 2020  
+(ed. Burgos, N.) 153–163 (Springer, 2020).
+36.	 Chicco, D. in Artificial Neural Networks (ed. Hugh Cartwright) 
+73–94 (Springer US, 2021).
+37.	 Baldi, P. & Chauvin, Y. Neural networks for fingerprint recognition. 
+Neural Comput. 5, 402–418 (1993).
+38.	 Chakladar, D. D. et al. A multimodal-Siamese Neural Network 
+(mSNN) for person verification using signatures and EEG. Inf. 
+Fusion 71, 17–27 (2021).
+39.	 Fan, H. & Ling, H. Siamese cascaded region proposal networks for 
+real-time visual tracking. 2019 IEEE/CVF Conference on Computer 
+Vision and Pattern Recognition (CVPR), Long Beach, CA, USA, 
+7944–7953 (2019).
+40.	 Wang, Q., Zhang, L., Bertinetto, L., Hu, W. & Torr, P. H. S. Fast online 
+object tracking and segmentation: a unifying approach. In 2019 
+IEEE/CVF Conference on Computer Visio
